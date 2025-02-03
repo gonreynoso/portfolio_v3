@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../lib/createSlug";
+import { Image } from "astro:assets";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -12,33 +13,96 @@ const last_posts = posts.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Gonzalo Reynoso</div>
-    <div class="text-3xl py-3 font-bold">
-      Full Stack Developer and System Analysis
+  <div class="flex flex-row pb-8 mt-5 gap-8">
+    <div class="w-fit mx-auto md:mx-0 mt-5 mb-6">
+      <a href="/">
+        <div class="avatar transition ease-in-out hover:scale-[102%] block">
+          <div class="w-[8.5rem]">
+            <Image
+              class="mask mask-circle"
+              format="webp"
+              width={300}
+              height={300}
+              src="/picture-profile.webp"
+              alt="Profile image"
+            />
+          </div>
+        </div>
+      </a>
     </div>
-    <div class="py-2">
-      <text class="text-lg">
-        Welcome! I'm an enthusiastic developer who loves building creative and
-        functional solutions. Explore my work and see what I’ve been working on.
-        Feel free to reach out—let’s create something great together!
-      </text>
+    <div class="flex flex-col">
+      <div class="text-xl py-1">Hey there 👋</div>
+      <div class="text-5xl font-bold">I'm Gonzalo Reynoso</div>
+      <div class="text-3xl py-3 font-bold">
+        Full Stack Developer and System Analysis
+      </div>
+      <div class="py-2">
+        <text class="text-lg">
+          Welcome! I'm an enthusiastic developer who loves building creative and
+          functional solutions. Explore my work and see what I’ve been working
+          on. <br />Feel free to reach out—let’s create something great
+          together!
+        </text>
+      </div>
     </div>
-    <div class="mt-8">
-      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank">
-        Let's connect!</a
-      >
-      <!-- <a
+  </div>
+
+  <div class="flex flex-row content-start px-40 gap-x-7 mx-2">
+    <!-- <a class="btn" href="mailto:gonzalo.reynoso9@gmail.com" target="_blank">
+      Let's connect!</a
+    > -->
+    <div class="max-w-md flex flex-row">
+      <div class="flex items-center rounded-xl overflow-hidden shadow-sm">
+        <div class="px-3 py-2 bg-gray-100 text-gray-500 flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M2.94 6.34A2 2 0 012 5V4a2 2 0 012-2h12a2 2 0 012 2v1a2 2 0 01-.94 1.34L10 10 2.94 6.34zM2 8.12V15a2 2 0 002 2h12a2 2 0 002-2V8.12l-7.06 4.14a1 1 0 01-.88 0L2 8.12z"
+            ></path>
+          </svg>
+          <span id="emailText" class="text-gray-700"
+            >gonzalo.reynoso9@gmail.com</span
+          >
+        </div>
+        <button
+          id="copyButton"
+          class="px-4 py-2 bg-gray-200 hover:bg-blue-700 hover:text-white text-gray-700 font-medium flex items-center">
+          <!-- <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V6l-4-4H6zM5 4a1 1 0 011-1h5v3h3v10a1 1 0 01-1 1H6a1 1 0 01-1-1V4z"
+            ></path>
+          </svg> -->
+          <span id="buttonText">Copy</span>
+        </button>
+
+        <!-- Mensaje de Copiado -->
+        <span
+          id="copyMessage"
+          class="absolute right-0 top-[-2rem] text-sm bg-black text-white px-2 py-1 rounded invisible opacity-0 transition-all duration-300">
+          Copiado!
+        </span>
+      </div>
+    </div>
+    <div class="">
+      <button
+        class="px-2 py-2 rounded-xl bg-gray-200 hover:bg-lime-500 hover:text-white text-gray-700 font-medium flex content-center">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6H6zm7 1.5L18.5 9H13V3.5zM8 11h8v2H8v-2zm0 4h8v2H8v-2z"
+          ></path>
+        </svg>Resume
+      </button>
+    </div>
+  </div>
+
+  <!-- <a
         href="https://github.com/manuelernestog/astrofy"
         target="_blank"
         class="btn btn-outline ml-5">
         Get This template
       </a> -->
-    </div>
-  </div>
+</BaseLayout>
 
-  <div>
+<!-- <div>
     <div class="text-3xl w-full font-bold mb-2">Projects{"</>"}</div>
   </div>
 
@@ -50,7 +114,9 @@ const last_posts = posts.slice(0, 3);
     badge="NEW"
   />
   <div class="divider my-0"></div>
-  <!-- <HorizontalCard
+</BaseLayout> -->
+
+<!-- <HorizontalCard
     title="Demo Project 2"
     img="/post_img.webp"
     desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -65,11 +131,11 @@ const last_posts = posts.slice(0, 3);
     badge="FOSS"
   /> -->
 
-  <!-- <div>
+<!-- <div>
     <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
   </div> -->
 
-  <!-- {
+<!-- {
     last_posts.map((post) => (
       <>
         <HorizontalCard
@@ -84,4 +150,31 @@ const last_posts = posts.slice(0, 3);
       </>
     ))
   } -->
-</BaseLayout>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const copyButton = document.getElementById("copyButton");
+    const emailTextElement = document.getElementById("emailText");
+    const buttonText = document.getElementById("buttonText");
+
+    if (copyButton && emailTextElement && buttonText) {
+      copyButton.addEventListener("click", function () {
+        const emailText = emailTextElement.innerText;
+
+        navigator.clipboard
+          .writeText(emailText)
+          .then(() => {
+            // Cambiar el texto del botón a "Copied!"
+            buttonText.innerText = "Copied!";
+
+            // Volver a "Copy" después de 2 segundos
+            setTimeout(() => {
+              buttonText.innerText = "Copy";
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error("Error al copiar:", err);
+          });
+      });
+    }
+  });
+</script>
