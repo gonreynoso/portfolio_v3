@@ -13,8 +13,34 @@ const last_posts = posts.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <div class="flex flex-row pb-8 mt-5 gap-8">
-    <div class="w-fit mx-auto md:mx-0 mt-5 mb-6">
+  <div class="pb-8 gap-8 mt-28">
+    <div class="flex flex-row gap-4 mb-4">
+      <img
+        class="rounded-full shadow-lg size-24"
+        src="/picture-profile.webp"
+        alt="Gonzalo Reynoso"
+      />
+      <a
+        href="https://linkedin.com/in/gonreynoso"
+        target="_blank"
+        rel="noopener"
+        class="flex items-center transition md:justify-center md:hover:scale-105">
+        <div class="flex items-center">
+          <span
+            class="relative inline-flex overflow-hidden rounded-full p-[1px]">
+            <span
+              class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#51E4B8_0%,#21554E_50%,#51E4B8_100%)]"
+            ></span>
+            <div
+              class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-green-800 bg-green-100 rounded-full cursor-pointer dark:bg-gray-800 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap">
+              Available for work
+            </div>
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <!-- <div class="w-fit md:mx-0 mt-5 mb-6">
       <a href="/">
         <div class="avatar transition ease-in-out hover:scale-[102%] block">
           <div class="w-[8.5rem]">
@@ -29,52 +55,45 @@ const last_posts = posts.slice(0, 3);
           </div>
         </div>
       </a>
-    </div>
+    </div> -->
     <div class="flex flex-col">
-      <div class="text-xl py-1">Hey there 👋</div>
+      <div class="text-xl py-1">Welcome! 👋</div>
       <div class="text-5xl font-bold">I'm Gonzalo Reynoso</div>
       <div class="text-3xl py-3 font-bold">
-        Full Stack Developer and System Analysis
+        Full Stack Developer and Systems Analyst
       </div>
       <div class="py-2">
         <text class="text-lg">
-          Welcome! I'm an enthusiastic developer who loves building creative and
-          functional solutions. Explore my work and see what I’ve been working
-          on. <br />Feel free to reach out—let’s create something great
+          I'm an enthusiastic developer who loves building creative and
+          functional solutions. <br /> Explore my work and see what I’ve been working
+          on. Feel free to reach out—let’s collaborate and build something amazing
           together!
         </text>
       </div>
     </div>
   </div>
-
-  <div class="flex flex-row content-start px-40 gap-x-7 mx-2">
-    <!-- <a class="btn" href="mailto:gonzalo.reynoso9@gmail.com" target="_blank">
-      Let's connect!</a
-    > -->
+  <div
+    class="flex flex-row content-start gap-x-7 max-md:flex-col max-md:gap-10">
     <div class="max-w-md flex flex-row">
-      <div class="flex items-center rounded-xl overflow-hidden shadow-sm">
-        <div class="px-3 py-2 bg-gray-100 text-gray-500 flex items-center">
+      <div
+        class="flex items-center rounded-xl overflow-hidden shadow-sm border border-gray-300">
+        <div
+          class="px-3 py-2 bg-base-100 text-gray-100 flex items-center border border-gray-300">
           <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
             <path
               d="M2.94 6.34A2 2 0 012 5V4a2 2 0 012-2h12a2 2 0 012 2v1a2 2 0 01-.94 1.34L10 10 2.94 6.34zM2 8.12V15a2 2 0 002 2h12a2 2 0 002-2V8.12l-7.06 4.14a1 1 0 01-.88 0L2 8.12z"
             ></path>
           </svg>
-          <span id="emailText" class="text-gray-700"
+          <span id="emailText" class="text-gray-100"
             >gonzalo.reynoso9@gmail.com</span
           >
         </div>
         <button
           id="copyButton"
-          class="px-4 py-2 bg-gray-200 hover:bg-blue-700 hover:text-white text-gray-700 font-medium flex items-center">
-          <!-- <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
-            <path
-              d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V6l-4-4H6zM5 4a1 1 0 011-1h5v3h3v10a1 1 0 01-1 1H6a1 1 0 01-1-1V4z"
-            ></path>
-          </svg> -->
+          class="px-4 py-2 bg-base-100 text-gray-100 dark:hover:bg-gray-100 dark:hover:text-black hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-white hover:text-white border font-medium flex items-center dark:hover:border-gray-300">
           <span id="buttonText">Copy</span>
         </button>
 
-        <!-- Mensaje de Copiado -->
         <span
           id="copyMessage"
           class="absolute right-0 top-[-2rem] text-sm bg-black text-white px-2 py-1 rounded invisible opacity-0 transition-all duration-300">
@@ -82,27 +101,76 @@ const last_posts = posts.slice(0, 3);
         </span>
       </div>
     </div>
-    <div class="">
-      <button
-        class="px-2 py-2 rounded-xl bg-gray-200 hover:bg-lime-500 hover:text-white text-gray-700 font-medium flex content-center">
-        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-          <path
+    <div class="max-md:flex-col max-md:gap-10">
+      <a
+        href="../../public/Resume_Gonzalo_Reynoso.pdf"
+        download
+        target="_blank"
+        rel="noopener noreferrer"
+        role="link"
+        class="inline-flex items-center justify-center gap-2 px-4 py-1 text-gray-800 transition bg-gray-100 border border-gray-300 rounded-full dark:bg-gray-800 dark:border-gray-600 dark:text-white focus-visible:ring-yellow-500/80 text-md hover:bg-gray-900 hover:border-gray-700 hover:text-white dark:hover:bg-gray-100 dark:hover:border-gray-300 dark:hover:text-black group max-w-fit focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black">
+        <svg
+          class="size-4"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          data-darkreader-inline-stroke=""
+          style="--darkreader-inline-stroke: currentColor;"
+          ><path
+            stroke="none"
+            d="M0 0h24v24H0z"
+            fill="none"
+            data-darkreader-inline-stroke=""
+            style="--darkreader-inline-stroke: none;"></path><path
             d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6H6zm7 1.5L18.5 9H13V3.5zM8 11h8v2H8v-2zm0 4h8v2H8v-2z"
-          ></path>
-        </svg>Resume
-      </button>
+          ></path><path d="M8 11l0 5"></path><path d="M8 8l0 .01"></path><path
+            d="M12 16l0 -5"></path><path d="M16 16v-3a2 2 0 0 0 -4 0"
+          ></path></svg
+        >
+        Resume
+      </a>
+      <a
+        href="https://linkedin.com/in/gonreynoso"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="link"
+        class="inline-flex items-center justify-center gap-2 px-4 py-1 text-gray-800 transition bg-gray-100 border border-gray-300 rounded-full dark:bg-gray-800 dark:border-gray-600 dark:text-white focus-visible:ring-yellow-500/80 text-md hover:bg-gray-900 hover:border-gray-700 hover:text-white dark:hover:bg-gray-100 dark:hover:border-gray-300 dark:hover:text-black group max-w-fit focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black">
+        <svg
+          class="size-4"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          data-darkreader-inline-stroke=""
+          style="--darkreader-inline-stroke: currentColor;"
+          ><path
+            stroke="none"
+            d="M0 0h24v24H0z"
+            fill="none"
+            data-darkreader-inline-stroke=""
+            style="--darkreader-inline-stroke: none;"></path><path
+            d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
+          ></path><path d="M8 11l0 5"></path><path d="M8 8l0 .01"></path><path
+            d="M12 16l0 -5"></path><path d="M16 16v-3a2 2 0 0 0 -4 0"
+          ></path></svg
+        >
+        LinkedIn
+      </a>
     </div>
   </div>
 
-  <!-- <a
-        href="https://github.com/manuelernestog/astrofy"
-        target="_blank"
-        class="btn btn-outline ml-5">
-        Get This template
-      </a> -->
-</BaseLayout>
-
-<!-- <div>
+  <div class="mt-20 mb-10">
     <div class="text-3xl w-full font-bold mb-2">Projects{"</>"}</div>
   </div>
 
@@ -114,9 +182,32 @@ const last_posts = posts.slice(0, 3);
     badge="NEW"
   />
   <div class="divider my-0"></div>
-</BaseLayout> -->
+  <HorizontalCard
+    title="Ecommerce GuitarLA"
+    img="/guitarLA.webp"
+    desc="Guitar sales page, with shopping cart, states, and local database."
+    url="https://guitar-la-alpha.vercel.app/"
+    badge="NEW"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Ecommerce GuitarLA"
+    img="/guitarLA.webp"
+    desc="Guitar sales page, with shopping cart, states, and local database."
+    url="https://guitar-la-alpha.vercel.app/"
+    badge="NEW"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Ecommerce GuitarLA"
+    img="/guitarLA.webp"
+    desc="Guitar sales page, with shopping cart, states, and local database."
+    url="https://guitar-la-alpha.vercel.app/"
+    badge="NEW"
+  />
+  <div class="divider my-0"></div>
 
-<!-- <HorizontalCard
+  <!-- <HorizontalCard
     title="Demo Project 2"
     img="/post_img.webp"
     desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -131,11 +222,11 @@ const last_posts = posts.slice(0, 3);
     badge="FOSS"
   /> -->
 
-<!-- <div>
+  <!-- <div>
     <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
   </div> -->
 
-<!-- {
+  <!-- {
     last_posts.map((post) => (
       <>
         <HorizontalCard
@@ -150,31 +241,32 @@ const last_posts = posts.slice(0, 3);
       </>
     ))
   } -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const copyButton = document.getElementById("copyButton");
-    const emailTextElement = document.getElementById("emailText");
-    const buttonText = document.getElementById("buttonText");
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const copyButton = document.getElementById("copyButton");
+      const emailTextElement = document.getElementById("emailText");
+      const buttonText = document.getElementById("buttonText");
 
-    if (copyButton && emailTextElement && buttonText) {
-      copyButton.addEventListener("click", function () {
-        const emailText = emailTextElement.innerText;
+      if (copyButton && emailTextElement && buttonText) {
+        copyButton.addEventListener("click", function () {
+          const emailText = emailTextElement.innerText;
 
-        navigator.clipboard
-          .writeText(emailText)
-          .then(() => {
-            // Cambiar el texto del botón a "Copied!"
-            buttonText.innerText = "Copied!";
+          navigator.clipboard
+            .writeText(emailText)
+            .then(() => {
+              // Cambiar el texto del botón a "Copied!"
+              buttonText.innerText = "Copied!";
 
-            // Volver a "Copy" después de 2 segundos
-            setTimeout(() => {
-              buttonText.innerText = "Copy";
-            }, 2000);
-          })
-          .catch((err) => {
-            console.error("Error al copiar:", err);
-          });
-      });
-    }
-  });
-</script>
+              // Volver a "Copy" después de 2 segundos
+              setTimeout(() => {
+                buttonText.innerText = "Copy";
+              }, 2000);
+            })
+            .catch((err) => {
+              console.error("Error al copiar:", err);
+            });
+        });
+      }
+    });
+  </script>
+</BaseLayout>
