@@ -2,9 +2,9 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import SideBar from "../components/SideBar.astro";
 import Navbar from "@components/Navbar.astro";
 import { ViewTransitions } from "astro:transitions";
+import Analytics from "../components/Analytics/Analytics.astro";
 
 import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
 
@@ -39,6 +39,7 @@ const {
         <div class="md:flex md:justify-center">
           <main class="p-6 pt-10 lg:max-w-[900px] max-w-[100vw]">
             <slot />
+            <Analytics />
           </main>
         </div>
         <Footer />
