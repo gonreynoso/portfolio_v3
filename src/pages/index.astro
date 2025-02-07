@@ -11,6 +11,7 @@ const posts = (await getCollection("blog")).sort(
 );
 
 const last_posts = posts.slice(0, 3);
+const { TAGS = [] } = Astro.props;
 ---
 
 <BaseLayout sideBarActiveItemID="home">
@@ -41,34 +42,10 @@ const last_posts = posts.slice(0, 3);
       </a>
     </div>
 
-    <!-- <div class="w-fit md:mx-0 mt-5 mb-6">
-      <a href="/">
-        <div class="avatar transition ease-in-out hover:scale-[102%] block">
-          <div class="w-[8.5rem]">
-            <Image
-              class="mask mask-circle"
-              format="webp"
-              width={300}
-              height={300}
-              src="/picture-profile.webp"
-              alt="Profile image"
-            />
-          </div>
-        </div>
-      </a>
-    </div> -->
     <div class="flex flex-col">
       <div class="text-xl py-1">Hey there!👋<br /></div>
       <div class="text-5xl">I'm <strong>Gonzalo Reynoso</strong></div>
       <div class="text-3xl py-3">Full Stack Developer & Systems Analyst</div>
-      <!-- <div class="py-2">
-        <text class="text-lg">
-          I'm an enthusiastic developer who loves building creative and
-          functional solutions. <br /> Explore my work and see what I’ve been working
-          on. Feel free to reach out—let’s collaborate and build something amazing
-          together!
-        </text>
-      </div> -->
     </div>
   </div>
   <div
@@ -252,6 +229,7 @@ const last_posts = posts.slice(0, 3);
     desc="Guitar sales page, with shopping cart, states, and local database."
     url="https://guitar-la-alpha.vercel.app/"
     badge=""
+    tags={[TAGS.NEXT, TAGS.TAILWIND]}
   />
   <div class="divider my-0"></div>
 
