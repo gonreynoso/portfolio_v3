@@ -1,119 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
-import { getCollection } from "astro:content";
-import createSlug from "../lib/createSlug";
-import { Image } from "astro:assets";
-import CodeIcon from "../components/icons/Code.astro";
-import TimeLineElement from "../components/cv/TimeLine.astro";
-import SectionContainer from "@components/SectionContainer.astro";
-import TitleSection from "@components/TitleSection.astro";
-import Projects from "@components/Projects.astro";
-import ProfileCheck from "@components/icons/ProfileCheck.astro";
 import AboutMe from "@components/AboutMe.astro";
 import Intro from "@components/Intro.astro";
+import WorkExperience from "@components/WorkExperience.astro";
+import FeaturedProjects from "@components/FeaturedProjects.astro";
 ---
 
 <BaseLayout sideBarActiveItemID="home">
   <Intro />
-
-  <div class="mt-20 mb-10">
-    <div class="text-3xl w-full font-bold mb-2">Work Experience</div>
-  </div>
-
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Front-end Angular Developer"
-      subtitle="From Oct 2024 to Present at Innevo, Santiago de Chile, Chile">
-      I worked on a web application built with Angular, focusing on creating a
-      dynamic and responsive user interface. My role involved developing modular
-      components, integrating Angular Material for a cohesive design, and
-      implementing advanced TypeScript practices. <br />
-      The application interacts with various REST APIs, enabling efficient data handling
-      and ensuring a seamless user experience. <br />
-    </TimeLineElement>
-  </div>
-  <div class="ml-8 -mt-5">
-    <a href="/resume">
-      <button
-        class="px-2 py-2 rounded-xl transition-colors duration-300 ease-in-out hover:text-[#54da7a] text-gray-100 font-medium flex items-center gap-2">
-        Go to resume
-        <svg
-          class="w-3 h-3"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 14 10">
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M1 5h12m0 0L9 1m4 4L9 9"
-            data-darkreader-inline-stroke=""
-            style="--darkreader-inline-stroke: currentColor;"></path>
-        </svg>
-      </button>
-    </a>
-  </div>
-  <div class="divider my-0"></div>
-
-  <div class="mt-20 mb-10">
-    <div class="text-3xl w-full font-bold mb-2">Featured Projects{"</I?>"}</div>
-  </div>
-
-  <SectionContainer id="proyectos">
-    <TitleSection>
-      <CodeIcon class="size-7" />
-    </TitleSection>
-    <Projects />
-  </SectionContainer>
-
-  <SectionContainer id="sobre-mi">
-    <TitleSection>
-      <ProfileCheck class="size-8" />
-      Sobre mí
-    </TitleSection>
-    <AboutMe />
-  </SectionContainer>
-
-  <!-- <HorizontalCard
-    title="Ecommerce GuitarLA"
-    img="/guitarLA.webp"
-    desc="Guitar sales page, with shopping cart, states, and local database."
-    url="https://guitar-la-alpha.vercel.app/"
-    badge=""
-  />
-  <div class="divider my-0"></div> -->
-
-  <!-- <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const copyButton = document.getElementById("copyButton");
-      const emailTextElement = document.getElementById("emailText");
-      const buttonText = document.getElementById("buttonText");
-
-      if (copyButton && emailTextElement && buttonText) {
-        copyButton.addEventListener("click", function () {
-          const emailText = emailTextElement.innerText;
-
-          navigator.clipboard
-            .writeText(emailText)
-            .then(() => {
-              // Cambiar el texto del botón a "Copied!"
-              buttonText.innerText = "Copied!";
-
-              // Volver a "Copy" después de 2 segundos
-              setTimeout(() => {
-                buttonText.innerText = "Copy";
-              }, 2000);
-            })
-            .catch((err) => {
-              console.error("Error al copiar:", err);
-            });
-        });
-      }
-    });
-  </script> -->
+  <WorkExperience />
+  <FeaturedProjects />
+  <AboutMe />
 </BaseLayout>
 
 <script>
