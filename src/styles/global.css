@@ -2,3 +2,14 @@
 .time-line-container > div:last-child .education__time > .education__line {
   display: none;
 }
+:root {
+  color-scheme: light dark;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.5s, color 0.5s;
+}
