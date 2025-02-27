@@ -31,12 +31,20 @@ const TAGS = {
 };
 const PROJECTS = [
   {
-    title: "GuitarLA - Ecommerce de guitarras",
+    title: "GuitarLA - Guitar-Ecommerce",
     description:
-      "Ecommerce de guitarras, con carrito de la compra, estados y base de datos local.",
+      "E-commerce for guitars, with a shopping cart, statuses, and a local database.",
     link: "https://guitar-la-alpha.vercel.app/",
     github: "https://github.com/gonreynoso/Guitar-LA",
     image: "/guitarLA.webp",
+    tags: [TAGS.REACT, TAGS.CSS],
+  },
+  {
+    title: "Weather's app",
+    description: "Weather app, with the current weather.",
+    link: "https://guitar-la-alpha.vercel.app/",
+    github: "https://github.com/gonreynoso/Guitar-LA",
+    image: "/clima.webp",
     tags: [TAGS.REACT, TAGS.CSS],
   },
 ];
@@ -51,8 +59,7 @@ const PROJECTS = [
             <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
               <img
                 alt="Recién llegado vs 5 años en Nueva Zelanda"
-                class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
-                loading="lazy"
+                class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-105"
                 src={image}
               />
             </div>

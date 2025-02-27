@@ -1,0 +1,45 @@
+---
+const { text = "Texto copiado" } = Astro.props;
+---
+
+<button
+  class="copy-button px-4 py-2 bg-base-100 text-gray-100 dark:hover:bg-gray-100 dark:hover:text-black hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-white hover:text-white border font-medium flex items-center dark:hover:border-gray-300 relative"
+  data-text={text}>
+  <span class="button-text">Copy</span>
+</button>
+
+<span
+  class="copy-message absolute right-0 top-[-2rem] text-sm bg-black text-white px-2 py-1 rounded invisible opacity-0 transition-opacity duration-300">
+  Copiado!
+</span>
+
+<script is:inline>
+  function setupCopyButtons() {
+    document.querySelectorAll(".copy-button").forEach((button) => {
+      button.addEventListener("click", function () {
+        const textToCopy = button.getAttribute("data-text");
+        const buttonText = button.querySelector(".button-text");
+        const copyMessage = button.nextElementSibling;
+
+        navigator.clipboard
+          .writeText(textToCopy)
+          .then(() => {
+            buttonText.innerText = "Copied!";
+            copyMessage.classList.remove("invisible", "opacity-0");
+            copyMessage.classList.add("opacity-100");
+
+            setTimeout(() => {
+              buttonText.innerText = "Copy";
+              copyMessage.classList.add("invisible", "opacity-0");
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error("Error al copiar:", err);
+          });
+      });
+    });
+  }
+
+  // Asegurar que el script se ejecute siempre
+  setTimeout(setupCopyButtons, 0);
+</script>

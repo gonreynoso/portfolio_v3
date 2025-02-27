@@ -12,32 +12,3 @@ import FeaturedProjects from "@components/FeaturedProjects.astro";
   <FeaturedProjects />
   <AboutMe />
 </BaseLayout>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const copyButton = document.getElementById("copyButton");
-    const emailTextElement = document.getElementById("emailText");
-    const buttonText = document.getElementById("buttonText");
-
-    if (copyButton && emailTextElement && buttonText) {
-      copyButton.addEventListener("click", function () {
-        const emailText = emailTextElement.innerText;
-
-        navigator.clipboard
-          .writeText(emailText)
-          .then(() => {
-            // Cambiar el texto del botón a "Copied!"
-            buttonText.innerText = "Copied!";
-
-            // Volver a "Copy" después de 2 segundos
-            setTimeout(() => {
-              buttonText.innerText = "Copy";
-            }, 2000);
-          })
-          .catch((err) => {
-            console.error("Error al copiar:", err);
-          });
-      });
-    }
-  });
-</script>

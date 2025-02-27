@@ -1,3 +1,7 @@
+---
+import CopyButton from "../components/CopyButton.astro";
+---
+
 <div class="pb-8 gap-8 mt-28">
   <div class="flex flex-row gap-4 mb-4">
     <img
@@ -45,7 +49,8 @@
           >gonzalo.reynoso9@gmail.com</span
         >
       </div>
-      <button
+      <CopyButton text="gonzalo.reynoso9@gmail.com" />
+      <!-- <button
         id="copyButton"
         class="px-4 py-2 bg-base-100 text-gray-100 dark:hover:bg-gray-100 dark:hover:text-black hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-white hover:text-white border font-medium flex items-center dark:hover:border-gray-300">
         <span id="buttonText">Copy</span>
@@ -55,7 +60,8 @@
         id="copyMessage"
         class="absolute right-0 top-[-2rem] text-sm bg-black text-white px-2 py-1 rounded invisible opacity-0 transition-all duration-300">
         Copiado!
-      </span>
+      </span> -->
+      <copyButtoncopyButton client:only="astro"></copyButtoncopyButton>
     </div>
   </div>
   <div class="flex max-md:flex-row max-md:gap-6 gap-6 flex-wrap">
@@ -155,3 +161,5 @@
     </a>
   </div>
 </div>
+
+<script></script>
