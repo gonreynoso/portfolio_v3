@@ -6,6 +6,9 @@ import Link from "./icons/Link.astro";
 import LinkButton from "./LinkButton.astro";
 import React from "./icons/React.astro";
 import Css from "./icons/Css.astro";
+import Php from "./icons/Php.astro";
+import WordPress from "./icons/WordPress.astro";
+import Sql from "./icons/Sql.astro";
 
 const TAGS = {
   NEXT: {
@@ -28,24 +31,49 @@ const TAGS = {
     class: "bg-[#61dafb] text-black",
     icon: Css,
   },
+  PHP: {
+    name: "PHP",
+    class: "bg-[#777BB4] text-white",
+    icon: Php,
+  },
+  WORDPRESS: {
+    name: "WordPress",
+    class: "bg-[#21759B] text-white",
+    icon: WordPress,
+  },
+  SQL: {
+    name: "SQL",
+    class: "bg-[#00AEEF] text-black",
+    icon: Sql,
+  },
 };
 const PROJECTS = [
   {
-    title: "GuitarLA - Guitar-Ecommerce",
+    title: "Estudio Froment & Asociados Website",
     description:
-      "E-commerce for guitars, with a shopping cart, statuses, and a local database.",
-    link: "https://guitar-la-alpha.vercel.app/",
-    github: "https://github.com/gonreynoso/Guitar-LA",
-    image: "/guitarLA.webp",
-    tags: [TAGS.REACT, TAGS.CSS],
+      "The Estudio Froment & Asoc website is a WordPress-based platform developed with PHP and MySQL, integrating a custom member validation system and DNI field for secure user verification. The project included database schema optimization, backend data validation, and SEO improvements to enhance site performance and visibility.",
+    link: "https://estudiofroment.kensiweb.com",
+    github: null,
+    image: "/estudiofroment.webp",
+    tags: [TAGS.WORDPRESS, TAGS.PHP, TAGS.SQL, TAGS.CSS],
   },
   {
-    title: "Weather's app",
-    description: "Weather app, with the current weather.",
-    link: "https://app-weather-eight.vercel.app/",
-    github: "https://github.com/gonreynoso/app-weather",
-    image: "/clima.webp",
-    tags: [TAGS.REACT, TAGS.CSS],
+    title: "Ilón Shelter Booking Platform ",
+    description:
+      "Ilón Shelter Booking Platform is a WordPress-based web application built with PHP, CSS, and phpMyAdmin for database management. It allows visitors to book accommodations at the Ilon Mountain Refuge, located near Laguna Ilon. The platform provides an easy-to-use interface for managing reservations, viewing availability, and streamlining the booking process for both guests and administrators.",
+    link: "https://refugioilon.com.ar",
+    github: null,
+    image: "/refugioilonweb.webp",
+    tags: [TAGS.WORDPRESS, TAGS.PHP, TAGS.SQL, TAGS.CSS],
+  },
+  {
+    title: "Radio Intima Online",
+    description:
+      "Radio Íntima Online is a streaming platform developed to manage live audio broadcasts and dynamic content updates. The system integrates a relational database for scheduling, program metadata, and listener interaction tracking. Optimizations focused on data consistency, backend performance, and seamless media playback across devices.",
+    link: "https://intimaonline.com",
+    github: null,
+    image: "/intimaonline.webp",
+    tags: [TAGS.WORDPRESS, TAGS.PHP, TAGS.SQL, TAGS.CSS],
   },
 ];
 ---
@@ -58,7 +86,7 @@ const PROJECTS = [
           <a href={link} target="_blank" rel="noopener noreferrer">
             <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
               <img
-                alt="Recién llegado vs 5 años en Nueva Zelanda"
+                alt="Project image"
                 class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-105"
                 src={image}
               />
@@ -71,17 +99,7 @@ const PROJECTS = [
             {title}
           </h3>
           <div class="flex flex-wrap mt-2">
-            {/* <ul class="flex flex-row mb-2 gap-x-2">
-              {tags.map((tag) => (
-                <li>
-                  <span
-                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}>
-                    <tag.icon class="size-4" />
-                    {tag.name}
-                  </span>
-                </li>
-              ))}
-            </ul> */}
+            {}
 
             <div class="mt-2 text-gray-700 dark:text-gray-400">
               {description}
@@ -96,7 +114,7 @@ const PROJECTS = [
               {link && (
                 <LinkButton href={link}>
                   <Link class="size-4" />
-                  Preview
+                  Link
                 </LinkButton>
               )}
             </footer>
@@ -105,7 +123,7 @@ const PROJECTS = [
       </article>
     ))
   }
-  <div class="-mt-5">
+  <!-- <div class="-mt-5">
     <a href="/projects">
       <button
         class="px-2 py-2 rounded-xl transition-colors duration-300 ease-in-out hover:text-[#54da7a] text-gray-100 font-medium flex items-center gap-2">
@@ -127,6 +145,6 @@ const PROJECTS = [
         </svg>
       </button>
     </a>
-  </div>
+  </div> -->
   <div class="divider my-0"></div>
 </div>
