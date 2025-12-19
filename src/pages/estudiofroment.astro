@@ -1,0 +1,251 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostLayout from "../layouts/PostLayout.astro";
+const title = "Estudio Froment & Asociados";
+const role = "Full-stack Developer & UI Designer (KensiWeb)";
+---
+
+<PostLayout
+    title={title}
+    description={role}
+    pubDate={new Date("2024-12-12")}
+    updatedDate={"2025-12-12"}
+    heroImage="/images/projects/froment-bg.jpg"
+>
+    <article class="project-case-study">
+        <div
+            class="project-hero bg-dark text-white py-5 mb-5"
+            style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/images/projects/froment-bg.jpg') center/cover;"
+        >
+            <div class="container py-5 text-center">
+                <h6 class="text-gold text-uppercase ls-3 mb-3 fw-bold">
+                    Case Study
+                </h6>
+                <h1 class="display-3 fw-bold mb-3">{title}</h1>
+                <p
+                    class="lead text-gold-muted mx-auto"
+                    style="max-width: 700px;"
+                >
+                    {role}
+                </p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <section class="mb-5 pb-5 border-bottom">
+                        <h2 class="section-title h3 mb-4">01. The Challenge</h2>
+                        <p class="description-text">
+                            A prestigious law firm with a 40-year legacy
+                            required a digital identity that reflected academic
+                            authority and corporate sobriety. The challenge was
+                            to migrate complex legal credentials into a
+                            high-performance interface without the "bloat" of
+                            traditional builders like Elementor, ensuring a
+                            premium editorial feel.
+                        </p>
+                        <div class="img-wrapper my-4">
+                            <img
+                                src="/images/projects/froment-ui-mockup.png"
+                                alt="UI Design System"
+                                class="img-fluid rounded shadow-lg border"
+                            />
+                            <p class="small text-muted mt-2 text-center italic">
+                                Initial UI Research & Color Palette Definition
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="mb-5 pb-5 border-bottom">
+                        <h2 class="section-title h3 mb-4">
+                            02. Creative Process
+                        </h2>
+
+                        <div class="process-step mb-5">
+                            <h4 class="h5 text-gold fw-bold">
+                                A. Information Architecture
+                            </h4>
+                            <p>
+                                Structured 40+ years of legal experience into a
+                                hierarchical layout, prioritizing credibility
+                                and academic publications.
+                            </p>
+                        </div>
+
+                        <div class="process-step mb-5">
+                            <h4 class="h5 text-gold fw-bold">
+                                B. Development in Ubuntu Environment
+                            </h4>
+                            <p>
+                                Developed a custom SASS architecture to manage
+                                "The Froment Gold" design system across all
+                                pages. Used Bootstrap 5 for the grid system but
+                                replaced standard utility classes with custom,
+                                semantic SCSS for better maintainability.
+                            </p>
+                            <img
+                                src="/images/projects/froment-code.png"
+                                alt="Clean Code Snippet"
+                                class="img-fluid rounded border mb-3"
+                            />
+                        </div>
+
+                        <div class="process-step">
+                            <h4 class="h5 text-gold fw-bold">
+                                C. Dynamic Interactions
+                            </h4>
+                            <p>
+                                Integrated Swiper.js for the legal team carousel
+                                and Lenis for smooth scrolling, achieving a
+                                fluid "agency-grade" experience.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="section-title h3 mb-4">03. Final Outcome</h2>
+                        <p>
+                            A zero-debt technical solution with optimized
+                            loading speeds and 100% responsive accuracy.
+                        </p>
+                        <div class="img-grid d-flex gap-3">
+                            <img
+                                src="/images/projects/froment-mobile.png"
+                                alt="Mobile Responsive View"
+                                class="img-fluid rounded shadow w-50"
+                            />
+                            <img
+                                src="/images/projects/froment-tablet.png"
+                                alt="Tablet View"
+                                class="img-fluid rounded shadow w-50"
+                            />
+                        </div>
+                    </section>
+                </div>
+
+                <aside class="col-lg-4">
+                    <div class="sticky-top" style="top: 100px;">
+                        <div
+                            class="tech-card p-4 bg-white border rounded shadow-sm mb-4"
+                        >
+                            <h3 class="h5 fw-bold border-bottom pb-3 mb-3">
+                                Project Specs
+                            </h3>
+
+                            <div class="spec-item mb-3">
+                                <span
+                                    class="d-block small text-muted text-uppercase fw-bold"
+                                    >Development Environment</span
+                                >
+                                <span class="badge bg-dark"
+                                    >Ubuntu Linux (OS)</span
+                                >
+                            </div>
+
+                            <div class="spec-item mb-3">
+                                <span
+                                    class="d-block small text-muted text-uppercase fw-bold"
+                                    >Frontend Tech</span
+                                >
+                                <div class="d-flex flex-wrap gap-1 mt-1">
+                                    <span class="badge border text-dark"
+                                        >SASS (SCSS)</span
+                                    >
+                                    <span class="badge border text-dark"
+                                        >Bootstrap 5</span
+                                    >
+                                    <span class="badge border text-dark"
+                                        >JavaScript ES6</span
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="spec-item mb-3">
+                                <span
+                                    class="d-block small text-muted text-uppercase fw-bold"
+                                    >Libraries</span
+                                >
+                                <span class="badge bg-light text-dark border"
+                                    >Swiper.js</span
+                                >
+                                <span class="badge bg-light text-dark border"
+                                    >Lenis Scroll</span
+                                >
+                            </div>
+
+                            <div class="spec-item mb-4">
+                                <span
+                                    class="d-block small text-muted text-uppercase fw-bold"
+                                    >Deployment</span
+                                >
+                                <span class="badge bg-light text-dark border"
+                                    >Vercel + Git</span
+                                >
+                                <span class="badge bg-light text-dark border"
+                                    >NIC.ar DNS</span
+                                >
+                            </div>
+
+                            <a
+                                href="https://estudiofroment.kensiweb.com"
+                                target="_blank"
+                                class="btn btn-gold w-100 fw-bold py-3"
+                            >
+                                VIEW LIVE SITE <i
+                                    class="bi bi-arrow-up-right-circle ms-2"
+                                ></i>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </article>
+</PostLayout>
+
+<style>
+    /* El Dorado Froment */
+    .text-gold {
+        color: #c5a059;
+    }
+    .bg-gold {
+        background-color: #c5a059;
+    }
+    .text-gold-muted {
+        color: #a18a5e;
+    }
+    .btn-gold {
+        background-color: #c5a059;
+        color: white;
+        border-radius: 0;
+        transition: all 0.3s;
+    }
+    .btn-gold:hover {
+        background-color: #b08d4a;
+        color: white;
+        transform: translateY(-2px);
+    }
+    .ls-3 {
+        letter-spacing: 3px;
+    }
+    .border-gold {
+        border-color: #c5a059 !important;
+    }
+    .section-title {
+        position: relative;
+        padding-bottom: 10px;
+    }
+    .section-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background-color: #c5a059;
+    }
+    .italic {
+        font-style: italic;
+    }
+</style>

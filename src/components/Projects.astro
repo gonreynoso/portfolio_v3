@@ -9,6 +9,10 @@ import Css from "./icons/Css.astro";
 import Php from "./icons/Php.astro";
 import WordPress from "./icons/WordPress.astro";
 import Sql from "./icons/Sql.astro";
+import SASS from "./icons/Sass.astro";
+import JavaScript from "./icons/Javascript.astro";
+import Bootstrap from "./icons/Bootstrap.astro";
+import HTML from "./icons/HTML.astro";
 
 const TAGS = {
   NEXT: {
@@ -46,17 +50,41 @@ const TAGS = {
     class: "bg-[#00AEEF] text-black",
     icon: Sql,
   },
+  SASS: {
+    name: "SASS",
+    class: "bg-[#00AEEF] text-black",
+    icon: SASS,
+  },
+  JAVASCRIPT: {
+    name: "JavaScript",
+    class: "bg-[#00AEEF] text-black",
+    icon: JavaScript,
+  },
+  BOOTSTRAP: {
+    name: "Bootstrap",
+    class: "bg-[#00AEEF] text-black",
+    icon: Bootstrap,
+  },
+  HTML: {
+    name: "HTML",
+    class: "bg-[#00AEEF] text-black",
+    icon: HTML,
+  },  
 };
 const PROJECTS = [
   {
-    title: "Law firm Froment & Asociados Website",
-    description:
-      "The Law firm Froment & Asociados website is a WordPress-based platform developed with PHP and MySQL, integrating a custom member validation system and DNI field for secure user verification. The project included database schema optimization, backend data validation, and SEO improvements to enhance site performance and visibility.",
-    link: "https://estudiofroment.kensiweb.com",
-    github: null,
-    image: "/estudiofroment.webp",
-    tags: [TAGS.WORDPRESS, TAGS.PHP, TAGS.SQL, TAGS.CSS],
-  },
+  title: "Estudio Froment & Asociados",
+  description:
+    `Digital transformation for a top-tier Law Firm focusing on a "Premium Editorial" aesthetic with zero technical debt.
+    • Performance First: Developed a custom frontend in Ubuntu using SASS and Bootstrap 5, bypassing heavy builders for optimized loading speeds.
+    • Clean Architecture: Implemented a modular SCSS system with variables to ensure brand consistency across all professional profiles.
+    • UX/UI Excellence: Integrated Swiper.js and Lenis Scroll to achieve high-end, smooth interactions while maintaining legal sobriety.
+    • DevOps & Deployment: Orchestrated continuous deployment via Git and Vercel, including custom DNS management through NIC.ar.`,
+  link: "/estudiofroment",
+  github: null, // Podrías ponerlo como 'private' si no lo quieres mostrar
+  image: "/estudiofroment.webp",
+  tags: [TAGS.SASS, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP, TAGS.HTML],
+},
   {
     title: "Ilón Shelter Booking Platform ",
     description:
