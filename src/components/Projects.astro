@@ -121,13 +121,13 @@ const PROJECTS: Project[] = [
           <footer class="flex items-end justify-start mt-4 gap-x-4">
             {github && (
               <LinkButton href={github}>
-                <GitHub class="size-6" />
+                <GitHub class="w-6 h-6" />
                 Code
               </LinkButton>
             )}
             {link && (
               <LinkButton href={link}>
-                <Link class="size-4" />
+                <Link class="w-4 h-4" />
                 <span data-lang="es">{dict.es.projects.items[key].linkLabel}</span>
                 <span data-lang="en">{dict.en.projects.items[key].linkLabel}</span>
               </LinkButton>
