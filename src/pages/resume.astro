@@ -1,302 +1,178 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import TimeLineElement from "../components/cv/TimeLine.astro";
+import WorkExperience from "../components/WorkExperience.astro";
+import ContactModal from "../components/ContactModal.astro";
+import { dict } from "../i18n";
+
+const esR = dict.es.resume;
+const enR = dict.en.resume;
+
+type SkillGroup = keyof typeof esR.skillsGroups;
+const skillGroups = Object.keys(esR.skillsGroups) as SkillGroup[];
 ---
 
-<BaseLayout title="Gonzalo Reynoso | Resume" sideBarActiveItemID="cv">
-  <div class="mb-5 mt-28">
-    <div class="text-3xl w-full font-bold">Profile</div>
+<BaseLayout title="Gonzalo Reynoso · Resume">
+  <div class="mt-28 mb-6 flex flex-wrap items-center justify-between gap-4">
+    <h1 class="text-3xl font-bold text-gray-200 dark:text-gray-100">
+      <span data-lang="es">{esR.profileTitle}</span>
+      <span data-lang="en">{enR.profileTitle}</span>
+    </h1>
+    <a
+      href="/Resume_Gonzalo_Reynoso_ES.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      data-lang="es"
+      class="inline-flex items-center gap-2 rounded-full bg-[#54da7a] px-4 py-2 text-sm font-semibold text-black transition hover:bg-[#3fc165]"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      {esR.downloadPdf}
+    </a>
+    <a
+      href="/Resume_Gonzalo_Reynoso_EN.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      data-lang="en"
+      class="inline-flex items-center gap-2 rounded-full bg-[#54da7a] px-4 py-2 text-sm font-semibold text-black transition hover:bg-[#3fc165]"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      {enR.downloadPdf}
+    </a>
   </div>
 
-  <div class="mb-10 [&>p]:mb-2 text-justify">
-    <p>
-      Full Stack Developer with experience in web application development. I
-      have worked on various projects using a wide range of technologies,
-      including JavaScript, React, TypeScript, Node.js, Angular, Express, SQL,
-      and NoSQL.
-    </p>
-    <p>
-      I have experience in version control using Git, GitHub, Gitlab, Jira,
-      Teams, Trello, and implementing Kanban and Scrum in development teams to
-      optimize delivery and improve communication.
-    </p>
-    <p>
-      I am currently pursuing a degree in Systems Analysis, where I am deepening
-      my knowledge of Java and its application in software development.
-    </p>
-    <p>I have an advanced C1 level of English</p>
+  <p class="mb-10 text-gray-300 leading-relaxed max-w-3xl">
+    <span data-lang="es">{esR.profileBody}</span>
+    <span data-lang="en">{enR.profileBody}</span>
+  </p>
+
+  <WorkExperience />
+
+  <!-- Internship -->
+  <div class="mt-16 mb-6">
+    <h2 class="text-3xl font-bold text-gray-200 dark:text-gray-100">
+      <span data-lang="es">{esR.internshipsTitle}</span>
+      <span data-lang="en">{enR.internshipsTitle}</span>
+    </h2>
   </div>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experience</div>
+  <section class="relative pl-6 border-l-2 border-gray-700 text-gray-200 dark:text-gray-100 mb-10">
+    <span class="absolute -left-[9px] top-1 block w-4 h-4 rounded-full bg-gray-500"></span>
+    <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+      <h3 class="text-xl font-semibold">{esR.internship.role} · {esR.internship.company}</h3>
+      <span class="text-sm text-gray-400">
+        <span data-lang="es">{esR.internship.period} · {esR.internship.location}</span>
+        <span data-lang="en">{enR.internship.period} · {enR.internship.location}</span>
+      </span>
+    </header>
+    <ul class="mt-2 list-disc list-inside text-sm text-gray-300 space-y-1 marker:text-gray-500">
+      {
+        esR.internship.bullets.map((b, i) => (
+          <li>
+            <span data-lang="es">{b}</span>
+            <span data-lang="en">{enR.internship.bullets[i]}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <!-- Education -->
+  <div class="mt-16 mb-6">
+    <h2 class="text-3xl font-bold text-gray-200 dark:text-gray-100">
+      <span data-lang="es">{esR.educationTitle}</span>
+      <span data-lang="en">{enR.educationTitle}</span>
+    </h2>
   </div>
 
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="FullStack Developer"
-      subtitle="From Oct 2024 to Present at Innevo, Santiago de Chile, Chile">
-      <p>
-        I worked on a web application built with Angular, focusing on creating a
-        dynamic and responsive user interface. My role involved developing
-        modular components, integrating Angular Material for a cohesive design,
-        and implementing advanced TypeScript practices.
-      </p>
-
-      <p>
-        The application interacts with various REST APIs, enabling efficient
-        data handling and ensuring a seamless user experience.
-      </p>
-
-      <p>
-        • Angular Component Development: Built reusable and optimized Angular
-        components, following best practices.
-      </p>
-
-      <p>
-        • Angular Material Integration: Implemented Angular Material to enhance
-        user experience and visual consistency.
-      </p>
-
-      <p>
-        • Reactive Forms: Developed dynamic and custom-validated forms using
-        Angular Reactive Forms.
-      </p>
-
-      <p>
-        • State Management and Services: Configured Angular services to handle
-        business logic and share data between components.
-      </p>
-
-      <p>
-        • REST API Integration: Integrated external APIs using Angular’s
-        HTTPClient for CRUD operations and data display.
-      </p>
-    </TimeLineElement>
+  <div class="grid gap-4 mb-10">
+    {
+      esR.education.map((item, i) => {
+        const en = enR.education[i];
+        return (
+          <article class="rounded-lg border border-gray-800 bg-gray-900/40 p-4 text-gray-200 dark:text-gray-100">
+            <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <h3 class="text-lg font-semibold">
+                <span data-lang="es">{item.title}</span>
+                <span data-lang="en">{en.title}</span>
+              </h3>
+              <span class="text-gray-400"> · </span>
+              <span class="text-sm text-gray-300">{item.where}</span>
+              <span class="text-sm text-gray-500 ml-auto">
+                <span data-lang="es">
+                  {item.period}{item.location ? ` · ${item.location}` : ""}
+                </span>
+                <span data-lang="en">
+                  {en.period}{en.location ? ` · ${en.location}` : ""}
+                </span>
+              </span>
+            </header>
+            <ul class="mt-2 list-disc list-inside text-sm text-gray-300 space-y-1 marker:text-[#54da7a]">
+              {
+                item.bullets.map((b, j) => (
+                  <li>
+                    <span data-lang="es">{b}</span>
+                    <span data-lang="en">{en.bullets[j]}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </article>
+        );
+      })
+    }
   </div>
 
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Administrative & IT Analyst"
-      subtitle="From Aug 2020 to Apr 2024 at Medicina Diagnóstica, Buenos Aires, CABA, Argentina">
-      <p>
-        As an Administrative & IT Analyst at Medicina Diagnóstica, I focused on
-        optimizing internal processes through the development of technological
-        solutions, task automation, and data management. My work ranged from
-        document digitization to customer service.
-      </p>
-
-      <p>
-        • Developed applications using Google Script to automate company payroll
-        processes, optimizing data collection and financial processing.
-      </p>
-
-      <p>
-        • Implemented interactive dashboards with Power BI, enhancing
-        administrative and financial data analysis in the healthcare sector.
-      </p>
-
-      <p>
-        • Designed and developed the laboratory’s official website using
-        WordPress and MySQL, ensuring accurate and up-to-date information.
-      </p>
-
-      <p>
-        • Managed digital and physical documentation in the billing department,
-        applying methodologies to improve data organization and accessibility.
-      </p>
-
-      <p>
-        • Provided customer service support, handling patient registration and
-        delivering clinical test results with efficiency and accuracy.
-      </p>
-
-      <p>
-        • Managed invoicing, payment tracking, and employee payroll processing,
-        ensuring a smooth administrative workflow.
-      </p>
-    </TimeLineElement>
+  <!-- Certifications -->
+  <div class="mt-16 mb-6">
+    <h2 class="text-3xl font-bold text-gray-200 dark:text-gray-100">
+      <span data-lang="es">{esR.certificationsTitle}</span>
+      <span data-lang="en">{enR.certificationsTitle}</span>
+    </h2>
   </div>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Internships</div>
-  </div>
-
-  <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Front-end React Developer"
-      subtitle="From Nov 2023 to Dec 2023 at Informental, Mendoza, Argentina">
-      <p>• Collaborated in transitioning the application from PHP to React.</p>
-
-      <p>
-        • Developed the web version of the application, working on the design of
-        various tabs, data forms, and charts.
-      </p>
-
-      <p>
-        • Worked with the Informental team to improve user experience by
-        optimizing performance and integrating React and Node.js technologies.
-      </p>
-
-      <p>
-        • Achieved a 15% reduction in loading times by optimizing code using
-        React Server Components.
-      </p>
-    </TimeLineElement>
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Education</div>
-  </div>
-
-  <div class="time-line-container grid gap-1 mb-10">
-    <TimeLineElement
-      title="Systems Analyst"
-      subtitle="Sept 2024 to Dec 2027 at Da Vinci's University, Federal Capital of Buenos Aires, Argentina">
-      <ul class="list-disc list-inside pl-0 space-y-1">
-        <li>Fundamentals of relational database design.</li>
+  <ul class="list-disc mx-6 mb-10 grid gap-2 text-gray-200">
+    {
+      esR.certifications.map((c, i) => (
         <li>
-          Logical and physical data modeling (ER diagrams, normalization).
+          <a href={c.href} target="_blank" rel="noopener noreferrer" class="hover:text-[#54da7a] transition">
+            <span data-lang="es">{c.label}</span>
+            <span data-lang="en">{enR.certifications[i].label}</span>
+            {" "}
+            <strong class="font-semibold">{c.issuer}</strong>
+          </a>
         </li>
-        <li>
-          Advanced SQL: subqueries, joins, functions, and stored procedures.
-        </li>
-        <li>Database management and optimization with SQL Server and MySQL.</li>
-        <li>Introduction to NoSQL databases and administration tools.</li>
-      </ul>
-      <br />
-    </TimeLineElement>
-    <TimeLineElement
-      title="Diploma in Databases"
-      subtitle="Jul 2025 at National Technological University (UTN), Federal Capital of Buenos Aires, Argentina">
-      <ul class="list-disc list-inside pl-0 space-y-1">
-        <li>
-          Design, administration, and optimization of relational databases.
-        </li>
-        <li>
-          Logical and physical data modeling (ER diagrams, normalization).
-        </li>
-        <li>
-          Advanced SQL: subqueries, joins, functions, and stored procedures.
-        </li>
-        <li>
-          Database management and optimization with SQL Server, MySQL, and
-          Oracle.
-        </li>
-        <li>Introduction to NoSQL databases and administration tools.</li>
-      </ul>
-      <br />
-    </TimeLineElement>
-    <TimeLineElement
-      title="Full Stack Developer (PERN)"
-      subtitle="Jan 2023 to Jul 2023 at Henry Bootcamp, Federal Capital of Buenos Aires, Argentina">
-      <ul class="list-disc list-inside pl-0 space-y-1">
-        <li>Fundamentals of relational database design.</li>
-        <li>
-          Logical and physical data modeling (ER diagrams, normalization).
-        </li>
-        <li>
-          Advanced SQL: subqueries, joins, functions, and stored procedures.
-        </li>
-        <li>Database management and optimization with SQL Server and MySQL.</li>
-        <li>Introduction to NoSQL databases and administration tools.</li>
-      </ul>
-      <br />
-    </TimeLineElement>
-    <TimeLineElement
-      title="Advanced Course in React/TypeScript"
-      subtitle="Jul 2023 to Dec 2023 at Udemy, Federal Capital of Buenos Aires, Argentina">
-      <ul class="list-disc list-inside pl-0 space-y-1">
-        <li>
-          In-depth work with components, Promises, and asynchronous handling.
-        </li>
-        <li>
-          Use of functions like <code>map</code> and integration with APIs.
-        </li>
-        <li>Use of hooks, children, and design patterns.</li>
-        <li>Routing, navigation, and event handling.</li>
-        <li>Global state with Context and rendering techniques.</li>
-        <li>Connection with Firebase and Firestore.</li>
-      </ul>
-      <br />
-    </TimeLineElement>
-  </div>
-
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
-  </div>
-
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <a href="https://cert.efset.org/es/iLxjy3" target="_blank"
-        >Advanced C1 English Certificate <strong>Efset</strong></a
-      >
-    </li>
-    <li>
-      <a
-        href="https://validator.centrodeelearning.com/validator/290f3090-cb4f-43b0-b522-caffe89207d6"
-        target="_blank">
-        Diploma Certificate in Databases <strong>UTN</strong></a
-      >
-    </li>
-    <li>
-      <a
-        href="https://drive.google.com/file/d/1AW4chaaRdrU2cZTXnBT-DB0HuOwSS4MI/view?usp=sharing"
-        target="_blank">
-        Full Stack Developer at <strong>Henry Bootcamp</strong></a
-      >
-    </li>
-    <li>
-      <a
-        href="https://drive.google.com/file/d/1UUvrZTnVCAjwyV06SHwauSJBmAIyk2TD/view?usp=sharing"
-        target="_blank">Web Developer at <strong>CoderHouse</strong></a
-      >
-    </li>
-    <li>
-      <a
-        href="https://drive.google.com/file/d/1UUvrZTnVCAjwyV06SHwauSJBmAIyk2TD/view?usp=sharing"
-        target="_blank">React Js at <strong>CoderHouse</strong></a
-      >
-    </li>
-    <li>
-      <a
-        href="https://drive.google.com/file/d/1UUvrZTnVCAjwyV06SHwauSJBmAIyk2TD/view?usp=sharing"
-        target="_blank">JavaScript at <strong>CoderHouse</strong></a
-      >
-    </li>
+      ))
+    }
   </ul>
 
-  <div class="mb-5 mt-5 pt-5">
-    <div class="text-3xl w-full font-bold">Skills</div>
+  <!-- Skills -->
+  <div class="mt-16 mb-6">
+    <h2 class="text-3xl font-bold text-gray-200 dark:text-gray-100">
+      <span data-lang="es">{esR.skillsTitle}</span>
+      <span data-lang="en">{enR.skillsTitle}</span>
+    </h2>
   </div>
 
-  <ul class="list-disc md:columns-5 columns-2 mx-6">
-    <li>JavaScript</li>
-    <li>HTML5</li>
-    <li>CSS</li>
-    <li>SCSS</li>
-    <li>Java</li>
-    <li>Angular</li>
-    <li>Angular Material</li>
-    <li>MySQL</li>
-    <li>React</li>
-    <li>Astro</li>
-    <li>Git</li>
-    <li>Firebase</li>
-    <li>Firestore</li>
-    <li>NodeJs</li>
-    <li>PHP</li>
-    <li>Laravel</li>
-    <li>Docker</li>
-    <li>GitHub</li>
-    <li>Gitlab</li>
-    <li>Git</li>
-    <li>Express</li>
-    <li>Bootstrap</li>
-    <li>TailwindCSS</li>
-    <li>PostgreSQL</li>
-    <li>WordPress</li>
-    <li>Trello</li>
-    <li>Jira</li>
-    <li>Photoshop</li>
-  </ul>
+  <div class="grid gap-3 mb-16 text-gray-200 dark:text-gray-100">
+    {
+      skillGroups.map((g) => (
+        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span class="text-sm font-semibold text-[#54da7a] min-w-[5.5rem]">
+            <span data-lang="es">{esR.skillsGroupLabels[g]}</span>
+            <span data-lang="en">{enR.skillsGroupLabels[g]}</span>
+          </span>
+          <span class="text-sm text-gray-300">{esR.skillsGroups[g].join(" · ")}</span>
+        </div>
+      ))
+    }
+  </div>
+
+  <ContactModal />
 </BaseLayout>
