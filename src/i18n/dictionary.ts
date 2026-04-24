@@ -21,6 +21,54 @@ const es = {
     copy: "Copiar",
     close: "Cerrar",
   },
+  caseFroment: {
+    badge: "Caso de estudio",
+    title: "Estudio Froment & Asociados",
+    role: "Full-stack Developer & UI Designer · Kensiweb",
+    summary:
+      "Transformación digital para un estudio jurídico con 40 años de trayectoria. Estética \"premium editorial\", cero deuda técnica y deploy continuo.",
+    backToHome: "← Volver",
+    sections: {
+      challenge: {
+        number: "01",
+        title: "El desafío",
+        body: "Un estudio jurídico con cuatro décadas de trayectoria necesitaba una identidad digital que reflejara autoridad académica y sobriedad corporativa. El reto fue migrar credenciales legales complejas a una interfaz de alto rendimiento sin el peso de page builders tradicionales, manteniendo una sensación editorial premium.",
+      },
+      process: {
+        number: "02",
+        title: "Proceso creativo",
+        steps: [
+          {
+            title: "A. Arquitectura de información",
+            body: "Estructuré 40+ años de experiencia legal en un layout jerárquico, priorizando credibilidad y publicaciones académicas.",
+          },
+          {
+            title: "B. Desarrollo en entorno Ubuntu",
+            body: "Armé una arquitectura SASS a medida para gestionar el sistema de diseño \"The Froment Gold\" en todas las páginas. Usé Bootstrap 5 solo como grid, reemplazando las utilities por SCSS semántico para mejor mantenibilidad.",
+          },
+          {
+            title: "C. Interacciones dinámicas",
+            body: "Integré Swiper.js para el carrusel del equipo legal y Lenis para scroll suave, logrando una experiencia fluida de \"nivel agencia\".",
+          },
+        ],
+      },
+      outcome: {
+        number: "03",
+        title: "Resultado final",
+        body: "Solución técnica sin deuda, con tiempos de carga optimizados y precisión responsive al 100%.",
+      },
+    },
+    specs: {
+      title: "Project Specs",
+      env: "Entorno de desarrollo",
+      envValue: "Ubuntu Linux",
+      frontend: "Frontend",
+      libraries: "Librerías",
+      deploy: "Deploy",
+      cta: "Ver sitio en vivo",
+      ctaUrl: "https://estudiofroment.kensiweb.com",
+    },
+  },
   about: {
     title: "Sobre mí",
     p1: "Soy Gonzalo Reynoso, desarrollador full-stack radicado en Buenos Aires. Trabajo como freelance bajo mi propia marca, **Kensiweb**, construyendo sistemas web a medida para PyMEs y proyectos independientes.",
@@ -193,6 +241,54 @@ const en: Dict = {
     copied: "Copied!",
     copy: "Copy",
     close: "Close",
+  },
+  caseFroment: {
+    badge: "Case study",
+    title: "Estudio Froment & Asociados",
+    role: "Full-stack Developer & UI Designer · Kensiweb",
+    summary:
+      "Digital transformation for a 40-year-old law firm. Premium editorial aesthetic, zero technical debt, continuous deployment.",
+    backToHome: "← Back",
+    sections: {
+      challenge: {
+        number: "01",
+        title: "The challenge",
+        body: "A law firm with four decades of legacy needed a digital identity that reflected academic authority and corporate sobriety. The challenge: migrate complex legal credentials into a high-performance interface without the bloat of traditional page builders, preserving a premium editorial feel.",
+      },
+      process: {
+        number: "02",
+        title: "Creative process",
+        steps: [
+          {
+            title: "A. Information architecture",
+            body: "Structured 40+ years of legal experience into a hierarchical layout, prioritizing credibility and academic publications.",
+          },
+          {
+            title: "B. Development in a Ubuntu environment",
+            body: "Built a custom SASS architecture to manage the \"The Froment Gold\" design system across all pages. Used Bootstrap 5 just for the grid, replacing utility classes with semantic SCSS for better maintainability.",
+          },
+          {
+            title: "C. Dynamic interactions",
+            body: "Integrated Swiper.js for the legal-team carousel and Lenis for smooth scrolling, reaching a fluid \"agency-grade\" experience.",
+          },
+        ],
+      },
+      outcome: {
+        number: "03",
+        title: "Final outcome",
+        body: "A zero-debt technical solution with optimized loading speeds and 100% responsive accuracy.",
+      },
+    },
+    specs: {
+      title: "Project specs",
+      env: "Development environment",
+      envValue: "Ubuntu Linux",
+      frontend: "Frontend",
+      libraries: "Libraries",
+      deploy: "Deploy",
+      cta: "View live site",
+      ctaUrl: "https://estudiofroment.kensiweb.com",
+    },
   },
   about: {
     title: "About Me",
