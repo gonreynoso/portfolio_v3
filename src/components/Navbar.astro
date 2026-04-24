@@ -1,27 +1,29 @@
 ---
-
+import LangToggle from "./LangToggle.astro";
+import { dict } from "../i18n";
 ---
 
 <nav
   class="flex z-20 flex-row md:flex-row md:justify-between md:items-center py-4 px-8 text-white fixed top-0 right-0 left-0">
-  <!-- Menú de navegación -->
-  <div class="mt-4 md:mt-0 p-2 px-4 w-100 mx-auto rounded-2xl bg-base-100">
+  <div class="mt-4 md:mt-0 p-2 px-4 mx-auto rounded-2xl bg-base-100 flex items-center gap-6">
     <ul class="flex md:flex-row list-none md:space-y-0 md:space-x-6 gap-10">
       <li>
         <a
           href="/"
           class="text-white no-underline text-base transition-colors duration-300 ease-in-out hover:text-[#54da7a]">
-          Home
+          <span data-lang="es">{dict.es.nav.home}</span>
+          <span data-lang="en">{dict.en.nav.home}</span>
         </a>
       </li>
-
       <li>
         <a
           href="/resume"
           class="text-white no-underline text-base transition-colors duration-300 ease-in-out hover:text-[#54da7a]">
-          Resume
+          <span data-lang="es">{dict.es.nav.resume}</span>
+          <span data-lang="en">{dict.en.nav.resume}</span>
         </a>
       </li>
     </ul>
+    <LangToggle />
   </div>
 </nav>

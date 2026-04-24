@@ -1,0 +1,58 @@
+---
+// Client-side ES/EN toggle. Reads/writes localStorage.lang and flips the
+// `lang-es` / `lang-en` class on <html> so the CSS rules in global.css
+// show the matching `[data-lang]` content without a reload.
+---
+
+<button
+  type="button"
+  id="lang-toggle"
+  class="inline-flex items-center gap-1 rounded-full border border-gray-600 bg-gray-800 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white transition-colors duration-300 ease-in-out hover:bg-gray-100 hover:text-black focus:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2"
+  aria-label="Toggle language"
+  data-current="es"
+>
+  <span data-lang-label="es" class="font-bold">ES</span>
+  <span class="text-gray-500">/</span>
+  <span data-lang-label="en" class="text-gray-400">EN</span>
+</button>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById("lang-toggle");
+    if (!btn) return;
+
+    const paint = (lang) => {
+      const html = document.documentElement;
+      html.classList.remove("lang-es", "lang-en");
+      html.classList.add("lang-" + lang);
+      html.setAttribute("lang", lang);
+      btn.dataset.current = lang;
+
+      const esLabel = btn.querySelector('[data-lang-label="es"]');
+      const enLabel = btn.querySelector('[data-lang-label="en"]');
+      if (esLabel && enLabel) {
+        esLabel.classList.toggle("font-bold", lang === "es");
+        esLabel.classList.toggle("text-gray-400", lang !== "es");
+        enLabel.classList.toggle("font-bold", lang === "en");
+        enLabel.classList.toggle("text-gray-400", lang !== "en");
+      }
+
+      window.dispatchEvent(new CustomEvent("langchange", { detail: { lang } }));
+    };
+
+    // Sync with what the no-flash script already set.
+    const current =
+      document.documentElement.classList.contains("lang-en") ? "en" : "es";
+    paint(current);
+
+    btn.addEventListener("click", () => {
+      const next = btn.dataset.current === "es" ? "en" : "es";
+      try {
+        localStorage.setItem("lang", next);
+      } catch {
+        /* storage may be blocked; ignore */
+      }
+      paint(next);
+    });
+  })();
+</script>

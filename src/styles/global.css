@@ -13,3 +13,10 @@ body {
   color: var(--text-color);
   transition: background-color 0.5s, color 0.5s;
 }
+
+/* i18n: hide the inactive-language content. Both languages render at
+   build time; a root class on <html> chooses which one is visible. */
+html.lang-es [data-lang="en"],
+html.lang-en [data-lang="es"] {
+  display: none;
+}

@@ -16,8 +16,32 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="es" class="lang-es" data-theme="dark">
   <head>
+    <script is:inline>
+      // No-flash language init: runs before the first paint so the
+      // wrong language never flickers on the screen.
+      (() => {
+        let lang = null;
+        try {
+          lang = localStorage.getItem("lang");
+        } catch {
+          /* storage blocked */
+        }
+        if (lang !== "es" && lang !== "en") {
+          lang =
+            typeof navigator !== "undefined" &&
+            navigator.language &&
+            navigator.language.toLowerCase().startsWith("es")
+              ? "es"
+              : "en";
+        }
+        const html = document.documentElement;
+        html.classList.remove("lang-es", "lang-en");
+        html.classList.add("lang-" + lang);
+        html.setAttribute("lang", lang);
+      })();
+    </script>
     <BaseHead
       title={title}
       description={description}
