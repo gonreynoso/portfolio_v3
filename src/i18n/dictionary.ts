@@ -163,6 +163,8 @@ const es = {
   },
   experience: {
     title: "Experiencia",
+    clientLabel: "Cliente:",
+    projectLabel: "Proyecto:",
     kensiweb: {
       role: "Freelance Full-Stack Developer",
       company: "Kensiweb",
@@ -470,6 +472,8 @@ const en: Dict = {
   },
   experience: {
     title: "Experience",
+    clientLabel: "Client:",
+    projectLabel: "Project:",
     kensiweb: {
       role: "Freelance Full-Stack Developer",
       company: "Kensiweb",
