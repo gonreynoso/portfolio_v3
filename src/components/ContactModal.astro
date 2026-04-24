@@ -1,0 +1,155 @@
+---
+import { dict } from "../i18n";
+
+const EMAIL = "gonzalo.reynoso9@gmail.com";
+const LINKEDIN = "https://linkedin.com/in/gonreynoso";
+// Uncomment and set a Kensiweb-dedicated WhatsApp number when available:
+// const WHATSAPP = "https://wa.me/549XXXXXXXXXX";
+---
+
+<dialog
+  id="contact-modal"
+  class="m-auto w-[min(92vw,28rem)] rounded-2xl border border-gray-700 bg-gray-900 p-0 text-gray-100 backdrop:bg-black/70 backdrop:backdrop-blur-sm open:animate-[fadeIn_120ms_ease-out]"
+  aria-labelledby="contact-modal-title"
+>
+  <div class="p-6">
+    <div class="flex items-start justify-between">
+      <div>
+        <h2 id="contact-modal-title" class="text-2xl font-bold">
+          <span data-lang="es">{dict.es.contact.title}</span>
+          <span data-lang="en">{dict.en.contact.title}</span>
+        </h2>
+        <p class="mt-1 text-sm text-gray-400">
+          <span data-lang="es">{dict.es.contact.subtitle}</span>
+          <span data-lang="en">{dict.en.contact.subtitle}</span>
+        </p>
+      </div>
+      <button
+        type="button"
+        data-close-contact
+        class="ml-4 rounded-full p-1 text-gray-400 transition hover:bg-gray-800 hover:text-white"
+        aria-label="Close"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mt-6 flex flex-col gap-3">
+      <a
+        href={`mailto:${EMAIL}`}
+        class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-gray-200"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span data-lang="es">{dict.es.contact.sendEmail}</span>
+        <span data-lang="en">{dict.en.contact.sendEmail}</span>
+      </a>
+
+      <button
+        type="button"
+        id="contact-copy-email"
+        data-email={EMAIL}
+        class="inline-flex items-center justify-center gap-2 rounded-full border border-gray-600 bg-gray-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span data-contact-copy-default>
+          <span data-lang="es">{dict.es.contact.copyEmail}</span>
+          <span data-lang="en">{dict.en.contact.copyEmail}</span>
+          <span class="ml-1 font-mono text-xs text-gray-400">{EMAIL}</span>
+        </span>
+        <span data-contact-copy-done class="hidden text-[#54da7a]">
+          <span data-lang="es">{dict.es.ui.copied}</span>
+          <span data-lang="en">{dict.en.ui.copied}</span>
+        </span>
+      </button>
+
+      <a
+        href={LINKEDIN}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 rounded-full border border-gray-600 bg-gray-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path>
+          <rect x="2" y="9" width="4" height="12"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
+        </svg>
+        {dict.es.contact.linkedin}
+      </a>
+    </div>
+  </div>
+</dialog>
+
+<script is:inline>
+  (() => {
+    const modal = document.getElementById("contact-modal");
+    if (!modal) return;
+
+    const open = () => {
+      if (typeof modal.showModal === "function") modal.showModal();
+      else modal.setAttribute("open", "");
+    };
+    const close = () => {
+      if (typeof modal.close === "function") modal.close();
+      else modal.removeAttribute("open");
+    };
+
+    document.addEventListener("click", (e) => {
+      const target = e.target instanceof Element ? e.target : null;
+      if (!target) return;
+      if (target.closest("[data-open-contact]")) {
+        e.preventDefault();
+        open();
+      } else if (target.closest("[data-close-contact]")) {
+        e.preventDefault();
+        close();
+      } else if (target === modal) {
+        // click on backdrop (dialog's ::backdrop forwards to the element)
+        close();
+      }
+    });
+
+    const copyBtn = document.getElementById("contact-copy-email");
+    if (copyBtn) {
+      const defaultLabel = copyBtn.querySelector("[data-contact-copy-default]");
+      const doneLabel = copyBtn.querySelector("[data-contact-copy-done]");
+      copyBtn.addEventListener("click", async () => {
+        const email = copyBtn.dataset.email || "";
+        try {
+          await navigator.clipboard.writeText(email);
+        } catch {
+          // fallback
+          const ta = document.createElement("textarea");
+          ta.value = email;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand("copy"); } catch {}
+          ta.remove();
+        }
+        if (defaultLabel && doneLabel) {
+          defaultLabel.classList.add("hidden");
+          doneLabel.classList.remove("hidden");
+          setTimeout(() => {
+            defaultLabel.classList.remove("hidden");
+            doneLabel.classList.add("hidden");
+          }, 1500);
+        }
+      });
+    }
+  })();
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

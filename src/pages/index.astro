@@ -4,11 +4,13 @@ import AboutMe from "@components/AboutMe.astro";
 import Intro from "@components/Intro.astro";
 import WorkExperience from "@components/WorkExperience.astro";
 import FeaturedProjects from "@components/FeaturedProjects.astro";
+import ContactModal from "@components/ContactModal.astro";
 ---
 
-<BaseLayout sideBarActiveItemID="home">
+<BaseLayout>
   <Intro />
   <WorkExperience />
   <FeaturedProjects />
   <AboutMe />
+  <ContactModal />
 </BaseLayout>

@@ -21,9 +21,23 @@ const es = {
     copy: "Copiar",
     close: "Cerrar",
   },
+  contact: {
+    title: "Hablemos",
+    subtitle: "Elegí el canal que prefieras.",
+    sendEmail: "Escribime un mail",
+    copyEmail: "Copiar email",
+    linkedin: "LinkedIn",
+    close: "Cerrar",
+  },
+  contactCta: {
+    title: "¿Tenés un proyecto en mente?",
+    body: "Cotizaciones, consultas técnicas o un café virtual. Escribime y lo charlamos.",
+    button: "Contactame",
+  },
   footer: {
     developedBy: "Hecho por Gonzalo Reynoso",
     brandPrefix: "·",
+    brandNote: "Trabajo freelance bajo",
   },
 } as const;
 
@@ -50,9 +64,23 @@ const en: Dict = {
     copy: "Copy",
     close: "Close",
   },
+  contact: {
+    title: "Let's talk",
+    subtitle: "Pick whichever channel works for you.",
+    sendEmail: "Send me an email",
+    copyEmail: "Copy email",
+    linkedin: "LinkedIn",
+    close: "Close",
+  },
+  contactCta: {
+    title: "Got a project in mind?",
+    body: "Quotes, technical questions or a virtual coffee. Drop me a line and we'll take it from there.",
+    button: "Get in touch",
+  },
   footer: {
     developedBy: "Built by Gonzalo Reynoso",
     brandPrefix: "·",
+    brandNote: "Freelance work under",
   },
 };
 
