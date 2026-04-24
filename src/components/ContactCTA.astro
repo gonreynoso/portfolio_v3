@@ -1,0 +1,28 @@
+---
+import { dict } from "../i18n";
+---
+
+<section id="contacto" class="mt-20 mb-10">
+  <div class="rounded-2xl border border-gray-800 bg-gradient-to-br from-gray-900 to-gray-900/40 p-8 md:p-10 text-gray-100">
+    <h2 class="text-3xl font-bold">
+      <span data-lang="es">{dict.es.contactCta.title}</span>
+      <span data-lang="en">{dict.en.contactCta.title}</span>
+    </h2>
+    <p class="mt-2 max-w-xl text-base text-gray-400">
+      <span data-lang="es">{dict.es.contactCta.body}</span>
+      <span data-lang="en">{dict.en.contactCta.body}</span>
+    </p>
+    <button
+      type="button"
+      data-open-contact
+      class="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#54da7a] px-5 py-2 text-md font-semibold text-black transition hover:bg-[#3fc165] focus:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2"
+    >
+      <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+      <span data-lang="es">{dict.es.contactCta.button}</span>
+      <span data-lang="en">{dict.en.contactCta.button}</span>
+    </button>
+  </div>
+</section>

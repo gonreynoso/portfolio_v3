@@ -1,12 +1,28 @@
 ---
+import { dict } from "../i18n";
+
 const today = new Date();
 ---
 
-<footer class="footer footer-center block mb-5 pt-10">
-  <div class="inline opacity-75">
-    <p>
-      Developed by Gonzalo Reynoso &copy; {today.getFullYear()}
-    </p>
+<footer class="footer footer-center block mb-5 pt-10 text-gray-400">
+  <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm">
+    <span>
+      <span data-lang="es">{dict.es.footer.developedBy}</span>
+      <span data-lang="en">{dict.en.footer.developedBy}</span>
+      &copy; {today.getFullYear()}
+    </span>
+    <span class="text-gray-600">·</span>
+    <span>
+      <span data-lang="es">{dict.es.footer.brandNote}</span>
+      <span data-lang="en">{dict.en.footer.brandNote}</span>
+      <a
+        href="https://kensiweb.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-[#54da7a] hover:underline ml-1"
+      >
+        kensiweb.com
+      </a>
+    </span>
   </div>
 </footer>
-<style></style>

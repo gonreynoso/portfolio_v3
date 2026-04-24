@@ -1,10 +1,14 @@
 ---
 import SectionContainer from "@components/SectionContainer.astro";
 import AboutMeData from "./AboutMeData.astro";
+import { dict } from "../i18n";
 ---
 
-<div class="mt-20 mb-10 text-gray-200 dark:text-gray-100">
-  <div class="text-3xl w-full font-bold mb-2">About Me</div>
+<div class="mt-20 mb-6 text-gray-200 dark:text-gray-100">
+  <div class="text-3xl w-full font-bold mb-2">
+    <span data-lang="es">{dict.es.about.title}</span>
+    <span data-lang="en">{dict.en.about.title}</span>
+  </div>
 </div>
 
 <SectionContainer id="sobre-mi">

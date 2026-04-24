@@ -21,6 +21,66 @@ const es = {
     copy: "Copiar",
     close: "Cerrar",
   },
+  about: {
+    title: "Sobre mí",
+    p1: "Soy Gonzalo Reynoso, desarrollador full-stack radicado en Buenos Aires. Trabajo como freelance bajo mi propia marca, **Kensiweb**, construyendo sistemas web a medida para PyMEs y proyectos independientes.",
+    p2: "Hoy mi foco está en **sistemas con IA integrada**: bots de WhatsApp con Claude como backend conversacional, plataformas de reservas con automatizaciones y gateways que orquestan múltiples LLMs. Me encargo de todo el ciclo: del modelado de datos al deploy en mi propia infraestructura (DigitalOcean, Contabo, Ubuntu).",
+    p3: "Paralelamente estudio **Análisis de Sistemas** en Da Vinci, lo que me permite abordar los proyectos desde el relevamiento hasta la solución técnica. Me interesan especialmente los problemas donde el software y el negocio se cruzan y hace falta alguien que entienda ambos.",
+  },
+  experience: {
+    title: "Experiencia",
+    kensiweb: {
+      role: "Freelance Full-Stack Developer",
+      company: "Kensiweb",
+      period: "2024 – Presente",
+      location: "Remoto · Buenos Aires, AR",
+      summary:
+        "Trabajo como freelance bajo mi marca Kensiweb, diseñando e implementando sistemas a medida para PyMEs y proyectos independientes, con foco en integraciones con IA e infraestructura propia.",
+      clientsLabel: "Clientes recientes",
+      clients: [
+        {
+          name: "Refugio Ilón",
+          project: "Bot de WhatsApp con IA + plataforma de reservas",
+          period: "Jul 2025 – Presente",
+          location: "Bariloche, AR",
+          bullets: [
+            "Bot conversacional en WhatsApp con Claude como backend, integrado con la WhatsApp Cloud API (verificación Meta Business).",
+            "Plataforma web de reservas en PHP + WordPress, con phpMyAdmin para administración y flujo de booking optimizado.",
+          ],
+        },
+        {
+          name: "Estudio Froment & Asociados",
+          project: "Sitio institucional · Rediseño completo",
+          period: "Sep 2025 – Oct 2025",
+          location: "Buenos Aires, AR",
+          bullets: [
+            "Frontend a medida con SASS + Bootstrap 5, integraciones de scroll y slider con Swiper.js y Lenis.",
+            "Modelado de datos para validación de miembros del estudio, deploy continuo en Vercel y gestión de DNS en NIC.ar.",
+          ],
+        },
+        {
+          name: "Innevo",
+          project: "Frontend Angular para aplicación web",
+          period: "Oct 2024 – Feb 2025",
+          location: "Santiago de Chile, CL (remoto)",
+          bullets: [
+            "Desarrollo de componentes modulares con Angular + Angular Material, integración con REST APIs.",
+            "TypeScript estricto, trabajo en un equipo distribuido entre Chile y Argentina.",
+          ],
+        },
+      ],
+    },
+    medicina: {
+      role: "Administrative & IT Analyst",
+      company: "Medicina Diagnóstica",
+      period: "Ago 2020 – Abr 2024",
+      location: "CABA, AR",
+      bullets: [
+        "Optimización de procesos internos mediante soluciones tecnológicas, automatización de tareas y gestión de datos.",
+        "Desde la digitalización de documentación hasta atención a clientes internos y externos.",
+      ],
+    },
+  },
   projects: {
     title: "Proyectos",
     subtitle:
@@ -133,6 +193,66 @@ const en: Dict = {
     copied: "Copied!",
     copy: "Copy",
     close: "Close",
+  },
+  about: {
+    title: "About Me",
+    p1: "I'm Gonzalo Reynoso, a full-stack developer based in Buenos Aires. I work as a freelancer under my own brand, **Kensiweb**, building custom web systems for small businesses and independent teams.",
+    p2: "These days my focus is on **AI-integrated systems**: WhatsApp bots with Claude as the conversational backend, reservation platforms with automations, and gateways that route traffic across multiple LLMs. I own the full cycle — from data modeling to deploying on my own infrastructure (DigitalOcean, Contabo, Ubuntu).",
+    p3: "In parallel, I'm studying **Systems Analysis** at Da Vinci, which lets me approach projects from the initial discovery down to the technical solution. I particularly enjoy problems that sit at the intersection of software and business and need someone fluent in both.",
+  },
+  experience: {
+    title: "Experience",
+    kensiweb: {
+      role: "Freelance Full-Stack Developer",
+      company: "Kensiweb",
+      period: "2024 – Present",
+      location: "Remote · Buenos Aires, AR",
+      summary:
+        "I work as a freelancer under my own brand, Kensiweb, designing and building custom systems for small businesses and independent teams — with a focus on AI integrations and owning the infrastructure end-to-end.",
+      clientsLabel: "Recent clients",
+      clients: [
+        {
+          name: "Refugio Ilón",
+          project: "AI WhatsApp bot + booking platform",
+          period: "Jul 2025 – Present",
+          location: "Bariloche, AR",
+          bullets: [
+            "Conversational WhatsApp bot with Claude as the backend, integrated with the WhatsApp Cloud API (Meta Business verification).",
+            "Web booking platform in PHP + WordPress, with phpMyAdmin administration and an optimized reservation flow.",
+          ],
+        },
+        {
+          name: "Estudio Froment & Asociados",
+          project: "Institutional site · Full redesign",
+          period: "Sep 2025 – Oct 2025",
+          location: "Buenos Aires, AR",
+          bullets: [
+            "Custom frontend in SASS + Bootstrap 5; scroll and slider integrations with Swiper.js and Lenis.",
+            "Data modeling for member validation, continuous deployment on Vercel and DNS management through NIC.ar.",
+          ],
+        },
+        {
+          name: "Innevo",
+          project: "Angular frontend for a web application",
+          period: "Oct 2024 – Feb 2025",
+          location: "Santiago de Chile, CL (remote)",
+          bullets: [
+            "Modular components with Angular + Angular Material, REST API integration.",
+            "Strict TypeScript, working in a distributed team across Chile and Argentina.",
+          ],
+        },
+      ],
+    },
+    medicina: {
+      role: "Administrative & IT Analyst",
+      company: "Medicina Diagnóstica",
+      period: "Aug 2020 – Apr 2024",
+      location: "CABA, AR",
+      bullets: [
+        "Optimized internal processes through technology: in-house tooling, task automation and data management.",
+        "From document digitization to customer-facing support for both internal and external stakeholders.",
+      ],
+    },
   },
   projects: {
     title: "Projects",

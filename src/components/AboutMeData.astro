@@ -1,50 +1,26 @@
 ---
+import { dict } from "../i18n";
+
 const personalImageAlt = "Gonzalo Reynoso";
+
+const renderBold = (text: string) =>
+  text.replace(
+    /\*\*(.+?)\*\*/g,
+    '<strong class="font-semibold text-[#54da7a]">$1</strong>',
+  );
 ---
 
 <article
   class="flex flex-col items-center justify-center gap-8 text-gray-200 dark:text-gray-100 md:flex-row">
-  <div
-    class="[&>p]:mb-4 [&>p>strong]:text-[#54da7a] dark:[&>p>strong]:text-[#54da7a] [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1">
-    <p>
-      My name is Gonzalo Reynoso, but my friends call me Gon. I was born and
-      live in Buenos Aires, and over time, I have delved into the world of web
-      development, specializing in technologies such as Angular, Node.js, and
-      WordPress.
-      <strong>
-        Currently, I am working with Laravel, where I have learned to manage
-        routes, controllers, and Eloquent models, as well as implement booking
-        systems, CRUD operations, and authentication for a pet grooming and shop
-        platform.
-      </strong>
-    </p>
-    <p>
-      I enjoy the learning process and am always open to new challenges. I am
-      motivated by the idea of continuing to grow as a developer and applying my
-      knowledge in projects that challenge me and allow me to improve. Every
-      line of code is an opportunity to learn something new and take another
-      step in my professional journey. 🚀
-    </p>
+  <div class="[&>p]:mb-4 text-pretty order-2 md:order-1">
+    <p data-lang="es" set:html={renderBold(dict.es.about.p1)} />
+    <p data-lang="en" set:html={renderBold(dict.en.about.p1)} />
 
-    <p>
-      <strong>
-        I am developing a project for a dog grooming store with online booking
-        and a pet shop, using Laravel for the backend, using Tailwind for the
-        design.
-      </strong>
-      I focus on building a well-structured and efficient system to manage appointments,
-      products, and customer interactions.
-    </p>
+    <p data-lang="es" set:html={renderBold(dict.es.about.p2)} />
+    <p data-lang="en" set:html={renderBold(dict.en.about.p2)} />
 
-    <!-- <p>
-      I enjoy the learning process and am always open to new challenges.
-      <strong>
-        <em class="italic">
-          "Every line of code brings me closer to my best professional version."
-          🚀
-        </em>
-      </strong>
-    </p> -->
+    <p data-lang="es" set:html={renderBold(dict.es.about.p3)} />
+    <p data-lang="en" set:html={renderBold(dict.en.about.p3)} />
   </div>
 
   <img
