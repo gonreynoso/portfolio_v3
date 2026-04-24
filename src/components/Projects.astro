@@ -1,152 +1,142 @@
 ---
 import GitHub from "./icons/GitHub.astro";
-import NextJS from "./icons/NextJS.astro";
-import Tailwind from "./icons/Tailwind.astro";
 import Link from "./icons/Link.astro";
 import LinkButton from "./LinkButton.astro";
-import React from "./icons/React.astro";
-import Css from "./icons/Css.astro";
-import Php from "./icons/Php.astro";
-import WordPress from "./icons/WordPress.astro";
-import Sql from "./icons/Sql.astro";
-import SASS from "./icons/Sass.astro";
-import JavaScript from "./icons/Javascript.astro";
-import Bootstrap from "./icons/Bootstrap.astro";
-import HTML from "./icons/HTML.astro";
+import WhatsAppMockup from "./WhatsAppMockup.astro";
+import { dict } from "../i18n";
 
-const TAGS = {
-  NEXT: {
-    name: "Next.js",
-    class: "bg-black text-white",
-    icon: NextJS,
-  },
-  TAILWIND: {
-    name: "Tailwind CSS",
-    class: "bg-[#003159] text-white",
-    icon: Tailwind,
-  },
-  REACT: {
-    name: "React",
-    class: "bg-[#61dafb] text-black",
-    icon: React,
-  },
-  CSS: {
-    name: "Css",
-    class: "bg-[#61dafb] text-black",
-    icon: Css,
-  },
-  PHP: {
-    name: "PHP",
-    class: "bg-[#777BB4] text-white",
-    icon: Php,
-  },
-  WORDPRESS: {
-    name: "WordPress",
-    class: "bg-[#21759B] text-white",
-    icon: WordPress,
-  },
-  SQL: {
-    name: "SQL",
-    class: "bg-[#00AEEF] text-black",
-    icon: Sql,
-  },
-  SASS: {
-    name: "SASS",
-    class: "bg-[#00AEEF] text-black",
-    icon: SASS,
-  },
-  JAVASCRIPT: {
-    name: "JavaScript",
-    class: "bg-[#00AEEF] text-black",
-    icon: JavaScript,
-  },
-  BOOTSTRAP: {
-    name: "Bootstrap",
-    class: "bg-[#00AEEF] text-black",
-    icon: Bootstrap,
-  },
-  HTML: {
-    name: "HTML",
-    class: "bg-[#00AEEF] text-black",
-    icon: HTML,
-  },  
+type Tag = { name: string; class: string };
+
+const TAG: Record<string, Tag> = {
+  WA_API: { name: "WhatsApp Cloud API", class: "bg-[#25D366] text-black" },
+  CLAUDE: { name: "Claude API", class: "bg-[#d97757] text-white" },
+  NODE: { name: "Node.js", class: "bg-[#539e43] text-white" },
+  EXPRESS: { name: "Express", class: "bg-[#111827] text-white border border-gray-700" },
+  POSTGRES: { name: "PostgreSQL", class: "bg-[#336791] text-white" },
+  DO: { name: "DigitalOcean", class: "bg-[#0080ff] text-white" },
+  SASS: { name: "SASS", class: "bg-[#cd6799] text-white" },
+  JS: { name: "JavaScript", class: "bg-[#f7df1e] text-black" },
+  BOOTSTRAP: { name: "Bootstrap", class: "bg-[#7952b3] text-white" },
+  HTML: { name: "HTML", class: "bg-[#e34f26] text-white" },
+  WORDPRESS: { name: "WordPress", class: "bg-[#21759B] text-white" },
+  PHP: { name: "PHP", class: "bg-[#777BB4] text-white" },
+  SQL: { name: "SQL", class: "bg-[#00758F] text-white" },
 };
-const PROJECTS = [
+
+type ProjectKey = keyof typeof dict.es.projects.items;
+
+type Project = {
+  key: ProjectKey;
+  image?: string;
+  mockup?: "whatsapp";
+  link: string | null;
+  external: boolean;
+  github: string | null;
+  tags: Tag[];
+};
+
+const PROJECTS: Project[] = [
   {
-  title: "Estudio Froment & Asociados",
-  description:
-    `Digital transformation for a top-tier Law Firm focusing on a "Premium Editorial" aesthetic with zero technical debt.
-    • Performance First: Developed a custom frontend in Ubuntu using SASS and Bootstrap 5, bypassing heavy builders for optimized loading speeds.
-    • Clean Architecture: Implemented a modular SCSS system with variables to ensure brand consistency across all professional profiles.
-    • UX/UI Excellence: Integrated Swiper.js and Lenis Scroll to achieve high-end, smooth interactions while maintaining legal sobriety.
-    • DevOps & Deployment: Orchestrated continuous deployment via Git and Vercel, including custom DNS management through NIC.ar.`,
-  link: "/estudiofroment",
-  github: null, // Podrías ponerlo como 'private' si no lo quieres mostrar
-  image: "/estudiofroment.webp",
-  tags: [TAGS.SASS, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP, TAGS.HTML],
-},
-  {
-    title: "Ilón Shelter Booking Platform ",
-    description:
-      "Ilón Shelter Booking Platform is a WordPress-based web application built with PHP, CSS, and phpMyAdmin for database management. It allows visitors to book accommodations at the Ilon Mountain Refuge, located near Laguna Ilon. The platform provides an easy-to-use interface for managing reservations, viewing availability, and streamlining the booking process for both guests and administrators.",
-    link: "https://refugioilon.com.ar",
+    key: "ilonBot",
+    mockup: "whatsapp",
+    link: null,
+    external: false,
     github: null,
-    image: "/refugioilonweb.webp",
-    tags: [TAGS.WORDPRESS, TAGS.PHP, TAGS.SQL, TAGS.CSS],
+    tags: [TAG.WA_API, TAG.CLAUDE, TAG.NODE, TAG.EXPRESS, TAG.POSTGRES, TAG.DO],
   },
   {
-    title: "Radio Intima Online",
-    description:
-      "Radio Íntima Online is a streaming platform developed to manage live audio broadcasts and dynamic content updates. The system integrates a relational database for scheduling, program metadata, and listener interaction tracking. Optimizations focused on data consistency, backend performance, and seamless media playback across devices.",
-    link: "https://intimaonline.com",
+    key: "froment",
+    image: "/estudiofroment.webp",
+    link: "/estudiofroment",
+    external: false,
     github: null,
-    image: "/intimaonline.webp",
-    tags: [TAGS.WORDPRESS, TAGS.PHP, TAGS.SQL, TAGS.CSS],
+    tags: [TAG.SASS, TAG.JS, TAG.BOOTSTRAP, TAG.HTML],
+  },
+  {
+    key: "ilonBooking",
+    image: "/refugioilonweb.webp",
+    link: "https://refugioilon.com.ar",
+    external: true,
+    github: null,
+    tags: [TAG.WORDPRESS, TAG.PHP, TAG.SQL],
   },
 ];
 ---
 
 <div class="flex flex-col gap-y-16">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
+    PROJECTS.map(({ key, image, mockup, link, external, github, tags }) => (
       <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
         <div class="w-full md:w-1/2">
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-              <img
-                alt="Project image"
-                class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-105"
-                src={image}
-              />
+          {link ? (
+            <a
+              href={link}
+              target={external ? "_blank" : undefined}
+              rel={external ? "noopener noreferrer" : undefined}
+            >
+              <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700">
+                {mockup === "whatsapp" ? (
+                  <WhatsAppMockup />
+                ) : (
+                  <img
+                    alt="Project image"
+                    class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-105"
+                    src={image}
+                  />
+                )}
+              </div>
+            </a>
+          ) : (
+            <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700">
+              {mockup === "whatsapp" ? (
+                <WhatsAppMockup />
+              ) : (
+                <img
+                  alt="Project image"
+                  class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-105"
+                  src={image}
+                />
+              )}
             </div>
-          </a>
+          )}
         </div>
 
         <div class="w-full md:w-1/2 md:max-w-lg">
           <h3 class="text-2xl font-bold text-gray-200 dark:text-gray-100">
-            {title}
+            <span data-lang="es">{dict.es.projects.items[key].title}</span>
+            <span data-lang="en">{dict.en.projects.items[key].title}</span>
           </h3>
-          <div class="flex flex-wrap mt-2">
-            {}
 
-            <div class="mt-2 text-gray-200 dark:text-gray-100">
-              {description}
-            </div>
-            <footer class="flex items-end justify-start mt-4 gap-x-4">
-              {github && (
-                <LinkButton href={github}>
-                  <GitHub class="size-6" />
-                  Code
-                </LinkButton>
-              )}
-              {link && (
-                <LinkButton href={link}>
-                  <Link class="size-4" />
-                  Link
-                </LinkButton>
-              )}
-            </footer>
+          <ul class="flex flex-wrap gap-2 mt-3">
+            {tags.map((t) => (
+              <li>
+                <span class:list={["inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-full", t.class]}>
+                  {t.name}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-3 text-gray-200 dark:text-gray-100 text-sm leading-relaxed">
+            <span data-lang="es">{dict.es.projects.items[key].description}</span>
+            <span data-lang="en">{dict.en.projects.items[key].description}</span>
           </div>
+
+          <footer class="flex items-end justify-start mt-4 gap-x-4">
+            {github && (
+              <LinkButton href={github}>
+                <GitHub class="size-6" />
+                Code
+              </LinkButton>
+            )}
+            {link && (
+              <LinkButton href={link}>
+                <Link class="size-4" />
+                <span data-lang="es">{dict.es.projects.items[key].linkLabel}</span>
+                <span data-lang="en">{dict.en.projects.items[key].linkLabel}</span>
+              </LinkButton>
+            )}
+          </footer>
         </div>
       </article>
     ))
