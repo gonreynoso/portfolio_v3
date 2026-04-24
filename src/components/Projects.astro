@@ -65,41 +65,37 @@ const PROJECTS: Project[] = [
 
 <div class="flex flex-col gap-y-16">
   {
-    PROJECTS.map(({ key, image, mockup, link, external, github, tags }) => (
-      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-        <div class="w-full md:w-1/2">
-          {link ? (
-            <a
-              href={link}
-              target={external ? "_blank" : undefined}
-              rel={external ? "noopener noreferrer" : undefined}
-            >
-              <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700">
-                {mockup === "whatsapp" ? (
-                  <WhatsAppMockup />
-                ) : (
-                  <img
-                    alt="Project image"
-                    class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-105"
-                    src={image}
-                  />
-                )}
-              </div>
-            </a>
-          ) : (
-            <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700">
-              {mockup === "whatsapp" ? (
-                <WhatsAppMockup />
-              ) : (
-                <img
-                  alt="Project image"
-                  class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-105"
-                  src={image}
-                />
-              )}
-            </div>
-          )}
-        </div>
+    PROJECTS.map(({ key, image, mockup, link, external, github, tags }) => {
+      const mediaClass =
+        "relative flex flex-col items-center gap-8 shadow-xl overflow-clip rounded-xl border border-gray-800 transition duration-500 ease-in-out transform md:hover:-translate-y-1 md:hover:shadow-2xl hover:border-gray-700";
+
+      const media =
+        mockup === "whatsapp" ? (
+          <WhatsAppMockup />
+        ) : (
+          <img
+            alt="Project image"
+            class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-105"
+            src={image}
+          />
+        );
+
+      return (
+        <article class="flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0">
+          <div class="w-full md:w-1/2">
+            {link ? (
+              <a
+                href={link}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noopener noreferrer" : undefined}
+                class="block"
+              >
+                <div class={mediaClass}>{media}</div>
+              </a>
+            ) : (
+              <div class={mediaClass}>{media}</div>
+            )}
+          </div>
 
         <div class="w-full md:w-1/2 md:max-w-lg">
           <h3 class="text-2xl font-bold text-gray-200 dark:text-gray-100">
@@ -136,10 +132,11 @@ const PROJECTS: Project[] = [
                 <span data-lang="en">{dict.en.projects.items[key].linkLabel}</span>
               </LinkButton>
             )}
-          </footer>
-        </div>
-      </article>
-    ))
+            </footer>
+          </div>
+        </article>
+      );
+    })
   }
   <div class="divider my-0"></div>
 </div>

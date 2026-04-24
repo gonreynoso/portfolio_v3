@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import WorkExperience from "../components/WorkExperience.astro";
 import ContactModal from "../components/ContactModal.astro";
 import { dict } from "../i18n";
+import { primaryCta } from "../lib/buttons";
 
 const esR = dict.es.resume;
 const enR = dict.en.resume;
@@ -13,7 +14,7 @@ const skillGroups = Object.keys(esR.skillsGroups) as SkillGroup[];
 
 <BaseLayout title="Gonzalo Reynoso · Resume">
   <div class="mt-28 mb-6 flex flex-wrap items-center justify-between gap-4">
-    <h1 class="text-3xl font-bold text-gray-200 dark:text-gray-100">
+    <h1 class="text-3xl font-bold text-gray-100">
       <span data-lang="es">{esR.profileTitle}</span>
       <span data-lang="en">{enR.profileTitle}</span>
     </h1>
@@ -22,7 +23,7 @@ const skillGroups = Object.keys(esR.skillsGroups) as SkillGroup[];
       target="_blank"
       rel="noopener noreferrer"
       data-lang="es"
-      class="inline-flex items-center gap-2 rounded-full bg-[#54da7a] px-4 py-2 text-sm font-semibold text-black transition hover:bg-[#3fc165]"
+      class={primaryCta}
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -36,7 +37,7 @@ const skillGroups = Object.keys(esR.skillsGroups) as SkillGroup[];
       target="_blank"
       rel="noopener noreferrer"
       data-lang="en"
-      class="inline-flex items-center gap-2 rounded-full bg-[#54da7a] px-4 py-2 text-sm font-semibold text-black transition hover:bg-[#3fc165]"
+      class={primaryCta}
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -56,7 +57,7 @@ const skillGroups = Object.keys(esR.skillsGroups) as SkillGroup[];
 
   <!-- Internship -->
   <div class="mt-16 mb-6">
-    <h2 class="text-3xl font-bold text-gray-200 dark:text-gray-100">
+    <h2 class="text-3xl font-bold text-gray-100">
       <span data-lang="es">{esR.internshipsTitle}</span>
       <span data-lang="en">{enR.internshipsTitle}</span>
     </h2>
@@ -85,7 +86,7 @@ const skillGroups = Object.keys(esR.skillsGroups) as SkillGroup[];
 
   <!-- Education -->
   <div class="mt-16 mb-6">
-    <h2 class="text-3xl font-bold text-gray-200 dark:text-gray-100">
+    <h2 class="text-3xl font-bold text-gray-100">
       <span data-lang="es">{esR.educationTitle}</span>
       <span data-lang="en">{enR.educationTitle}</span>
     </h2>
@@ -131,7 +132,7 @@ const skillGroups = Object.keys(esR.skillsGroups) as SkillGroup[];
 
   <!-- Certifications -->
   <div class="mt-16 mb-6">
-    <h2 class="text-3xl font-bold text-gray-200 dark:text-gray-100">
+    <h2 class="text-3xl font-bold text-gray-100">
       <span data-lang="es">{esR.certificationsTitle}</span>
       <span data-lang="en">{enR.certificationsTitle}</span>
     </h2>
@@ -154,7 +155,7 @@ const skillGroups = Object.keys(esR.skillsGroups) as SkillGroup[];
 
   <!-- Skills -->
   <div class="mt-16 mb-6">
-    <h2 class="text-3xl font-bold text-gray-200 dark:text-gray-100">
+    <h2 class="text-3xl font-bold text-gray-100">
       <span data-lang="es">{esR.skillsTitle}</span>
       <span data-lang="en">{enR.skillsTitle}</span>
     </h2>
