@@ -1,93 +1,122 @@
 ---
-import TimeLineElement from "../components/cv/TimeLine.astro";
+import { dict } from "../i18n";
 ---
 
-<div class="mt-20 mb-10">
-  <div class="text-3xl w-full font-bold mb-2 text-gray-200 dark:text-gray-100">
-    Work Experience
-  </div>
+<div class="mt-20 mb-6">
+  <h2 class="text-3xl font-bold mb-2 text-gray-100">
+    <span data-lang="es">{dict.es.experience.title}</span>
+    <span data-lang="en">{dict.en.experience.title}</span>
+  </h2>
 </div>
 
-<div class="time-line-container mb-10 text-gray-200 dark:text-gray-100">
-  <!-- primer trabajo -->
-  <TimeLineElement
-    title="Full Stack Developer at Estudio Froment & Asociados"
-    subtitle="From Sep 2025 to Oct 2025, Buenos Aires, Argentina">
-    <ul>
-      <li>
-        - Designed and optimized relational database schemas to enable member
-        validation and DNI field integration.
-      </li>
-      <li>
-        - Implemented secure data handling and validation logic to ensure data
-        integrity and compliance.
-      </li>
-      <li>
-        - Developed and optimized SQL queries and backend interactions to
-        improve system performance and reliability.
-      </li>
-      <li>
-        - Collaborated on SEO-oriented improvements and backend–frontend
-        synchronization for dynamic data updates.
-      </li>
+<div class="text-gray-200 dark:text-gray-100 mb-8">
+  <!-- Kensiweb umbrella -->
+  <section class="relative pl-6 border-l-2 border-[#54da7a]/60 pb-10">
+    <span class="absolute -left-[9px] top-1 block w-4 h-4 rounded-full bg-[#54da7a]"></span>
+
+    <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+      <h3 class="text-xl font-semibold">
+        <span data-lang="es">{dict.es.experience.kensiweb.role}</span>
+        <span data-lang="en">{dict.en.experience.kensiweb.role}</span>
+        <span class="text-gray-400"> · </span>
+        <a href="https://kensiweb.com" target="_blank" rel="noopener noreferrer" class="text-[#54da7a] hover:underline">
+          {dict.es.experience.kensiweb.company}
+        </a>
+      </h3>
+      <span class="text-sm text-gray-400">
+        <span data-lang="es">
+          {dict.es.experience.kensiweb.period} · {dict.es.experience.kensiweb.location}
+        </span>
+        <span data-lang="en">
+          {dict.en.experience.kensiweb.period} · {dict.en.experience.kensiweb.location}
+        </span>
+      </span>
+    </header>
+
+    <p class="mt-2 text-sm text-gray-300 max-w-2xl">
+      <span data-lang="es">{dict.es.experience.kensiweb.summary}</span>
+      <span data-lang="en">{dict.en.experience.kensiweb.summary}</span>
+    </p>
+
+    <div class="mt-5">
+      <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
+        <span data-lang="es">{dict.es.experience.kensiweb.clientsLabel}</span>
+        <span data-lang="en">{dict.en.experience.kensiweb.clientsLabel}</span>
+      </h4>
+
+      <ul class="flex flex-col gap-5">
+        {
+          dict.es.experience.kensiweb.clients.map((clientEs, i) => {
+            const clientEn = dict.en.experience.kensiweb.clients[i];
+            return (
+              <li class="rounded-lg border border-gray-800 bg-gray-900/40 p-4">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                  <span class="text-sm text-gray-400 uppercase tracking-wider">
+                    <span data-lang="es">{dict.es.experience.clientLabel}</span>
+                    <span data-lang="en">{dict.en.experience.clientLabel}</span>
+                  </span>
+                  <span class="font-semibold text-gray-100">{clientEs.name}</span>
+                  <span class="text-sm text-gray-500">
+                    <span data-lang="es">{clientEs.period} · {clientEs.location}</span>
+                    <span data-lang="en">{clientEn.period} · {clientEn.location}</span>
+                  </span>
+                </div>
+                <div class="mt-1 text-sm text-gray-300">
+                  <span class="text-gray-500">
+                    <span data-lang="es">{dict.es.experience.projectLabel} </span>
+                    <span data-lang="en">{dict.en.experience.projectLabel} </span>
+                  </span>
+                  <span data-lang="es">{clientEs.project}</span>
+                  <span data-lang="en">{clientEn.project}</span>
+                </div>
+                <ul class="mt-2 list-disc list-inside text-sm text-gray-300 space-y-1 marker:text-[#54da7a]">
+                  {clientEs.bullets.map((b, j) => (
+                    <li>
+                      <span data-lang="es">{b}</span>
+                      <span data-lang="en">{clientEn.bullets[j]}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Medicina Diagnóstica -->
+  <section class="relative pl-6 border-l-2 border-gray-700">
+    <span class="absolute -left-[9px] top-1 block w-4 h-4 rounded-full bg-gray-500"></span>
+
+    <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+      <h3 class="text-xl font-semibold">
+        <span data-lang="es">{dict.es.experience.medicina.role}</span>
+        <span data-lang="en">{dict.en.experience.medicina.role}</span>
+        <span class="text-gray-400"> · </span>
+        <span class="text-gray-200">{dict.es.experience.medicina.company}</span>
+      </h3>
+      <span class="text-sm text-gray-400">
+        <span data-lang="es">
+          {dict.es.experience.medicina.period} · {dict.es.experience.medicina.location}
+        </span>
+        <span data-lang="en">
+          {dict.en.experience.medicina.period} · {dict.en.experience.medicina.location}
+        </span>
+      </span>
+    </header>
+
+    <ul class="mt-2 list-disc list-inside text-sm text-gray-300 space-y-1 marker:text-gray-500">
+      {
+        dict.es.experience.medicina.bullets.map((b, i) => (
+          <li>
+            <span data-lang="es">{b}</span>
+            <span data-lang="en">{dict.en.experience.medicina.bullets[i]}</span>
+          </li>
+        ))
+      }
     </ul>
-  </TimeLineElement>
-</div>
-
-<div class="time-line-container mb-10 text-gray-200 dark:text-gray-100">
-  <!-- primer trabajo -->
-  <TimeLineElement
-    title="Full Stack Developer at Refugio Ilón"
-    subtitle="From Jul 2025 to Sept 2025, Bariloche, Argentina">
-    <ul>
-      <li>
-        - Developed and maintained a production reservation system built with
-        PHP and MySQL.
-      </li>
-      <li>
-        - Managed database structures and optimized SQL queries for client and
-        booking records.
-      </li>
-      <li>
-        - Debugged and refined the reservation flow to enhance overall user
-        experience and system reliability.
-      </li>
-    </ul>
-  </TimeLineElement>
-</div>
-
-<!-- //segundo trabajo -->
-<div class="time-line-container mb-10 text-gray-200 dark:text-gray-100">
-  <TimeLineElement
-    title="Front-end Angular Developer at Innevo"
-    subtitle="From Oct 2024 to Feb 2025, Santiago de Chile, Chile">
-    <p>
-      - I worked on a web application built with Angular, focusing on creating a
-      dynamic and responsive user interface. <br />
-      - My role involved developing modular components, integrating Angular Material
-      for a cohesive design, and implementing advanced TypeScript practices.
-    </p>
-
-    <p>
-      - The application interacts with various REST APIs, enabling efficient
-      data handling and ensuring a seamless user experience.
-    </p>
-  </TimeLineElement>
-</div>
-
-<div class="divider my-0"></div>
-<!-- //tercer trabajo -->
-<div class="time-line-container mb-10 text-gray-200 dark:text-gray-100">
-  <TimeLineElement
-    title="Administrative & IT Analyst"
-    subtitle="From Aug 2020 to Apr 2024 at Medicina Diagnóstica, Buenos Aires, CABA, Argentina">
-    <p>
-      - As an Administrative & IT Analyst at Medicina Diagnóstica, I focused on
-      optimizing internal processes through the development of technological
-      solutions, task automation, and data management.<br />
-      - My work ranged from document digitization to customer service.
-    </p>
-  </TimeLineElement>
+  </section>
 </div>
 
 <div class="divider my-0"></div>

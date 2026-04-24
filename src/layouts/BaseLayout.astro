@@ -1,6 +1,5 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
 import { ViewTransitions } from "astro:transitions";
@@ -12,39 +11,91 @@ const {
   image,
   title = SITE_TITLE,
   description = SITE_DESCRIPTION,
-  includeSidebar = true,
-  sideBarActiveItemID,
   ogType,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="es" class="lang-es dark" data-theme="dark">
   <head>
+    <script is:inline>
+      // i18n runtime:
+      //   - runs synchronously before first paint so the wrong
+      //     language never flickers,
+      //   - re-applies on every View Transitions swap (the new
+      //     static HTML always ships with `class="lang-es"`, so we
+      //     override it before the new body paints),
+      //   - click delegation on `document` so the LangToggle keeps
+      //     working after swaps without needing to rebind.
+      (() => {
+        const apply = (forceLang) => {
+          let lang = forceLang;
+          if (!lang) {
+            try { lang = localStorage.getItem("lang"); } catch (_) {}
+          }
+          if (lang !== "es" && lang !== "en") {
+            lang =
+              typeof navigator !== "undefined" &&
+              navigator.language &&
+              navigator.language.toLowerCase().startsWith("es")
+                ? "es"
+                : "en";
+          }
+          const html = document.documentElement;
+          html.classList.remove("lang-es", "lang-en");
+          html.classList.add("lang-" + lang);
+          html.setAttribute("lang", lang);
+
+          document.querySelectorAll("[data-lang-toggle]").forEach((btn) => {
+            btn.dataset.current = lang;
+            const esLabel = btn.querySelector('[data-lang-label="es"]');
+            const enLabel = btn.querySelector('[data-lang-label="en"]');
+            if (esLabel && enLabel) {
+              esLabel.classList.toggle("font-bold", lang === "es");
+              esLabel.classList.toggle("text-gray-400", lang !== "es");
+              enLabel.classList.toggle("font-bold", lang === "en");
+              enLabel.classList.toggle("text-gray-400", lang !== "en");
+            }
+          });
+        };
+
+        apply();
+
+        // Click delegation — `document` survives View Transitions, so
+        // we only register once and it keeps firing on every page.
+        document.addEventListener("click", (e) => {
+          const t = e.target instanceof Element ? e.target : null;
+          const btn = t && t.closest("[data-lang-toggle]");
+          if (!btn) return;
+          const next = btn.dataset.current === "es" ? "en" : "es";
+          try { localStorage.setItem("lang", next); } catch (_) {}
+          apply(next);
+        });
+
+        // Re-apply after every View Transitions swap, before the new
+        // page is painted, so the static `class="lang-es"` does not
+        // flash the wrong language.
+        document.addEventListener("astro:after-swap", () => apply());
+      })();
+    </script>
     <BaseHead
       title={title}
       description={description}
       image={image}
-      ,
       ogType={ogType}
     />
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
-    <div class="bg-base-100 drawer mx-auto">
-      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content bg-base-100">
-        <Header title={SITE_TITLE} />
-        <Navbar />
-        <div class="md:flex md:justify-center">
-          <main class="p-6 pt-10 lg:max-w-[900px] max-w-[100vw]">
-            <slot />
-            <Analytics />
-          </main>
-        </div>
-        <Footer />
+    <div class="bg-base-100 mx-auto">
+      <Navbar />
+      <div class="md:flex md:justify-center">
+        <main class="p-6 pt-10 lg:max-w-[900px] max-w-[100vw]">
+          <slot />
+          <Analytics />
+        </main>
       </div>
-      <!-- {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />} -->
+      <Footer />
     </div>
   </body>
 </html>

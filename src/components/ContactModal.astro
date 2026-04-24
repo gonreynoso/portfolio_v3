@@ -1,0 +1,176 @@
+---
+import { dict } from "../i18n";
+
+const EMAIL = "gonzalo.reynoso9@gmail.com";
+const LINKEDIN = "https://linkedin.com/in/gonreynoso";
+// Uncomment and set a Kensiweb-dedicated WhatsApp number when available:
+// const WHATSAPP = "https://wa.me/549XXXXXXXXXX";
+---
+
+<dialog
+  id="contact-modal"
+  class="m-auto w-[min(92vw,28rem)] rounded-2xl border border-gray-800 bg-gray-900 p-0 text-gray-100 backdrop:bg-black/70 backdrop:backdrop-blur-sm"
+  aria-labelledby="contact-modal-title"
+>
+  <div class="p-6">
+    <div class="flex items-start justify-between">
+      <div>
+        <h2 id="contact-modal-title" class="text-2xl font-bold">
+          <span data-lang="es">{dict.es.contact.title}</span>
+          <span data-lang="en">{dict.en.contact.title}</span>
+        </h2>
+        <p class="mt-1 text-sm text-gray-400">
+          <span data-lang="es">{dict.es.contact.subtitle}</span>
+          <span data-lang="en">{dict.en.contact.subtitle}</span>
+        </p>
+      </div>
+      <button
+        type="button"
+        data-close-contact
+        class="ml-4 rounded-full p-1 text-gray-400 transition hover:bg-gray-800 hover:text-white"
+        aria-label="Close"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mt-6 flex flex-col gap-3">
+      <a
+        href={`mailto:${EMAIL}`}
+        class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-gray-200"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span data-lang="es">{dict.es.contact.sendEmail}</span>
+        <span data-lang="en">{dict.en.contact.sendEmail}</span>
+      </a>
+
+      <button
+        type="button"
+        id="contact-copy-email"
+        data-email={EMAIL}
+        class="inline-flex items-center justify-center gap-2 rounded-full border border-gray-600 bg-gray-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span data-contact-copy-default>
+          <span data-lang="es">{dict.es.contact.copyEmail}</span>
+          <span data-lang="en">{dict.en.contact.copyEmail}</span>
+          <span class="ml-1 font-mono text-xs text-gray-400 hidden sm:inline">{EMAIL}</span>
+        </span>
+        <span data-contact-copy-done class="hidden text-[#54da7a]">
+          <span data-lang="es">{dict.es.ui.copied}</span>
+          <span data-lang="en">{dict.en.ui.copied}</span>
+        </span>
+      </button>
+
+      <a
+        href={LINKEDIN}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 rounded-full border border-gray-600 bg-gray-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path>
+          <rect x="2" y="9" width="4" height="12"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
+        </svg>
+        {dict.es.contact.linkedin}
+      </a>
+    </div>
+  </div>
+</dialog>
+
+<script is:inline>
+  // Runtime for the contact dialog. Every handler is bound once to
+  // `document` (which survives View Transitions swaps) and resolves
+  // the current DOM node via `getElementById` at call time — never
+  // via a closure, because the node captured on the first page load
+  // gets detached the first time the user navigates.
+  (() => {
+    if (window.__contactModalBound) return;
+    window.__contactModalBound = true;
+
+    const getModal = () => document.getElementById("contact-modal");
+
+    const openModal = () => {
+      const m = getModal();
+      if (!m) return;
+      if (typeof m.showModal === "function") m.showModal();
+      else m.setAttribute("open", "");
+    };
+    const closeModal = () => {
+      const m = getModal();
+      if (!m) return;
+      if (typeof m.close === "function") m.close();
+      else m.removeAttribute("open");
+    };
+
+    document.addEventListener("click", (e) => {
+      const target = e.target instanceof Element ? e.target : null;
+      if (!target) return;
+
+      if (target.closest("[data-open-contact]")) {
+        e.preventDefault();
+        openModal();
+        return;
+      }
+      if (target.closest("[data-close-contact]")) {
+        e.preventDefault();
+        closeModal();
+        return;
+      }
+
+      // A click whose target IS the <dialog> element means the user
+      // clicked on the backdrop (the ::backdrop pseudo forwards the
+      // event to the dialog host).
+      const m = getModal();
+      if (m && target === m) {
+        closeModal();
+        return;
+      }
+
+      // Copy-email button, resolved fresh from the current DOM.
+      const copyBtn = target.closest("#contact-copy-email");
+      if (copyBtn) {
+        e.preventDefault();
+        const email = copyBtn.dataset.email || "";
+        const writeText = async () => {
+          try {
+            await navigator.clipboard.writeText(email);
+          } catch (_) {
+            const ta = document.createElement("textarea");
+            ta.value = email;
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand("copy"); } catch (__) {}
+            ta.remove();
+          }
+        };
+        writeText().then(() => {
+          const defaultLabel = copyBtn.querySelector("[data-contact-copy-default]");
+          const doneLabel = copyBtn.querySelector("[data-contact-copy-done]");
+          if (!defaultLabel || !doneLabel) return;
+          defaultLabel.classList.add("hidden");
+          doneLabel.classList.remove("hidden");
+          setTimeout(() => {
+            const btnNow = document.getElementById("contact-copy-email");
+            if (!btnNow) return;
+            const dNow = btnNow.querySelector("[data-contact-copy-default]");
+            const xNow = btnNow.querySelector("[data-contact-copy-done]");
+            if (dNow) dNow.classList.remove("hidden");
+            if (xNow) xNow.classList.add("hidden");
+          }, 1500);
+        });
+      }
+    });
+  })();
+</script>
+

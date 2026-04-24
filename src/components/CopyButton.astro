@@ -1,45 +1,63 @@
 ---
-const { text = "Texto copiado" } = Astro.props;
+import { dict } from "../i18n";
+
+const { text = "" } = Astro.props;
 ---
 
 <button
-  class="copy-button px-4 py-2 bg-base-100 text-gray-100 dark:hover:bg-gray-100 dark:hover:text-black hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-white hover:text-white border font-medium flex items-center dark:hover:border-gray-300 relative"
-  data-text={text}>
-  <span class="button-text">Copy</span>
+  class="copy-button px-4 py-2 bg-gray-800 text-gray-100 hover:bg-gray-700 hover:text-white border border-gray-700 font-medium flex items-center relative transition"
+  data-text={text}
+>
+  <span class="button-text">
+    <span data-lang="es">{dict.es.ui.copy}</span>
+    <span data-lang="en">{dict.en.ui.copy}</span>
+  </span>
+  <span
+    class="copy-message absolute right-0 top-[-2rem] text-sm bg-black text-white px-2 py-1 rounded invisible opacity-0 transition-opacity duration-300"
+  >
+    <span data-lang="es">{dict.es.ui.copied}</span>
+    <span data-lang="en">{dict.en.ui.copied}</span>
+  </span>
 </button>
 
-<span
-  class="copy-message absolute right-0 top-[-2rem] text-sm bg-black text-white px-2 py-1 rounded invisible opacity-0 transition-opacity duration-300">
-  Copiado!
-</span>
-
 <script is:inline>
-  function setupCopyButtons() {
-    document.querySelectorAll(".copy-button").forEach((button) => {
-      button.addEventListener("click", function () {
-        const textToCopy = button.getAttribute("data-text");
-        const buttonText = button.querySelector(".button-text");
-        const copyMessage = button.nextElementSibling;
+  // Delegation on `document` so the listener survives View Transitions
+  // DOM swaps. The clicked button and its `.copy-message` are
+  // resolved from the current DOM via `target.closest` — no closure
+  // over the first-load nodes.
+  (() => {
+    if (window.__copyButtonBound) return;
+    window.__copyButtonBound = true;
 
-        navigator.clipboard
-          .writeText(textToCopy)
-          .then(() => {
-            buttonText.innerText = "Copied!";
-            copyMessage.classList.remove("invisible", "opacity-0");
-            copyMessage.classList.add("opacity-100");
+    document.addEventListener("click", async (e) => {
+      const target = e.target instanceof Element ? e.target : null;
+      const btn = target && target.closest(".copy-button");
+      if (!btn) return;
 
-            setTimeout(() => {
-              buttonText.innerText = "Copy";
-              copyMessage.classList.add("invisible", "opacity-0");
-            }, 2000);
-          })
-          .catch((err) => {
-            console.error("Error al copiar:", err);
-          });
-      });
+      const text = btn.getAttribute("data-text") || "";
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (_) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); } catch (__) {}
+        ta.remove();
+      }
+
+      const msg = btn.querySelector(".copy-message");
+      if (!msg) return;
+      msg.classList.remove("invisible", "opacity-0");
+      msg.classList.add("opacity-100");
+      setTimeout(() => {
+        // Safe if the node was detached by a navigation — classList
+        // ops on a disconnected element are silent no-ops, and the
+        // fresh button in the new DOM already renders with the
+        // default invisible/opacity-0 state.
+        msg.classList.add("invisible", "opacity-0");
+        msg.classList.remove("opacity-100");
+      }, 1500);
     });
-  }
-
-  // Asegurar que el script se ejecute siempre
-  setTimeout(setupCopyButtons, 0);
+  })();
 </script>

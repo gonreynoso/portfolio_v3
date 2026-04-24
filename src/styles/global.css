@@ -1,15 +1,44 @@
-/* styles.css */
-.time-line-container > div:last-child .education__time > .education__line {
-  display: none;
-}
 :root {
   color-scheme: light dark;
-  margin: 0;
-  padding: 0;
 }
+
 body {
   font-family: "Poppins", sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.5s, color 0.5s;
+}
+
+/* i18n: hide the inactive-language content. Both languages render at
+   build time; a root class on <html> chooses which one is visible. */
+html.lang-es [data-lang="en"],
+html.lang-en [data-lang="es"] {
+  display: none;
+}
+
+/* Dialog open/close animation. Kept global (not scoped) so that the
+   Tailwind class `animate-[fadeIn_...]` can reference these keyframes
+   by their literal name from anywhere. */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+dialog[open] {
+  animation: fadeIn 140ms ease-out;
+}
+dialog[open]::backdrop {
+  animation: backdropFadeIn 160ms ease-out;
 }

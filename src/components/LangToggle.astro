@@ -1,0 +1,16 @@
+---
+// Pure markup. Behaviour lives in the central i18n script in
+// BaseLayout so it survives View Transitions (see BaseLayout.astro).
+---
+
+<button
+  type="button"
+  data-lang-toggle
+  class="inline-flex items-center gap-1 rounded-full border border-gray-700 bg-transparent px-3 py-1 text-xs font-medium uppercase tracking-wider text-white transition-colors duration-300 ease-in-out hover:bg-gray-800 focus:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2"
+  aria-label="Toggle language"
+  data-current="es"
+>
+  <span data-lang-label="es" class="font-bold">ES</span>
+  <span class="text-gray-500">/</span>
+  <span data-lang-label="en" class="text-gray-400">EN</span>
+</button>

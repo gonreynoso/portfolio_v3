@@ -1,0 +1,69 @@
+---
+import SectionContainer from "./SectionContainer.astro";
+import TitleSection from "./TitleSection.astro";
+import { dict } from "../i18n";
+
+type ServiceKey = keyof typeof dict.es.services.items;
+
+const SERVICES: { key: ServiceKey; icon: string }[] = [
+  {
+    key: "custom",
+    icon: `<path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/>`,
+  },
+  {
+    key: "ai",
+    icon: `<path d="M12 2l2.09 5.26L20 8.27l-4 3.9.94 5.48L12 15.77l-4.94 2.6L8 12.17 4 8.27l5.91-1.01L12 2z"/>`,
+  },
+  {
+    key: "infra",
+    icon: `<rect x="3" y="3" width="18" height="6" rx="1"/><rect x="3" y="15" width="18" height="6" rx="1"/><path d="M7 6h.01"/><path d="M7 18h.01"/>`,
+  },
+  {
+    key: "consulting",
+    icon: `<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>`,
+  },
+];
+---
+
+<SectionContainer id="servicios" class="mt-20">
+  <TitleSection>
+    <span data-lang="es">{dict.es.services.title}</span>
+    <span data-lang="en">{dict.en.services.title}</span>
+  </TitleSection>
+  <p class="text-base text-gray-400 max-w-2xl mb-8">
+    <span data-lang="es">{dict.es.services.subtitle}</span>
+    <span data-lang="en">{dict.en.services.subtitle}</span>
+  </p>
+
+  <div class="grid gap-4 md:grid-cols-2">
+    {
+      SERVICES.map(({ key, icon }) => (
+        <article class="rounded-xl border border-gray-800 bg-gray-900/40 p-5 transition hover:border-gray-700 hover:bg-gray-900/70">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-flex w-10 h-10 items-center justify-center rounded-lg bg-[#54da7a]/10 text-[#54da7a]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                set:html={icon}
+              />
+            </span>
+            <h3 class="text-lg font-semibold text-gray-100">
+              <span data-lang="es">{dict.es.services.items[key].title}</span>
+              <span data-lang="en">{dict.en.services.items[key].title}</span>
+            </h3>
+          </div>
+          <p class="text-sm leading-relaxed text-gray-400">
+            <span data-lang="es">{dict.es.services.items[key].desc}</span>
+            <span data-lang="en">{dict.en.services.items[key].desc}</span>
+          </p>
+        </article>
+      ))
+    }
+  </div>
+</SectionContainer>
