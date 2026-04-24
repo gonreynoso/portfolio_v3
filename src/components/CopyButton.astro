@@ -5,26 +5,60 @@ const { text = "" } = Astro.props;
 ---
 
 <button
-  class="copy-button px-4 py-2 bg-gray-800 text-gray-100 hover:bg-gray-700 hover:text-white border border-gray-700 font-medium flex items-center relative transition"
+  type="button"
+  class="copy-button flex items-center gap-2 px-4 py-2 bg-gray-800 text-gray-100 border border-gray-700 font-medium hover:bg-gray-700 hover:text-white transition-colors duration-200"
   data-text={text}
+  aria-live="polite"
 >
-  <span class="button-text">
-    <span data-lang="es">{dict.es.ui.copy}</span>
-    <span data-lang="en">{dict.en.ui.copy}</span>
+  <!-- Default state: copy icon + "Copiar" / "Copy" -->
+  <span class="copy-label-default flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+    <span>
+      <span data-lang="es">{dict.es.ui.copy}</span>
+      <span data-lang="en">{dict.en.ui.copy}</span>
+    </span>
   </span>
-  <span
-    class="copy-message absolute right-0 top-[-2rem] text-sm bg-black text-white px-2 py-1 rounded invisible opacity-0 transition-opacity duration-300"
-  >
-    <span data-lang="es">{dict.es.ui.copied}</span>
-    <span data-lang="en">{dict.en.ui.copied}</span>
+
+  <!-- Copied state: check icon + "¡Copiado!" / "Copied!" -->
+  <span class="copy-label-copied flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span>
+      <span data-lang="es">{dict.es.ui.copied}</span>
+      <span data-lang="en">{dict.en.ui.copied}</span>
+    </span>
   </span>
 </button>
 
+<style>
+  /* Default: show the "copy" label, hide the "copied" one. */
+  .copy-button .copy-label-copied {
+    display: none;
+  }
+  /* When the button carries `.is-copied`, swap labels and flip to the
+     brand green. CSS toggle keeps the JS trivial — only `classList.
+     add`/`classList.remove` in the handler. */
+  .copy-button.is-copied .copy-label-default {
+    display: none;
+  }
+  .copy-button.is-copied .copy-label-copied {
+    display: flex;
+  }
+  .copy-button.is-copied {
+    background-color: #54da7a;
+    color: #000;
+    border-color: #54da7a;
+  }
+</style>
+
 <script is:inline>
   // Delegation on `document` so the listener survives View Transitions
-  // DOM swaps. The clicked button and its `.copy-message` are
-  // resolved from the current DOM via `target.closest` — no closure
-  // over the first-load nodes.
+  // DOM swaps. The clicked button is resolved from the current DOM via
+  // `target.closest` — no closure over the first-load node.
   (() => {
     if (window.__copyButtonBound) return;
     window.__copyButtonBound = true;
@@ -46,17 +80,13 @@ const { text = "" } = Astro.props;
         ta.remove();
       }
 
-      const msg = btn.querySelector(".copy-message");
-      if (!msg) return;
-      msg.classList.remove("invisible", "opacity-0");
-      msg.classList.add("opacity-100");
+      btn.classList.add("is-copied");
       setTimeout(() => {
         // Safe if the node was detached by a navigation — classList
         // ops on a disconnected element are silent no-ops, and the
-        // fresh button in the new DOM already renders with the
-        // default invisible/opacity-0 state.
-        msg.classList.add("invisible", "opacity-0");
-        msg.classList.remove("opacity-100");
+        // fresh CopyButton in the new DOM already renders without
+        // the `is-copied` class.
+        btn.classList.remove("is-copied");
       }, 1500);
     });
   })();
