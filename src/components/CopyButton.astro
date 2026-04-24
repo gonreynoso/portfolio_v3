@@ -21,32 +21,43 @@ const { text = "" } = Astro.props;
 </button>
 
 <script is:inline>
-  (function setupCopyButtons() {
-    document.querySelectorAll(".copy-button").forEach((button) => {
-      if (button.__copyBound) return;
-      button.__copyBound = true;
-      const copyMessage = button.querySelector(".copy-message");
-      button.addEventListener("click", async () => {
-        const textToCopy = button.getAttribute("data-text") || "";
-        try {
-          await navigator.clipboard.writeText(textToCopy);
-        } catch {
-          const ta = document.createElement("textarea");
-          ta.value = textToCopy;
-          document.body.appendChild(ta);
-          ta.select();
-          try { document.execCommand("copy"); } catch {}
-          ta.remove();
-        }
-        if (copyMessage) {
-          copyMessage.classList.remove("invisible", "opacity-0");
-          copyMessage.classList.add("opacity-100");
-          setTimeout(() => {
-            copyMessage.classList.add("invisible", "opacity-0");
-            copyMessage.classList.remove("opacity-100");
-          }, 1500);
-        }
-      });
+  // Delegation on `document` so the listener survives View Transitions
+  // DOM swaps. The clicked button and its `.copy-message` are
+  // resolved from the current DOM via `target.closest` — no closure
+  // over the first-load nodes.
+  (() => {
+    if (window.__copyButtonBound) return;
+    window.__copyButtonBound = true;
+
+    document.addEventListener("click", async (e) => {
+      const target = e.target instanceof Element ? e.target : null;
+      const btn = target && target.closest(".copy-button");
+      if (!btn) return;
+
+      const text = btn.getAttribute("data-text") || "";
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (_) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); } catch (__) {}
+        ta.remove();
+      }
+
+      const msg = btn.querySelector(".copy-message");
+      if (!msg) return;
+      msg.classList.remove("invisible", "opacity-0");
+      msg.classList.add("opacity-100");
+      setTimeout(() => {
+        // Safe if the node was detached by a navigation — classList
+        // ops on a disconnected element are silent no-ops, and the
+        // fresh button in the new DOM already renders with the
+        // default invisible/opacity-0 state.
+        msg.classList.add("invisible", "opacity-0");
+        msg.classList.remove("opacity-100");
+      }, 1500);
     });
   })();
 </script>
