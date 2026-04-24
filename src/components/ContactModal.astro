@@ -89,61 +89,88 @@ const LINKEDIN = "https://linkedin.com/in/gonreynoso";
 </dialog>
 
 <script is:inline>
+  // Runtime for the contact dialog. Every handler is bound once to
+  // `document` (which survives View Transitions swaps) and resolves
+  // the current DOM node via `getElementById` at call time — never
+  // via a closure, because the node captured on the first page load
+  // gets detached the first time the user navigates.
   (() => {
-    const modal = document.getElementById("contact-modal");
-    if (!modal) return;
+    if (window.__contactModalBound) return;
+    window.__contactModalBound = true;
 
-    const open = () => {
-      if (typeof modal.showModal === "function") modal.showModal();
-      else modal.setAttribute("open", "");
+    const getModal = () => document.getElementById("contact-modal");
+
+    const openModal = () => {
+      const m = getModal();
+      if (!m) return;
+      if (typeof m.showModal === "function") m.showModal();
+      else m.setAttribute("open", "");
     };
-    const close = () => {
-      if (typeof modal.close === "function") modal.close();
-      else modal.removeAttribute("open");
+    const closeModal = () => {
+      const m = getModal();
+      if (!m) return;
+      if (typeof m.close === "function") m.close();
+      else m.removeAttribute("open");
     };
 
     document.addEventListener("click", (e) => {
       const target = e.target instanceof Element ? e.target : null;
       if (!target) return;
+
       if (target.closest("[data-open-contact]")) {
         e.preventDefault();
-        open();
-      } else if (target.closest("[data-close-contact]")) {
-        e.preventDefault();
-        close();
-      } else if (target === modal) {
-        // click on backdrop (dialog's ::backdrop forwards to the element)
-        close();
+        openModal();
+        return;
       }
-    });
+      if (target.closest("[data-close-contact]")) {
+        e.preventDefault();
+        closeModal();
+        return;
+      }
 
-    const copyBtn = document.getElementById("contact-copy-email");
-    if (copyBtn) {
-      const defaultLabel = copyBtn.querySelector("[data-contact-copy-default]");
-      const doneLabel = copyBtn.querySelector("[data-contact-copy-done]");
-      copyBtn.addEventListener("click", async () => {
+      // A click whose target IS the <dialog> element means the user
+      // clicked on the backdrop (the ::backdrop pseudo forwards the
+      // event to the dialog host).
+      const m = getModal();
+      if (m && target === m) {
+        closeModal();
+        return;
+      }
+
+      // Copy-email button, resolved fresh from the current DOM.
+      const copyBtn = target.closest("#contact-copy-email");
+      if (copyBtn) {
+        e.preventDefault();
         const email = copyBtn.dataset.email || "";
-        try {
-          await navigator.clipboard.writeText(email);
-        } catch {
-          // fallback
-          const ta = document.createElement("textarea");
-          ta.value = email;
-          document.body.appendChild(ta);
-          ta.select();
-          try { document.execCommand("copy"); } catch {}
-          ta.remove();
-        }
-        if (defaultLabel && doneLabel) {
+        const writeText = async () => {
+          try {
+            await navigator.clipboard.writeText(email);
+          } catch (_) {
+            const ta = document.createElement("textarea");
+            ta.value = email;
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand("copy"); } catch (__) {}
+            ta.remove();
+          }
+        };
+        writeText().then(() => {
+          const defaultLabel = copyBtn.querySelector("[data-contact-copy-default]");
+          const doneLabel = copyBtn.querySelector("[data-contact-copy-done]");
+          if (!defaultLabel || !doneLabel) return;
           defaultLabel.classList.add("hidden");
           doneLabel.classList.remove("hidden");
           setTimeout(() => {
-            defaultLabel.classList.remove("hidden");
-            doneLabel.classList.add("hidden");
+            const btnNow = document.getElementById("contact-copy-email");
+            if (!btnNow) return;
+            const dNow = btnNow.querySelector("[data-contact-copy-default]");
+            const xNow = btnNow.querySelector("[data-contact-copy-done]");
+            if (dNow) dNow.classList.remove("hidden");
+            if (xNow) xNow.classList.add("hidden");
           }, 1500);
-        }
-      });
-    }
+        });
+      }
+    });
   })();
 </script>
 
