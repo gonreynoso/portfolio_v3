@@ -11,71 +11,58 @@ const RESUME_ES = "/Resume_Gonzalo_Reynoso_ES.pdf";
 const RESUME_EN = "/Resume_Gonzalo_Reynoso_EN.pdf";
 ---
 
-<div class="pb-8 gap-8 mt-28">
-  <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
+<section class="mt-28 pb-8">
+  <!-- Row 1: photo + availability badge -->
+  <div class="flex items-center gap-4 mb-6 flex-wrap">
     <img
-      class="rounded-full shadow-lg w-28"
+      class="rounded-full shadow-lg w-20 h-20 object-cover"
       src="/picture-profile.webp"
       alt="Gonzalo Reynoso"
     />
-    <div class="flex items-center">
-      <span class="relative inline-flex overflow-hidden rounded-full p-[1px]">
-        <span
-          class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#51E4B8_0%,#21554E_50%,#51E4B8_100%)]"
-        ></span>
-        <div
-          class="inline-flex items-center justify-center w-full px-3 py-1 text-sm text-green-800 bg-green-100 rounded-full dark:bg-gray-800 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap">
-          <span data-lang="es">{dict.es.hero.availableBadge}</span>
-          <span data-lang="en">{dict.en.hero.availableBadge}</span>
-        </div>
-      </span>
-    </div>
-  </div>
-
-  <div class="flex flex-col text-gray-100">
-    <div class="text-xl py-1">
-      <span data-lang="es">{dict.es.hero.greeting} {dict.es.hero.name}</span>
-      <span data-lang="en">{dict.en.hero.greeting} {dict.en.hero.name}</span>
-    </div>
-    <h1 class="text-4xl sm:text-5xl font-bold leading-tight mt-1">
-      <span data-lang="es">{dict.es.hero.tagline}</span>
-      <span data-lang="en">{dict.en.hero.tagline}</span>
-    </h1>
-    <div class="text-lg py-3 text-gray-400">
-      Freelance Developer ·
-      <a
-        href={KENSIWEB}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-[#54da7a] hover:underline"
+    <span class="relative inline-flex overflow-hidden rounded-full p-[1px]">
+      <span
+        class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#51E4B8_0%,#21554E_50%,#51E4B8_100%)]"
+      ></span>
+      <div
+        class="inline-flex items-center justify-center w-full px-3 py-1 text-sm rounded-full bg-gray-800 text-white/80 backdrop-blur-3xl whitespace-nowrap"
       >
-        Kensiweb
-      </a>
-    </div>
-    <p class="text-base py-3 max-w-2xl">
-      <span data-lang="es">{dict.es.hero.bio}</span>
-      <span data-lang="en">{dict.en.hero.bio}</span>
-    </p>
-  </div>
-</div>
-
-<div class="flex flex-row items-start gap-x-7 max-md:flex-col max-md:gap-6">
-  <div class="max-w-md flex flex-row">
-    <div
-      class="flex items-center rounded-xl overflow-hidden shadow-sm border border-gray-700">
-      <div class="px-3 py-2 bg-gray-800 text-gray-100 flex items-center">
-        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            d="M2.94 6.34A2 2 0 012 5V4a2 2 0 012-2h12a2 2 0 012 2v1a2 2 0 01-.94 1.34L10 10 2.94 6.34zM2 8.12V15a2 2 0 002 2h12a2 2 0 002-2V8.12l-7.06 4.14a1 1 0 01-.88 0L2 8.12z"
-          ></path>
-        </svg>
-        <span id="emailText" class="text-gray-100">{EMAIL}</span>
+        <span data-lang="es">{dict.es.hero.availableBadge}</span>
+        <span data-lang="en">{dict.en.hero.availableBadge}</span>
       </div>
-      <CopyButton class="hover:text-black" text={EMAIL} />
-    </div>
+    </span>
   </div>
 
-  <div class="flex max-md:flex-row max-md:gap-3 gap-3 flex-wrap items-center">
+  <!-- Row 2: eyebrow (greeting + name · role · brand link) -->
+  <p class="text-base text-gray-400 mb-2">
+    <span data-lang="es">{dict.es.hero.greeting} {dict.es.hero.name}</span>
+    <span data-lang="en">{dict.en.hero.greeting} {dict.en.hero.name}</span>
+    <span class="mx-1">·</span>
+    Freelance Developer
+    <span class="mx-1">·</span>
+    <a
+      href={KENSIWEB}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-[#54da7a] hover:underline"
+    >
+      Kensiweb
+    </a>
+  </p>
+
+  <!-- Row 3: h1 tagline -->
+  <h1 class="text-4xl md:text-5xl font-bold leading-tight text-gray-100 mb-5">
+    <span data-lang="es">{dict.es.hero.tagline}</span>
+    <span data-lang="en">{dict.en.hero.tagline}</span>
+  </h1>
+
+  <!-- Row 4: description -->
+  <p class="max-w-2xl text-base text-gray-300 leading-relaxed mb-6">
+    <span data-lang="es">{dict.es.hero.bio}</span>
+    <span data-lang="en">{dict.en.hero.bio}</span>
+  </p>
+
+  <!-- Row 5: CTAs (single wrapping row) -->
+  <div class="flex flex-wrap items-center gap-3 mb-6">
     <button type="button" data-open-contact class={primaryCta}>
       <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -114,4 +101,15 @@ const RESUME_EN = "/Resume_Gonzalo_Reynoso_EN.pdf";
       GitHub
     </a>
   </div>
-</div>
+
+  <!-- Row 6: email pill (subtle, integrated copy button) -->
+  <div class="inline-flex items-center rounded-full border border-gray-800 bg-gray-900/50 text-sm overflow-hidden w-fit max-w-full">
+    <div class="flex items-center gap-2 px-3 py-1.5 text-gray-300">
+      <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+        <path d="M2.94 6.34A2 2 0 012 5V4a2 2 0 012-2h12a2 2 0 012 2v1a2 2 0 01-.94 1.34L10 10 2.94 6.34zM2 8.12V15a2 2 0 002 2h12a2 2 0 002-2V8.12l-7.06 4.14a1 1 0 01-.88 0L2 8.12z"></path>
+      </svg>
+      <span class="truncate">{EMAIL}</span>
+    </div>
+    <CopyButton text={EMAIL} />
+  </div>
+</section>
