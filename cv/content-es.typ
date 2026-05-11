@@ -5,7 +5,7 @@
   title: "Freelance Full-Stack Developer · Kensiweb",
   contact: (
     email: "gonzalo.reynoso9@gmail.com",
-    phone: "+54 9 11 — —",
+    phone: "+54 9 11 32579045",
     location: "Buenos Aires, Argentina",
     website: "gonreynoso.dev",
     linkedin: "linkedin.com/in/gonreynoso",

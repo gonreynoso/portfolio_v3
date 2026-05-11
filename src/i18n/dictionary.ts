@@ -7,8 +7,8 @@ const es = {
   },
   hero: {
     greeting: "Hola,",
-    name: "soy Gonzalo Reynoso",
-    role: "Freelance Developer · Kensiweb",
+    name: "Soy Gonzalo Reynoso",
+    role: "Desarrollador Freelance · Kensiweb",
     tagline: "Sistemas web a medida e integraciones con IA.",
     bio: "Construyo plataformas a medida y automatizaciones con LLMs para PyMEs y proyectos independientes. Trabajo end-to-end: backend, frontend, infraestructura y deploy. Estudio Análisis de Sistemas en Da Vinci.",
     availableBadge: "Disponible para trabajar",
@@ -85,15 +85,40 @@ const es = {
     ],
     certificationsTitle: "Certificaciones",
     certifications: [
-      { label: "Advanced C1 English Certificate", issuer: "Efset", href: "https://cert.efset.org/es/iLxjy3" },
-      { label: "Diplomatura en Bases de Datos", issuer: "UTN", href: "https://validator.centrodeelearning.com/validator/290f3090-cb4f-43b0-b522-caffe89207d6" },
-      { label: "Full Stack Developer", issuer: "Henry Bootcamp", href: "https://drive.google.com/file/d/1AW4chaaRdrU2cZTXnBT-DB0HuOwSS4MI/view?usp=sharing" },
-      { label: "Web Developer", issuer: "CoderHouse", href: "https://drive.google.com/file/d/1UUvrZTnVCAjwyV06SHwauSJBmAIyk2TD/view?usp=sharing" },
+      {
+        label: "Advanced C1 English Certificate",
+        issuer: "Efset",
+        href: "https://cert.efset.org/es/iLxjy3",
+      },
+      {
+        label: "Diplomatura en Bases de Datos",
+        issuer: "UTN",
+        href: "https://validator.centrodeelearning.com/validator/290f3090-cb4f-43b0-b522-caffe89207d6",
+      },
+      {
+        label: "Full Stack Developer",
+        issuer: "Henry Bootcamp",
+        href: "https://drive.google.com/file/d/1AW4chaaRdrU2cZTXnBT-DB0HuOwSS4MI/view?usp=sharing",
+      },
+      {
+        label: "Web Developer",
+        issuer: "CoderHouse",
+        href: "https://drive.google.com/file/d/1UUvrZTnVCAjwyV06SHwauSJBmAIyk2TD/view?usp=sharing",
+      },
     ],
     skillsTitle: "Skills",
     skillsGroups: {
       backend: ["Laravel", "Livewire", "PHP", "Node.js", "Express", "Java"],
-      frontend: ["Astro", "React", "Angular", "Tailwind", "SASS", "Bootstrap", "HTML", "CSS"],
+      frontend: [
+        "Astro",
+        "React",
+        "Angular",
+        "Tailwind",
+        "SASS",
+        "Bootstrap",
+        "HTML",
+        "CSS",
+      ],
       data: ["PostgreSQL", "MySQL", "SQL Server", "Firebase", "Firestore"],
       ai: ["Claude API", "OpenRouter", "WhatsApp Cloud API"],
       infra: ["DigitalOcean", "Contabo", "Ubuntu", "SSH", "Docker", "Git"],
@@ -112,7 +137,7 @@ const es = {
     title: "Estudio Froment & Asociados",
     role: "Full-stack Developer & UI Designer · Kensiweb",
     summary:
-      "Transformación digital para un estudio jurídico con 40 años de trayectoria. Estética \"premium editorial\", cero deuda técnica y deploy continuo.",
+      'Transformación digital para un estudio jurídico con 40 años de trayectoria. Estética "premium editorial", cero deuda técnica y deploy continuo.',
     backToHome: "← Volver",
     sections: {
       challenge: {
@@ -130,11 +155,11 @@ const es = {
           },
           {
             title: "B. Desarrollo en entorno Ubuntu",
-            body: "Armé una arquitectura SASS a medida para gestionar el sistema de diseño \"The Froment Gold\" en todas las páginas. Usé Bootstrap 5 solo como grid, reemplazando las utilities por SCSS semántico para mejor mantenibilidad.",
+            body: 'Armé una arquitectura SASS a medida para gestionar el sistema de diseño "The Froment Gold" en todas las páginas. Usé Bootstrap 5 solo como grid, reemplazando las utilities por SCSS semántico para mejor mantenibilidad.',
           },
           {
             title: "C. Interacciones dinámicas",
-            body: "Integré Swiper.js para el carrusel del equipo legal y Lenis para scroll suave, logrando una experiencia fluida de \"nivel agencia\".",
+            body: 'Integré Swiper.js para el carrusel del equipo legal y Lenis para scroll suave, logrando una experiencia fluida de "nivel agencia".',
           },
         ],
       },
@@ -231,7 +256,7 @@ const es = {
       froment: {
         title: "Estudio Froment & Asociados",
         description:
-          "Rediseño web para un estudio jurídico con 40 años de trayectoria, con estética \"premium editorial\" y cero deuda técnica. Frontend a medida en SASS + Bootstrap 5, integraciones con Swiper.js y Lenis para scroll suave, deploy continuo en Vercel y gestión de DNS con NIC.ar.",
+          'Rediseño web para un estudio jurídico con 40 años de trayectoria, con estética "premium editorial" y cero deuda técnica. Frontend a medida en SASS + Bootstrap 5, integraciones con Swiper.js y Lenis para scroll suave, deploy continuo en Vercel y gestión de DNS con NIC.ar.',
         linkLabel: "Ver caso",
       },
       ilonBooking: {
@@ -305,7 +330,7 @@ const es = {
     brandPrefix: "·",
     brandNote: "Trabajo freelance bajo",
   },
-} as const;
+};
 
 type Dict = typeof es;
 
@@ -394,15 +419,40 @@ const en: Dict = {
     ],
     certificationsTitle: "Certifications",
     certifications: [
-      { label: "Advanced C1 English Certificate", issuer: "Efset", href: "https://cert.efset.org/es/iLxjy3" },
-      { label: "Diploma in Databases", issuer: "UTN", href: "https://validator.centrodeelearning.com/validator/290f3090-cb4f-43b0-b522-caffe89207d6" },
-      { label: "Full Stack Developer", issuer: "Henry Bootcamp", href: "https://drive.google.com/file/d/1AW4chaaRdrU2cZTXnBT-DB0HuOwSS4MI/view?usp=sharing" },
-      { label: "Web Developer", issuer: "CoderHouse", href: "https://drive.google.com/file/d/1UUvrZTnVCAjwyV06SHwauSJBmAIyk2TD/view?usp=sharing" },
+      {
+        label: "Advanced C1 English Certificate",
+        issuer: "Efset",
+        href: "https://cert.efset.org/es/iLxjy3",
+      },
+      {
+        label: "Diploma in Databases",
+        issuer: "UTN",
+        href: "https://validator.centrodeelearning.com/validator/290f3090-cb4f-43b0-b522-caffe89207d6",
+      },
+      {
+        label: "Full Stack Developer",
+        issuer: "Henry Bootcamp",
+        href: "https://drive.google.com/file/d/1AW4chaaRdrU2cZTXnBT-DB0HuOwSS4MI/view?usp=sharing",
+      },
+      {
+        label: "Web Developer",
+        issuer: "CoderHouse",
+        href: "https://drive.google.com/file/d/1UUvrZTnVCAjwyV06SHwauSJBmAIyk2TD/view?usp=sharing",
+      },
     ],
     skillsTitle: "Skills",
     skillsGroups: {
       backend: ["Laravel", "Livewire", "PHP", "Node.js", "Express", "Java"],
-      frontend: ["Astro", "React", "Angular", "Tailwind", "SASS", "Bootstrap", "HTML", "CSS"],
+      frontend: [
+        "Astro",
+        "React",
+        "Angular",
+        "Tailwind",
+        "SASS",
+        "Bootstrap",
+        "HTML",
+        "CSS",
+      ],
       data: ["PostgreSQL", "MySQL", "SQL Server", "Firebase", "Firestore"],
       ai: ["Claude API", "OpenRouter", "WhatsApp Cloud API"],
       infra: ["DigitalOcean", "Contabo", "Ubuntu", "SSH", "Docker", "Git"],
@@ -439,11 +489,11 @@ const en: Dict = {
           },
           {
             title: "B. Development in a Ubuntu environment",
-            body: "Built a custom SASS architecture to manage the \"The Froment Gold\" design system across all pages. Used Bootstrap 5 just for the grid, replacing utility classes with semantic SCSS for better maintainability.",
+            body: 'Built a custom SASS architecture to manage the "The Froment Gold" design system across all pages. Used Bootstrap 5 just for the grid, replacing utility classes with semantic SCSS for better maintainability.',
           },
           {
             title: "C. Dynamic interactions",
-            body: "Integrated Swiper.js for the legal-team carousel and Lenis for smooth scrolling, reaching a fluid \"agency-grade\" experience.",
+            body: 'Integrated Swiper.js for the legal-team carousel and Lenis for smooth scrolling, reaching a fluid "agency-grade" experience.',
           },
         ],
       },
@@ -540,7 +590,7 @@ const en: Dict = {
       froment: {
         title: "Estudio Froment & Asociados",
         description:
-          "Digital redesign for a law firm with a 40-year legacy, aiming for a \"premium editorial\" aesthetic and zero technical debt. Custom frontend in SASS + Bootstrap 5, Swiper.js and Lenis for smooth scrolling, continuous deployment on Vercel and DNS management through NIC.ar.",
+          'Digital redesign for a law firm with a 40-year legacy, aiming for a "premium editorial" aesthetic and zero technical debt. Custom frontend in SASS + Bootstrap 5, Swiper.js and Lenis for smooth scrolling, continuous deployment on Vercel and DNS management through NIC.ar.',
         linkLabel: "View case",
       },
       ilonBooking: {

@@ -11,60 +11,51 @@ const RESUME_ES = "/Resume_Gonzalo_Reynoso_ES.pdf";
 const RESUME_EN = "/Resume_Gonzalo_Reynoso_EN.pdf";
 ---
 
-<section class="mt-28 pb-8">
-  <!-- Row 1: photo + availability badge -->
-  <div class="flex items-center gap-4 mb-6 flex-wrap">
+<section class="h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
+  
+  <!-- Top: Image -->
+  <div class="relative mb-12">
     <img
-      class="rounded-full shadow-lg w-20 h-20 object-cover"
+      class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-xl ring-4 ring-[#54da7a]/30"
       src="/picture-profile.webp"
       alt="Gonzalo Reynoso"
     />
-    <span class="relative inline-flex overflow-hidden rounded-full p-[1px]">
-      <span
-        class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#51E4B8_0%,#21554E_50%,#51E4B8_100%)]"
-      ></span>
-      <div
-        class="inline-flex items-center justify-center w-full px-3 py-1 text-sm rounded-full bg-gray-800 text-white/80 backdrop-blur-3xl whitespace-nowrap"
-      >
-        <span data-lang="es">{dict.es.hero.availableBadge}</span>
-        <span data-lang="en">{dict.en.hero.availableBadge}</span>
-      </div>
-    </span>
   </div>
 
-  <!-- Row 2: eyebrow (greeting + name · role · brand link) -->
-  <p class="text-base text-gray-400 mb-2">
-    <span data-lang="es">{dict.es.hero.greeting} {dict.es.hero.name}</span>
-    <span data-lang="en">{dict.en.hero.greeting} {dict.en.hero.name}</span>
-    <span class="mx-1">·</span>
-    Freelance Developer
-    <span class="mx-1">·</span>
-    <a
-      href={KENSIWEB}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="text-[#54da7a] hover:underline"
-    >
-      Kensiweb
-    </a>
-  </p>
+  <!-- Name & Role -->
+  <div class="mb-8">
+    <p class="text-xl text-[#54da7a] font-semibold mb-2">
+      <span data-lang="es">{dict.es.hero.greeting}</span>
+      <span data-lang="en">{dict.en.hero.greeting}</span>
+    </p>
+    <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold text-gray-100 leading-tight">
+      <span data-lang="es">{dict.es.hero.name}</span>
+      <span data-lang="en">{dict.en.hero.name}</span>
+    </h1>
+    <p class="text-xl md:text-2xl text-gray-400 mt-4">
+      Freelance Developer · 
+      <a href={KENSIWEB} target="_blank" rel="noopener noreferrer" class="text-[#54da7a] hover:underline">
+        Kensiweb
+      </a>
+    </p>
+  </div>
 
-  <!-- Row 3: h1 tagline -->
-  <h1 class="text-4xl md:text-5xl font-bold leading-tight text-gray-100 mb-5">
+  <!-- Tagline -->
+  <p class="text-2xl md:text-3xl text-gray-200 mb-6 max-w-3xl leading-relaxed">
     <span data-lang="es">{dict.es.hero.tagline}</span>
     <span data-lang="en">{dict.en.hero.tagline}</span>
-  </h1>
+  </p>
 
-  <!-- Row 4: description -->
-  <p class="max-w-2xl text-base text-gray-300 leading-relaxed mb-6">
+  <!-- Bio -->
+  <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl leading-relaxed">
     <span data-lang="es">{dict.es.hero.bio}</span>
     <span data-lang="en">{dict.en.hero.bio}</span>
   </p>
 
-  <!-- Row 5: CTAs (single wrapping row) -->
-  <div class="flex flex-wrap items-center gap-3 mb-6">
-    <button type="button" data-open-contact class={primaryCta}>
-      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- CTAs -->
+  <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+    <button type="button" data-open-contact class={`${primaryCta} text-lg px-6 py-3`}>
+      <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
         <polyline points="22,6 12,13 2,6"></polyline>
       </svg>
@@ -72,44 +63,52 @@ const RESUME_EN = "/Resume_Gonzalo_Reynoso_EN.pdf";
       <span data-lang="en">{dict.en.hero.ctaContact}</span>
     </button>
 
-    <a href={RESUME_ES} target="_blank" rel="noopener noreferrer" class={secondaryCta} data-lang="es">
-      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <a href={RESUME_ES} target="_blank" rel="noopener noreferrer" class={`${secondaryCta} text-lg px-5 py-3`} data-lang="es">
+      <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6H6zm7 1.5L18.5 9H13V3.5zM8 11h8v2H8v-2zm0 4h8v2H8v-2z"></path>
       </svg>
-      {dict.es.hero.resumeLabel}
+      CV
     </a>
-    <a href={RESUME_EN} target="_blank" rel="noopener noreferrer" class={secondaryCta} data-lang="en">
-      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6H6zm7 1.5L18.5 9H13V3.5zM8 11h8v2H8v-2zm0 4h8v2H8v-2z"></path>
-      </svg>
-      {dict.en.hero.resumeLabel}
-    </a>
+  </div>
 
-    <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" class={secondaryCta}>
-      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Social links row -->
+  <div class="flex items-center gap-8 text-lg text-gray-400">
+    <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-[#54da7a] transition-colors">
+      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none">
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path>
         <rect x="2" y="9" width="4" height="12"></rect>
         <circle cx="4" cy="4" r="2"></circle>
       </svg>
-      LinkedIn
+      <span>LinkedIn</span>
     </a>
 
-    <a href={GITHUB} target="_blank" rel="noopener noreferrer" class={secondaryCta}>
-      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <a href={GITHUB} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-[#54da7a] transition-colors">
+      <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none">
         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
       </svg>
-      GitHub
+      <span>GitHub</span>
     </a>
-  </div>
 
-  <!-- Row 6: email pill (subtle, integrated copy button) -->
-  <div class="inline-flex items-center rounded-full border border-gray-800 bg-gray-900/50 text-sm overflow-hidden w-fit max-w-full">
-    <div class="flex items-center gap-2 px-3 py-1.5 text-gray-300">
-      <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+    <div class="flex items-center gap-2 border-l border-gray-600 pl-8">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path d="M2.94 6.34A2 2 0 012 5V4a2 2 0 012-2h12a2 2 0 012 2v1a2 2 0 01-.94 1.34L10 10 2.94 6.34zM2 8.12V15a2 2 0 002 2h12a2 2 0 002-2V8.12l-7.06 4.14a1 1 0 01-.88 0L2 8.12z"></path>
       </svg>
-      <span class="truncate">{EMAIL}</span>
+      <span class="text-base">{EMAIL}</span>
+      <CopyButton text={EMAIL} />
     </div>
-    <CopyButton text={EMAIL} />
   </div>
+
+  <!-- Scroll indicator -->
+  <a href="#servicios" class="mt-16 flex flex-col items-center gap-2 text-gray-500 hover:text-[#54da7a] transition-colors" onclick="event.preventDefault(); document.getElementById('servicios').scrollIntoView({ behavior: 'smooth' });">
+    <span class="text-sm uppercase tracking-widest">Scroll</span>
+    <svg class="w-8 h-8 animate-bounce" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </a>
 </section>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
