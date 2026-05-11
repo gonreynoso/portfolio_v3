@@ -7,6 +7,7 @@ import WorkExperience from "@components/WorkExperience.astro";
 import FeaturedProjects from "@components/FeaturedProjects.astro";
 import ContactCTA from "@components/ContactCTA.astro";
 import ContactModal from "@components/ContactModal.astro";
+import Analytics from '@vercel/analytics/astro';
 ---
 
 <BaseLayout>
@@ -17,4 +18,5 @@ import ContactModal from "@components/ContactModal.astro";
   <AboutMe />
   <ContactCTA />
   <ContactModal />
+  <Analytics />
 </BaseLayout>
