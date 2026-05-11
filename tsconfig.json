@@ -4,6 +4,7 @@
     "jsx": "preserve",
     "strictNullChecks": true,
     "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
     "paths": {
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"]
