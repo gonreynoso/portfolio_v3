@@ -177,7 +177,7 @@ const es = {
       libraries: "Librerías",
       deploy: "Deploy",
       cta: "Ver sitio en vivo",
-      ctaUrl: "https://estudiofroment.kensiweb.com",
+      ctaUrl: "https://estudiofroment.com.ar",
     },
   },
   cases: {
@@ -281,54 +281,7 @@ const es = {
         ctaUrl: "https://refugioilon.com.ar",
       },
     },
-    innevo: {
-      badge: "Caso de estudio",
-      title: "Innevo - Frontend Angular",
-      role: "Frontend Developer (Angular) · Kensiweb",
-      summary:
-        "Desarrollo de frontend modular con Angular, Angular Material y TypeScript estricto para una aplicación web empresarial, integrado con REST APIs y trabajo en equipo distribuido.",
-      backToHome: "← Volver",
-      sections: {
-        challenge: {
-          number: "01",
-          title: "El desafío",
-          body: "Innevo necesitaba un frontend modular, mantenible y escalable para su aplicación web. El equipo trabajaba de forma distribuida entre Chile y Argentina, lo que exigía código limpio, componentes bien encapsulados y TypeScript estricto para atrapar errores en tiempo de compilación. La integración con múltiples REST APIs requería un manejo consistente de estados de carga, error y datos.",
-        },
-        process: {
-          number: "02",
-          title: "Proceso creativo",
-          steps: [
-            {
-              title: "A. Setup de Angular",
-              body: "Inicialicé el proyecto con Angular CLI, configurando el módulo principal, lazy loading para rutas y el sistema de servicios con inyección de dependencias. TypeScript en modo estricto desde el día uno para garantizar tipado seguro.",
-            },
-            {
-              title: "B. Componentes modulares",
-              body: "Diseñé una arquitectura de componentes reutilizables con Angular Material como base de UI. Cada componente tiene su propio módulo, servicio y testing, siguiendo el patrón container-presentational para separar lógica de presentación.",
-            },
-            {
-              title: "C. Integración con APIs REST",
-              body: "Implementé servicios Angular con HttpClient para consumir las APIs del backend. Manejo unificado de errores con interceptors HTTP, estados de carga con AsyncPipe y tipado completo de respuestas con interfaces TypeScript.",
-            },
-          ],
-        },
-        outcome: {
-          number: "03",
-          title: "Resultado final",
-          body: "Frontend completo con TypeScript estricto, componentes modulares y pruebas unitarias. El equipo pudo continuar el desarrollo con una base sólida y bien documentada. La arquitectura permitió agregar nuevas funcionalidades sin reescribir código existente.",
-        },
-      },
-      specs: {
-        title: "Especificaciones del proyecto",
-        env: "Entorno de desarrollo",
-        envValue: "Angular CLI · TypeScript",
-        frontend: "Frontend",
-        libraries: "Librerías",
-        deploy: "Deploy",
-        cta: "Ver proyecto",
-        ctaUrl: "#",
-      },
-    },
+
     intimaOnline: {
       badge: "Caso de estudio",
       title: "Intima Online - Radio Online",
@@ -370,7 +323,7 @@ const es = {
         libraries: "Librerías",
         deploy: "Deploy",
         cta: "Ver sitio en vivo",
-        ctaUrl: "https://intimaonline.com.ar",
+        ctaUrl: "https://intimaonline.com",
       },
     },
     medicinaDiagnostica: {
@@ -422,7 +375,7 @@ const es = {
         libraries: "Librerías",
         deploy: "Deploy",
         cta: "Ver sitio en vivo",
-        ctaUrl: "#",
+        ctaUrl: "https://medicina-diagnostica.com/",
       },
     },
     laCarlota: {
@@ -470,7 +423,7 @@ const es = {
         libraries: "Librerías",
         deploy: "Deploy",
         cta: "Ver sitio en vivo",
-        ctaUrl: "#",
+        ctaUrl: "https://lacarlotadelmonte.com",
       },
     },
     laboratorioSpotorno: {
@@ -518,7 +471,7 @@ const es = {
         libraries: "Librerías",
         deploy: "Deploy",
         cta: "Ver sitio en vivo",
-        ctaUrl: "#",
+        ctaUrl: "https://www.laboratoriospotorno.com/",
       },
     },
     legallyOnTheMove: {
@@ -570,7 +523,7 @@ const es = {
         libraries: "Librerías",
         deploy: "Deploy",
         cta: "Ver sitio en vivo",
-        ctaUrl: "#",
+        ctaUrl: "https://legallyonthemove.kensiweb.com/",
       },
     },
   },
@@ -699,12 +652,7 @@ const es = {
           "Sistema de reservas web para el Refugio Ilón cerca de la Laguna Ilón. Aplicación basada en PHP y WordPress con administración vía phpMyAdmin, flujo de reserva optimizado para visitantes y backoffice para gestionar disponibilidad.",
         linkLabel: "Ver caso",
       },
-      innevo: {
-        title: "Innevo - Frontend Angular",
-        description:
-          "Frontend modular con Angular, Angular Material y TypeScript estricto para una aplicación web empresarial. Integración con REST APIs y trabajo en equipo distribuido entre Chile y Argentina.",
-        linkLabel: "Ver caso",
-      },
+
       intimaOnline: {
         title: "Intima Online - Radio Online",
         description:
@@ -1085,54 +1033,7 @@ const en: Dict = {
         ctaUrl: "https://refugioilon.com.ar",
       },
     },
-    innevo: {
-      badge: "Case study",
-      title: "Innevo - Angular Frontend",
-      role: "Frontend Developer (Angular) · Kensiweb",
-      summary:
-        "Modular frontend development with Angular, Angular Material and strict TypeScript for an enterprise web application, integrated with REST APIs in a distributed team.",
-      backToHome: "← Back",
-      sections: {
-        challenge: {
-          number: "01",
-          title: "The challenge",
-          body: "Innevo needed a modular, maintainable and scalable frontend for their web application. The team worked distributed across Chile and Argentina, which demanded clean code, well-encapsulated components and strict TypeScript to catch errors at compile time. Integration with multiple REST APIs required consistent handling of loading, error and data states.",
-        },
-        process: {
-          number: "02",
-          title: "Creative process",
-          steps: [
-            {
-              title: "A. Angular setup",
-              body: "I initialized the project with Angular CLI, setting up the main module, lazy loading for routes and the service system with dependency injection. Strict TypeScript mode from day one for type safety.",
-            },
-            {
-              title: "B. Modular components",
-              body: "I designed a reusable component architecture with Angular Material as the UI foundation. Each component has its own module, service and tests, following the container-presentational pattern to separate logic from presentation.",
-            },
-            {
-              title: "C. REST API integration",
-              body: "I implemented Angular services with HttpClient to consume the backend APIs. Unified error handling with HTTP interceptors, loading states with AsyncPipe, and fully typed responses with TypeScript interfaces.",
-            },
-          ],
-        },
-        outcome: {
-          number: "03",
-          title: "Final outcome",
-          body: "Complete frontend with strict TypeScript, modular components and unit tests. The team was able to continue development on a solid, well-documented foundation. The architecture allowed adding new features without rewriting existing code.",
-        },
-      },
-      specs: {
-        title: "Project specs",
-        env: "Development environment",
-        envValue: "Angular CLI · TypeScript",
-        frontend: "Frontend",
-        libraries: "Libraries",
-        deploy: "Deploy",
-        cta: "View project",
-        ctaUrl: "#",
-      },
-    },
+
     intimaOnline: {
       badge: "Case study",
       title: "Intima Online - Online Radio",
@@ -1417,16 +1318,7 @@ const en: Dict = {
             "Data modeling for member validation, continuous deployment on Vercel and DNS management through NIC.ar.",
           ],
         },
-        {
-          name: "Innevo",
-          project: "Angular frontend for a web application",
-          period: "Oct 2024 – Feb 2025",
-          location: "Santiago de Chile, CL (remote)",
-          bullets: [
-            "Modular components with Angular + Angular Material, REST API integration.",
-            "Strict TypeScript, working in a distributed team across Chile and Argentina.",
-          ],
-        },
+
         {
           name: "Intima Online",
           project: "Astro frontend for an online radio platform",
@@ -1513,12 +1405,7 @@ const en: Dict = {
           "Web booking system for Refugio Ilón, near Laguna Ilón. PHP + WordPress stack with phpMyAdmin-based administration, a streamlined reservation flow for visitors and a back-office for managing availability.",
         linkLabel: "View case",
       },
-      innevo: {
-        title: "Innevo - Angular Frontend",
-        description:
-          "Modular Angular frontend with Angular Material and strict TypeScript for an enterprise web application. REST API integration and distributed team across Chile and Argentina.",
-        linkLabel: "View case",
-      },
+
       intimaOnline: {
         title: "Intima Online - Online Radio",
         description:
