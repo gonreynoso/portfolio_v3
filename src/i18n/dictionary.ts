@@ -28,7 +28,7 @@ const es = {
     experienceTitle: "Experiencia",
     internshipsTitle: "Pasantías",
     internship: {
-      role: "Front-end React Developer",
+      role: "Desarrollador Frontend",
       company: "Informental",
       period: "Nov 2023 – Dic 2023",
       location: "Mendoza, AR",
@@ -666,7 +666,7 @@ const es = {
       ],
     },
     medicina: {
-      role: "Administrative & IT Analyst",
+      role: "Analista Administrativo",
       company: "Medicina Diagnóstica",
       period: "Ago 2020 – Abr 2024",
       location: "CABA, AR",
