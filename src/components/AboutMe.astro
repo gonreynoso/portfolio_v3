@@ -1,16 +1,17 @@
 ---
-import SectionContainer from "@components/SectionContainer.astro";
 import AboutMeData from "./AboutMeData.astro";
 import { dict } from "../i18n";
 ---
 
-<div class="mt-12 mb-4">
-  <h2 class="text-3xl font-bold mb-2 text-gray-100">
-    <span data-lang="es">{dict.es.about.title}</span>
-    <span data-lang="en">{dict.en.about.title}</span>
-  </h2>
-</div>
+<div class="w-full mx-auto container xl:max-w-6xl lg:max-w-5xl px-6 mt-12">
+  <div class="mb-4">
+    <h2 class="text-3xl font-bold mb-2 text-gray-100">
+      <span data-lang="es">{dict.es.about.title}</span>
+      <span data-lang="en">{dict.en.about.title}</span>
+    </h2>
+  </div>
 
-<SectionContainer id="sobre-mi">
-  <AboutMeData />
-</SectionContainer>
+  <div id="sobre-mi">
+    <AboutMeData />
+  </div>
+</div>

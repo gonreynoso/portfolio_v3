@@ -5,13 +5,13 @@ import { dict } from "../i18n";
 ---
 
 <nav
-  class="flex z-20 flex-row md:flex-row md:justify-between md:items-center py-4 px-8 text-white fixed top-0 right-0 left-0">
-  <div class="mt-4 md:mt-0 p-2 px-4 mx-auto rounded-2xl bg-base-100 flex items-center gap-4">
-    <ul class="flex flex-row list-none space-x-0 gap-6">
+  class="flex z-20 flex-row md:flex-row md:justify-between md:items-center py-4 px-4 md:px-8 text-white dark:text-white fixed top-0 right-0 left-0">
+  <div class="mt-4 md:mt-0 p-2 px-3 md:px-4 mx-auto rounded-2xl bg-base-100 flex items-center gap-2 md:gap-4">
+    <ul class="flex flex-row list-none gap-4 md:gap-6">
       <li>
         <a
           href="/"
-          class="text-white no-underline text-base transition-colors duration-300 ease-in-out hover:text-[#54da7a]">
+          class="text-gray-800 dark:text-white no-underline text-sm md:text-base transition-colors duration-300 ease-in-out hover:text-[#54da7a]">
           <span data-lang="es">{dict.es.nav.home}</span>
           <span data-lang="en">{dict.en.nav.home}</span>
         </a>
@@ -19,13 +19,13 @@ import { dict } from "../i18n";
       <li>
         <a
           href="/resume"
-          class="text-white no-underline text-base transition-colors duration-300 ease-in-out hover:text-[#54da7a]">
+          class="text-gray-800 dark:text-white no-underline text-sm md:text-base transition-colors duration-300 ease-in-out hover:text-[#54da7a]">
           <span data-lang="es">{dict.es.nav.resume}</span>
           <span data-lang="en">{dict.en.nav.resume}</span>
         </a>
       </li>
     </ul>
-    <div class="flex items-center gap-2 border-l border-gray-700 pl-4">
+    <div class="flex items-center gap-1 md:gap-2 border-l border-gray-400 dark:border-gray-700 pl-2 md:pl-4">
       <ThemeToggle />
       <LangToggle />
     </div>

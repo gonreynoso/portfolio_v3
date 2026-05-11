@@ -1,20 +1,21 @@
 ---
-import SectionContainer from "@components/SectionContainer.astro";
 import Projects from "@components/Projects.astro";
 import { dict } from "../i18n";
 ---
 
-<div class="mt-12 mb-4">
-  <h2 class="text-3xl font-bold mb-2 text-gray-100">
-    <span data-lang="es">{dict.es.projects.title}</span>
-    <span data-lang="en">{dict.en.projects.title}</span>
-  </h2>
-  <p class="text-base text-gray-400 max-w-2xl">
-    <span data-lang="es">{dict.es.projects.subtitle}</span>
-    <span data-lang="en">{dict.en.projects.subtitle}</span>
-  </p>
-</div>
+<div class="w-full mx-auto container xl:max-w-6xl lg:max-w-5xl px-6 mt-12">
+  <div class="mb-4">
+    <h2 class="text-3xl font-bold mb-2 text-gray-100">
+      <span data-lang="es">{dict.es.projects.title}</span>
+      <span data-lang="en">{dict.en.projects.title}</span>
+    </h2>
+    <p class="text-base text-gray-600 dark:text-gray-400 max-w-2xl">
+      <span data-lang="es">{dict.es.projects.subtitle}</span>
+      <span data-lang="en">{dict.en.projects.subtitle}</span>
+    </p>
+  </div>
 
-<SectionContainer id="proyectos">
-  <Projects />
-</SectionContainer>
+  <div id="proyectos">
+    <Projects />
+  </div>
+</div>
