@@ -16,8 +16,25 @@ const {
 ---
 
 <!doctype html>
-<html lang="es" class="lang-es dark" data-theme="dark">
+<html lang="es" class="lang-es" data-theme="dark">
   <head>
+    <script is:inline>
+      // Apply saved theme before render
+      (() => {
+        try {
+          const theme = localStorage.getItem("theme");
+          if (theme === "light") {
+            document.documentElement.classList.remove("dark");
+            document.documentElement.setAttribute("data-theme", "light");
+          } else {
+            document.documentElement.classList.add("dark");
+            document.documentElement.setAttribute("data-theme", "dark");
+          }
+        } catch (_) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
     <script is:inline>
       // i18n runtime:
       //   - runs synchronously before first paint so the wrong
@@ -90,7 +107,7 @@ const {
     <div class="bg-base-100 mx-auto">
       <Navbar />
       <div class="md:flex md:justify-center">
-        <main class="p-6 pt-10 lg:max-w-[900px] max-w-[100vw]">
+        <main class="p-6 pt-10 xl:max-w-[1200px] lg:max-w-[1000px] max-w-[100vw]">
           <slot />
           <Analytics />
         </main>
