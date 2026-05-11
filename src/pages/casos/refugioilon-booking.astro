@@ -1,0 +1,33 @@
+---
+import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import { dict } from "../../i18n";
+
+const esC = dict.es.cases.refugioilonBooking;
+const enC = dict.en.cases.refugioilonBooking;
+const frontendBadges = ["WordPress", "PHP", "HTML", "Tailwind CSS"];
+const libraryBadges = ["phpMyAdmin"];
+const deployBadges = ["MySQL", "Apache"];
+---
+
+<CaseStudyLayout
+  title={esC.title}
+  description={esC.summary}
+  image="/projects/refugioilon-booking.png"
+  heroImage="/projects/refugioilon-booking.png"
+  cardImage="/refugioilonweb.webp"
+  cardAlt="Refugio Ilón · Booking Platform"
+  accentColor="#21759B"
+  esContent={{ badge: esC.badge, role: esC.role, summary: esC.summary, backToHome: esC.backToHome }}
+  enContent={{ badge: enC.badge, role: enC.role, summary: enC.summary, backToHome: enC.backToHome }}
+  esSections={esC.sections}
+  enSections={enC.sections}
+  esSpecs={esC.specs}
+  enSpecs={enC.specs}
+  specsData={{
+    envValue: esC.specs.envValue,
+    frontendBadges,
+    libraryBadges,
+    deployBadges,
+    ctaUrl: esC.specs.ctaUrl,
+  }}
+/>

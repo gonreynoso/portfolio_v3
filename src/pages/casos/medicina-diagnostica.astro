@@ -1,0 +1,34 @@
+---
+import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import { dict } from "../../i18n";
+
+const esC = dict.es.cases.medicinaDiagnostica;
+const enC = dict.en.cases.medicinaDiagnostica;
+const key = "medicina-diagnostica";
+const frontendBadges = ["Next.js", "Tailwind CSS v4", "TypeScript"];
+const libraryBadges = ["GSAP"];
+const deployBadges: string[] = [];
+---
+
+<CaseStudyLayout
+  title={esC.title}
+  description={esC.summary}
+  image={`/projects/${key}.png`}
+  heroImage={`/projects/${key}.png`}
+  cardImage={`/${key}.webp`}
+  cardAlt="Medicina Diagnóstica - Centro Médico"
+  accentColor="#059669"
+  esContent={{ badge: esC.badge, role: esC.role, summary: esC.summary, backToHome: esC.backToHome }}
+  enContent={{ badge: enC.badge, role: enC.role, summary: enC.summary, backToHome: enC.backToHome }}
+  esSections={esC.sections}
+  enSections={enC.sections}
+  esSpecs={esC.specs}
+  enSpecs={enC.specs}
+  specsData={{
+    envValue: esC.specs.envValue,
+    frontendBadges,
+    libraryBadges,
+    deployBadges,
+    ctaUrl: esC.specs.ctaUrl,
+  }}
+/>

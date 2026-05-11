@@ -1,5 +1,15 @@
 ---
 import { dict } from "../i18n";
+
+const CASE_LINKS: Record<string, { url: string; image?: string }> = {
+  "Refugio Ilón": { url: "/casos/refugioilon-bot", image: "/refugioilonweb.webp" },
+  "Estudio Froment & Asociados": { url: "/estudiofroment", image: "/estudiofroment.webp" },
+  "Intima Online": { url: "/casos/intima-online" },
+  "Medicina Diagnóstica - Centro Médico": { url: "/casos/medicina-diagnostica" },
+  "La Carlota del Monte - Tierra de Caballos": { url: "/casos/la-carlota" },
+  "Laboratorio Spotorno": { url: "/casos/laboratorio-spotorno" },
+  "Legally On The Move - Asesoría Legal para Migrantes": { url: "/casos/legally-on-the-move" },
+};
 ---
 
 <div class="w-full mx-auto container xl:max-w-6xl lg:max-w-5xl px-6 mt-12">
@@ -56,7 +66,11 @@ import { dict } from "../i18n";
                     <span data-lang="es">{dict.es.experience.clientLabel}</span>
                     <span data-lang="en">{dict.en.experience.clientLabel}</span>
                   </span>
-                  <span class="font-semibold text-gray-100">{clientEs.name}</span>
+                  {
+                    CASE_LINKS[clientEs.name]
+                      ? <a href={CASE_LINKS[clientEs.name].url} class="font-semibold text-gray-100 hover:text-[#54da7a] transition-colors">{clientEs.name}</a>
+                      : <span class="font-semibold text-gray-100">{clientEs.name}</span>
+                  }
                   <span class="text-sm text-gray-500">
                     <span data-lang="es">{clientEs.period} · {clientEs.location}</span>
                     <span data-lang="en">{clientEn.period} · {clientEn.location}</span>

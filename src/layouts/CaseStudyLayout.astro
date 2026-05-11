@@ -1,0 +1,301 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface ContentObj {
+  badge: string;
+  role: string;
+  summary: string;
+  backToHome: string;
+}
+
+interface SectionBase {
+  number: string;
+  title: string;
+}
+
+interface ChallengeSection extends SectionBase {
+  body: string;
+}
+
+interface ProcessSection extends SectionBase {
+  steps: Array<{ title: string; body: string }>;
+}
+
+interface OutcomeSection extends SectionBase {
+  body: string;
+}
+
+interface Sections {
+  challenge: ChallengeSection;
+  process: ProcessSection;
+  outcome: OutcomeSection;
+}
+
+interface Specs {
+  title: string;
+  env: string;
+  frontend: string;
+  libraries: string;
+  deploy: string;
+  cta?: string;
+}
+
+interface SpecsData {
+  envValue: string;
+  frontendBadges: string[];
+  libraryBadges: string[];
+  deployBadges: string[];
+  ctaUrl?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  esContent: ContentObj;
+  enContent: ContentObj;
+  esSections: Sections;
+  enSections: Sections;
+  esSpecs: Specs;
+  enSpecs: Specs;
+  specsData: SpecsData;
+  accentColor?: string;
+  heroImage: string;
+  cardImage: string;
+  cardAlt?: string;
+  backHref?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  esContent,
+  enContent,
+  esSections,
+  enSections,
+  esSpecs,
+  enSpecs,
+  specsData,
+  accentColor = "#54da7a",
+  heroImage,
+  cardImage,
+  cardAlt = "Project screenshot",
+  backHref = "/",
+} = Astro.props as Props;
+---
+
+<BaseLayout title={title} description={description} image={image}>
+  <article class="text-gray-200 dark:text-gray-100 mt-20" style={`--accent: ${accentColor}`}>
+    <!-- Hero -->
+    <a
+      href={backHref}
+      class="inline-flex items-center gap-1 mb-4 text-xs uppercase tracking-widest hover:text-white transition"
+      style={`color: ${accentColor}`}
+    >
+      <span data-lang="es">{esContent.backToHome}</span>
+      <span data-lang="en">{enContent.backToHome}</span>
+    </a>
+
+    <header
+      class="relative overflow-hidden rounded-2xl border mb-10"
+      style={`border-color: ${accentColor}4D; background-image: linear-gradient(rgba(10,10,10,0.86), rgba(10,10,10,0.86)), url('${heroImage}'); background-size: cover; background-position: center;`}
+    >
+      <div class="px-6 md:px-12 py-14 md:py-16 text-center">
+        <h6
+          class="uppercase tracking-[0.3em] text-xs font-bold"
+          style={`color: ${accentColor}`}
+        >
+          <span data-lang="es">{esContent.badge}</span>
+          <span data-lang="en">{enContent.badge}</span>
+        </h6>
+        <h1 class="mt-4 text-4xl md:text-5xl font-bold tracking-tight">
+          {title}
+        </h1>
+        <p class="mt-4 max-w-2xl mx-auto text-base md:text-lg" style={`color: ${accentColor}cc`}>
+          <span data-lang="es">{esContent.role}</span>
+          <span data-lang="en">{enContent.role}</span>
+        </p>
+        <p class="mt-3 max-w-2xl mx-auto text-sm text-gray-300">
+          <span data-lang="es">{esContent.summary}</span>
+          <span data-lang="en">{enContent.summary}</span>
+        </p>
+      </div>
+    </header>
+
+    <div class="grid gap-10 lg:grid-cols-3">
+      <div class="lg:col-span-2 space-y-10">
+        <!-- Challenge -->
+        <section class="border-b border-gray-800 pb-8">
+          <h2 class="case-title text-2xl font-semibold relative pb-3 mb-4">
+            <span style={`color: ${accentColor}`} class="mr-2">{esSections.challenge.number}.</span>
+            <span data-lang="es">{esSections.challenge.title}</span>
+            <span data-lang="en">{enSections.challenge.title}</span>
+          </h2>
+          <p class="text-gray-300 leading-relaxed">
+            <span data-lang="es">{esSections.challenge.body}</span>
+            <span data-lang="en">{enSections.challenge.body}</span>
+          </p>
+          <figure class="mt-6">
+            <img
+              src={cardImage}
+              alt={cardAlt}
+              class="rounded-lg border border-gray-800 shadow-lg w-full"
+            />
+            <figcaption class="mt-2 text-center text-xs italic text-gray-500">
+              <span data-lang="es">Captura del proyecto — Kensiweb.</span>
+              <span data-lang="en">Project screenshot — Kensiweb.</span>
+            </figcaption>
+          </figure>
+        </section>
+
+        <!-- Process -->
+        <section class="border-b border-gray-800 pb-8">
+          <h2 class="case-title text-2xl font-semibold relative pb-3 mb-6">
+            <span style={`color: ${accentColor}`} class="mr-2">{esSections.process.number}.</span>
+            <span data-lang="es">{esSections.process.title}</span>
+            <span data-lang="en">{enSections.process.title}</span>
+          </h2>
+
+          <div class="space-y-6">
+            {
+              esSections.process.steps.map((step, i) => (
+                <div>
+                  <h4 class="font-bold text-base" style={`color: ${accentColor}`}>
+                    <span data-lang="es">{step.title}</span>
+                    <span data-lang="en">{enSections.process.steps[i].title}</span>
+                  </h4>
+                  <p class="mt-1 text-gray-300 leading-relaxed">
+                    <span data-lang="es">{step.body}</span>
+                    <span data-lang="en">{enSections.process.steps[i].body}</span>
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Outcome -->
+        <section>
+          <h2 class="case-title text-2xl font-semibold relative pb-3 mb-4">
+            <span style={`color: ${accentColor}`} class="mr-2">{esSections.outcome.number}.</span>
+            <span data-lang="es">{esSections.outcome.title}</span>
+            <span data-lang="en">{enSections.outcome.title}</span>
+          </h2>
+          <p class="text-gray-300 leading-relaxed">
+            <span data-lang="es">{esSections.outcome.body}</span>
+            <span data-lang="en">{enSections.outcome.body}</span>
+          </p>
+        </section>
+      </div>
+
+      <!-- Specs aside -->
+      <aside>
+        <div
+          class="lg:sticky lg:top-24 rounded-xl border bg-gray-900/50 p-5"
+          style={`border-color: ${accentColor}4D`}
+        >
+          <h3 class="text-base font-bold border-b border-gray-700 pb-3 mb-4">
+            <span data-lang="es">{esSpecs.title}</span>
+            <span data-lang="en">{enSpecs.title}</span>
+          </h3>
+
+          <div class="space-y-4 text-sm">
+            <div>
+              <div class="text-xs uppercase tracking-wider text-gray-500 font-semibold">
+                <span data-lang="es">{esSpecs.env}</span>
+                <span data-lang="en">{enSpecs.env}</span>
+              </div>
+              <span class="inline-block mt-1 rounded-full bg-black border border-gray-700 px-3 py-1 text-xs">
+                {specsData.envValue}
+              </span>
+            </div>
+
+            <div>
+              <div class="text-xs uppercase tracking-wider text-gray-500 font-semibold">
+                <span data-lang="es">{esSpecs.frontend}</span>
+                <span data-lang="en">{enSpecs.frontend}</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mt-1">
+                {
+                  specsData.frontendBadges.map((b) => (
+                    <span class="rounded-full border border-gray-700 bg-gray-800 px-2 py-0.5 text-xs">
+                      {b}
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+
+            {
+              specsData.libraryBadges.length > 0 && (
+                <div>
+                  <div class="text-xs uppercase tracking-wider text-gray-500 font-semibold">
+                    <span data-lang="es">{esSpecs.libraries}</span>
+                    <span data-lang="en">{enSpecs.libraries}</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1 mt-1">
+                    {
+                      specsData.libraryBadges.map((b) => (
+                        <span class="rounded-full border border-gray-700 bg-gray-800 px-2 py-0.5 text-xs">
+                          {b}
+                        </span>
+                      ))
+                    }
+                  </div>
+                </div>
+              )
+            }
+
+            <div>
+              <div class="text-xs uppercase tracking-wider text-gray-500 font-semibold">
+                <span data-lang="es">{esSpecs.deploy}</span>
+                <span data-lang="en">{enSpecs.deploy}</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mt-1">
+                {
+                  specsData.deployBadges.map((b) => (
+                    <span class="rounded-full border border-gray-700 bg-gray-800 px-2 py-0.5 text-xs">
+                      {b}
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+
+            {specsData.ctaUrl && (
+              <a
+                href={specsData.ctaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-bold uppercase tracking-wider text-black transition"
+                style={`background-color: ${accentColor}`}
+                onmouseover="this.style.opacity='0.85'"
+                onmouseout="this.style.opacity='1'"
+              >
+                <span data-lang="es">{esSpecs.cta}</span>
+                <span data-lang="en">{enSpecs.cta}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17L17 7"/>
+                  <polyline points="7 7 17 7 17 17"/>
+                </svg>
+              </a>
+            )}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .case-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent);
+  }
+</style>

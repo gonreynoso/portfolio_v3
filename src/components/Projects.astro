@@ -21,6 +21,12 @@ const TAG: Record<string, Tag> = {
   WORDPRESS: { name: "WordPress", class: "bg-[#21759B] text-white" },
   PHP: { name: "PHP", class: "bg-[#777BB4] text-white" },
   SQL: { name: "SQL", class: "bg-[#00758F] text-white" },
+  ANGULAR: { name: "Angular", class: "bg-[#dd0031] text-white" },
+  TYPESCRIPT: { name: "TypeScript", class: "bg-[#3178c6] text-white" },
+  ASTR: { name: "Astro", class: "bg-[#bc52ee] text-white" },
+  TAILWIND: { name: "Tailwind CSS", class: "bg-[#38bdf8] text-black" },
+  GSAP: { name: "GSAP", class: "bg-[#88ce02] text-black" },
+  NEXTJS: { name: "Next.js", class: "bg-black text-white border border-gray-700" },
 };
 
 type ProjectKey = keyof typeof dict.es.projects.items;
@@ -39,7 +45,7 @@ const PROJECTS: Project[] = [
   {
     key: "ilonBot",
     mockup: "whatsapp",
-    link: null,
+    link: "/casos/refugioilon-bot",
     external: false,
     github: null,
     tags: [TAG.WA_API, TAG.CLAUDE, TAG.NODE, TAG.EXPRESS, TAG.POSTGRES, TAG.DO],
@@ -55,10 +61,52 @@ const PROJECTS: Project[] = [
   {
     key: "ilonBooking",
     image: "/refugioilonweb.webp",
-    link: "https://refugioilon.com.ar",
-    external: true,
+    link: "/casos/refugioilon-booking",
+    external: false,
     github: null,
     tags: [TAG.WORDPRESS, TAG.PHP, TAG.SQL],
+  },
+  {
+    key: "innevo",
+    link: "/casos/innevo",
+    external: false,
+    github: null,
+    tags: [TAG.ANGULAR, TAG.TYPESCRIPT],
+  },
+  {
+    key: "intimaOnline",
+    link: "/casos/intima-online",
+    external: false,
+    github: null,
+    tags: [TAG.ASTR, TAG.TAILWIND],
+  },
+  {
+    key: "medicinaDiagnostica",
+    link: "/casos/medicina-diagnostica",
+    external: false,
+    github: null,
+    tags: [TAG.NEXTJS, TAG.TAILWIND, TAG.TYPESCRIPT, TAG.GSAP],
+  },
+  {
+    key: "laCarlota",
+    link: "/casos/la-carlota",
+    external: false,
+    github: null,
+    tags: [TAG.ASTR, TAG.TAILWIND],
+  },
+  {
+    key: "laboratorioSpotorno",
+    link: "/casos/laboratorio-spotorno",
+    external: false,
+    github: null,
+    tags: [TAG.HTML, TAG.TAILWIND],
+  },
+  {
+    key: "legallyOnTheMove",
+    link: "/casos/legally-on-the-move",
+    external: false,
+    github: null,
+    tags: [TAG.ASTR, TAG.TAILWIND, TAG.TYPESCRIPT, TAG.GSAP],
   },
 ];
 ---

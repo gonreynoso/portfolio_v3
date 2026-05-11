@@ -1,0 +1,33 @@
+---
+import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import { dict } from "../../i18n";
+
+const esC = dict.es.cases.innevo;
+const enC = dict.en.cases.innevo;
+const key = "innevo";
+const frontendBadges = ["Angular", "Angular Material", "TypeScript"];
+const libraryBadges: string[] = [];
+const deployBadges: string[] = [];
+---
+
+<CaseStudyLayout
+  title={esC.title}
+  description={esC.summary}
+  image={`/projects/${key}.png`}
+  heroImage={`/projects/${key}.png`}
+  cardImage={`/${key}.webp`}
+  cardAlt="Innevo - Angular Frontend"
+  esContent={{ badge: esC.badge, role: esC.role, summary: esC.summary, backToHome: esC.backToHome }}
+  enContent={{ badge: enC.badge, role: enC.role, summary: enC.summary, backToHome: enC.backToHome }}
+  esSections={esC.sections}
+  enSections={enC.sections}
+  esSpecs={esC.specs}
+  enSpecs={enC.specs}
+  specsData={{
+    envValue: esC.specs.envValue,
+    frontendBadges,
+    libraryBadges,
+    deployBadges,
+    ctaUrl: esC.specs.ctaUrl,
+  }}
+/>
