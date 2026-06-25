@@ -1,0 +1,43 @@
+---
+import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import { dict } from "../../i18n";
+
+const esC = dict.es.cases.viveroTakumi;
+const enC = dict.en.cases.viveroTakumi;
+const frontendBadges = ["React 19", "Tailwind CSS 3", "React Router 7"];
+const libraryBadges = ["Supabase", "Motion", "Recharts", "Resend"];
+const deployBadges = ["Netlify", "Netlify Functions"];
+---
+
+<CaseStudyLayout
+  title={esC.title}
+  description={esC.summary}
+  image="/viverotakumi.webp"
+  heroImage="/viverotakumi.webp"
+  cardImage="/viverotakumi.webp"
+  cardAlt="Vivero Takumi — tienda online de plantas"
+  cardCaption={{
+    es: "Tienda pública — catálogo, carrito y checkout.",
+    en: "Public store — catalog, cart and checkout.",
+  }}
+  secondaryImage="/viverotakumi-admin.webp"
+  secondaryAlt="Vivero Takumi — panel de administración"
+  secondaryCaption={{
+    es: "Panel de administración — métricas, plantas y pedidos.",
+    en: "Admin dashboard — metrics, plants and orders.",
+  }}
+  accentColor="#2d6a4f"
+  esContent={{ badge: esC.badge, role: esC.role, summary: esC.summary, backToHome: esC.backToHome }}
+  enContent={{ badge: enC.badge, role: enC.role, summary: enC.summary, backToHome: enC.backToHome }}
+  esSections={esC.sections}
+  enSections={enC.sections}
+  esSpecs={esC.specs}
+  enSpecs={enC.specs}
+  specsData={{
+    envValue: esC.specs.envValue,
+    frontendBadges,
+    libraryBadges,
+    deployBadges,
+    ctaUrl: esC.specs.ctaUrl,
+  }}
+/>

@@ -39,7 +39,7 @@
               location: "Bariloche, AR",
               bullets: (
                 [Conversational WhatsApp bot with *Claude* as the backend, integrated with the WhatsApp Cloud API (Meta Business verification).],
-                [Web booking platform in PHP + WordPress, phpMyAdmin-based administration, streamlined booking flow.],
+                [Web booking platform with Laravel 12, Livewire 3 and MySQL; online payments via Mercado Pago and an admin panel for rooms and availability.],
                 [Designed to scale into a SaaS for other mountain shelters.],
               ),
             ),
@@ -49,7 +49,7 @@
               period: "Sep 2025 — Oct 2025",
               location: "Buenos Aires, AR",
               bullets: (
-                [Custom frontend in SASS + Bootstrap 5; Swiper.js and Lenis for smooth scroll and sliders.],
+                [Custom frontend with Astro 5 and Tailwind CSS 4; GSAP and Swiper.js for animations and sliders.],
                 [Data modeling for member validation; continuous deployment on Vercel; DNS management through NIC.ar.],
               ),
             ),

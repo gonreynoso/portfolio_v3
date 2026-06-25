@@ -155,11 +155,11 @@ const es = {
           },
           {
             title: "B. Desarrollo en entorno Ubuntu",
-            body: 'Armé una arquitectura SASS a medida para gestionar el sistema de diseño "The Froment Gold" en todas las páginas. Usé Bootstrap 5 solo como grid, reemplazando las utilities por SCSS semántico para mejor mantenibilidad.',
+            body: 'Desarrollé el frontend con Astro 5 y Tailwind CSS 4, centralizando el sistema de diseño "The Froment Gold" en tokens y componentes reutilizables para mantener consistencia en todas las páginas.',
           },
           {
             title: "C. Interacciones dinámicas",
-            body: 'Integré Swiper.js para el carrusel del equipo legal y Lenis para scroll suave, logrando una experiencia fluida de "nivel agencia".',
+            body: 'Integré GSAP y Swiper.js para animaciones de scroll y el carrusel del equipo legal, logrando una experiencia fluida de "nivel agencia".',
           },
         ],
       },
@@ -255,12 +255,12 @@ const es = {
               body: "Diseñé el esquema relacional completo: habitaciones, tipos de alojamiento, precios por temporada, reservas, huéspedes y estados. Modelé la lógica de disponibilidad para evitar overbooking y conflictos de fechas.",
             },
             {
-              title: "B. Desarrollo backend",
-              body: "Implementé el backend en PHP sobre WordPress, aprovechando su CMS para páginas institucionales y desarrollando la lógica de reservas como funcionalidad a medida. La base de datos MySQL con phpMyAdmin permite administración directa cuando es necesario.",
+              title: "B. Desarrollo full-stack",
+              body: "Construí la plataforma con Laravel 12, Livewire 3 y Tailwind CSS 4: páginas institucionales, consulta de disponibilidad en tiempo real y flujo de reserva con pago online vía Mercado Pago. Resend envía confirmaciones transaccionales al huésped y al refugio.",
             },
             {
               title: "C. Dashboard administrativo",
-              body: "Construí un backoffice completo: calendario de reservas, gestión de precios por temporada, panel de consultas recibidas y reportes de ocupación. Todo accesible desde el panel de WordPress sin necesidad de tocar código.",
+              body: "Desarrollé el panel en Livewire: calendario de reservas, gestión de precios por temporada, panel de consultas recibidas y reportes de ocupación. El equipo del refugio opera todo desde un solo lugar sin tocar código.",
             },
           ],
         },
@@ -273,7 +273,7 @@ const es = {
       specs: {
         title: "Especificaciones del proyecto",
         env: "Entorno de desarrollo",
-        envValue: "WordPress · PHP",
+        envValue: "Laravel 12 · PHP 8",
         frontend: "Frontend",
         libraries: "Librerías",
         deploy: "Deploy",
@@ -578,6 +578,58 @@ const es = {
         ctaUrl: "https://www.baiardi.com",
       },
     },
+    viveroTakumi: {
+      badge: "Caso de estudio",
+      title: "Vivero Takumi · Tienda Online",
+      role: "Full-stack Developer · Kensiweb",
+      summary:
+        "E-commerce para un vivero de plantas. Los clientes exploran el catálogo, arman el carrito y confirman el pedido con envío o retiro; el equipo gestiona stock, pedidos y usuarios desde paneles por rol.",
+      backToHome: "← Volver",
+      sections: {
+        challenge: {
+          number: "01",
+          title: "El desafío",
+          body: "Vivero Takumi necesitaba vender plantas online además de la atención presencial. El negocio requería una tienda pública con catálogo por categorías, carrito y checkout, y un backoffice donde distintos perfiles —administrador, encargado y empleado— pudieran operar sin pisarse. Los clientes debían poder registrarse, seguir sus pedidos y recibir confirmación por correo, todo con una experiencia visual cuidada que transmitiera la identidad del vivero.",
+        },
+        process: {
+          number: "02",
+          title: "Proceso creativo",
+          steps: [
+            {
+              title: "A. Tienda pública y flujo de compra",
+              body: "Construí el storefront con React 19 y Tailwind CSS: home con hero animado, catálogo filtrable por categoría, ficha de cada planta con guía de cuidados, carrito persistente y checkout con envío a domicilio o retiro en el local. El flujo guía al cliente desde la exploración hasta la confirmación del pedido con feedback visual en cada paso.",
+            },
+            {
+              title: "B. Paneles por rol",
+              body: "Diseñé tres áreas internas con rutas protegidas: dashboard del admin/encargado con métricas y gráficos de ventas (Recharts), CRUD de plantas y categorías, gestión de pedidos y usuarios; panel de empleado para actualizar stock y procesar pedidos; área de cliente con historial de compras. Cada rol ve solo lo que necesita para operar.",
+            },
+            {
+              title: "C. Backend híbrido con Supabase",
+              body: "El catálogo de plantas y categorías vive en Supabase con RLS; la autenticación del super admin también. Los pedidos y usuarios de demo persisten en localStorage para el entorno académico, mientras que Netlify Functions manejan operaciones sensibles: creación de usuarios con service role y envío de correos de confirmación vía Resend, sin exponer claves al navegador.",
+            },
+            {
+              title: "D. Deploy y formulario de contacto",
+              body: "Desplegué en Netlify con SPA redirects y funciones serverless. El formulario de contacto usa Netlify Forms con honeypot anti-spam. Configuré SEO completo —Open Graph, JSON-LD de GardenStore y favicons— para que la tienda sea descubrible en búsquedas locales.",
+            },
+          ],
+        },
+        outcome: {
+          number: "03",
+          title: "Resultado final",
+          body: "Plataforma operativa en producción en viverotakumi.kensiweb.com. Los clientes compran plantas online con envío o retiro; el equipo administra catálogo, stock y pedidos desde paneles dedicados. El proyecto demuestra un e-commerce completo con roles, backend real en Supabase y deploy serverless, listo para escalar a pagos y persistencia total en base de datos.",
+        },
+      },
+      specs: {
+        title: "Especificaciones del proyecto",
+        env: "Entorno de desarrollo",
+        envValue: "React 19 · Vite 8",
+        frontend: "Frontend",
+        libraries: "Librerías",
+        deploy: "Deploy",
+        cta: "Ver sitio en vivo",
+        ctaUrl: "https://viverotakumi.kensiweb.com",
+      },
+    },
   },
   about: {
     title: "Sobre mí",
@@ -605,7 +657,7 @@ const es = {
           location: "Bariloche, AR",
           bullets: [
             "Bot conversacional en WhatsApp con Claude como backend, integrado con la WhatsApp Cloud API (verificación Meta Business).",
-            "Plataforma web de reservas en PHP + WordPress, con phpMyAdmin para administración y flujo de booking optimizado.",
+            "Plataforma web de reservas con Laravel 12, Livewire 3 y MySQL; pago online con Mercado Pago y panel administrativo para gestión de habitaciones y disponibilidad.",
           ],
         },
         {
@@ -614,7 +666,7 @@ const es = {
           period: "Sep 2025 – Oct 2025",
           location: "Buenos Aires, AR",
           bullets: [
-            "Frontend a medida con SASS + Bootstrap 5, integraciones de scroll y slider con Swiper.js y Lenis.",
+            "Frontend a medida con Astro 5 y Tailwind CSS 4; animaciones con GSAP y sliders con Swiper.js.",
             "Modelado de datos para validación de miembros del estudio, deploy continuo en Vercel y gestión de DNS en NIC.ar.",
           ],
         },
@@ -739,6 +791,12 @@ const es = {
         title: "Baiardi Aventura · Sistema de Reservas",
         description:
           "Sistema de reservas para expediciones de trekking y fotografía con grupos reducidos. El visitante reserva y paga online; el guía controla actividades, fechas y confirmaciones desde un panel admin.",
+        linkLabel: "Ver caso",
+      },
+      viveroTakumi: {
+        title: "Vivero Takumi · Tienda Online",
+        description:
+          "E-commerce de plantas con catálogo, carrito y checkout. El cliente compra con envío o retiro; el equipo gestiona stock, pedidos y usuarios desde paneles por rol.",
         linkLabel: "Ver caso",
       },
     },
@@ -965,11 +1023,11 @@ const en: Dict = {
           },
           {
             title: "B. Development in a Ubuntu environment",
-            body: 'Built a custom SASS architecture to manage the "The Froment Gold" design system across all pages. Used Bootstrap 5 just for the grid, replacing utility classes with semantic SCSS for better maintainability.',
+            body: 'Built the frontend with Astro 5 and Tailwind CSS 4, centralizing the "The Froment Gold" design system in reusable tokens and components for consistency across all pages.',
           },
           {
             title: "C. Dynamic interactions",
-            body: 'Integrated Swiper.js for the legal-team carousel and Lenis for smooth scrolling, reaching a fluid "agency-grade" experience.',
+            body: 'Integrated GSAP and Swiper.js for scroll animations and the legal-team carousel, delivering a fluid "agency-grade" experience.',
           },
         ],
       },
@@ -1065,12 +1123,12 @@ const en: Dict = {
               body: "I designed the full relational schema: rooms, accommodation types, seasonal pricing, bookings, guests and statuses. I modeled the availability logic to prevent overbooking and date conflicts.",
             },
             {
-              title: "B. Backend development",
-              body: "I built the backend in PHP on top of WordPress, leveraging its CMS for institutional pages while developing the booking logic as custom functionality. The MySQL database with phpMyAdmin allows direct administration when needed.",
+              title: "B. Full-stack development",
+              body: "I built the platform with Laravel 12, Livewire 3 and Tailwind CSS 4: institutional pages, real-time availability lookup and a booking flow with online payment via Mercado Pago. Resend sends transactional confirmations to guests and the shelter.",
             },
             {
               title: "C. Admin dashboard",
-              body: "I built a complete backoffice: booking calendar, seasonal pricing management, inquiry panel and occupancy reports. Everything accessible from the WordPress panel without touching code.",
+              body: "I developed the Livewire panel: booking calendar, seasonal pricing management, inquiry panel and occupancy reports. The shelter team runs everything from one place without touching code.",
             },
           ],
         },
@@ -1083,7 +1141,7 @@ const en: Dict = {
       specs: {
         title: "Project specs",
         env: "Development environment",
-        envValue: "WordPress · PHP",
+        envValue: "Laravel 12 · PHP 8",
         frontend: "Frontend",
         libraries: "Libraries",
         deploy: "Deploy",
@@ -1388,6 +1446,58 @@ const en: Dict = {
         ctaUrl: "https://www.baiardi.com",
       },
     },
+    viveroTakumi: {
+      badge: "Case study",
+      title: "Vivero Takumi · Online Store",
+      role: "Full-stack Developer · Kensiweb",
+      summary:
+        "E-commerce for a plant nursery. Customers browse the catalog, build a cart and confirm orders with delivery or pickup; the team manages stock, orders and users from role-based panels.",
+      backToHome: "← Back",
+      sections: {
+        challenge: {
+          number: "01",
+          title: "The challenge",
+          body: "Vivero Takumi needed to sell plants online alongside in-person service. The business required a public store with a category-based catalog, cart and checkout, plus a backoffice where different profiles — administrator, manager and employee — could operate without stepping on each other. Customers had to register, track their orders and receive email confirmation, all with a polished visual experience that conveyed the nursery's identity.",
+        },
+        process: {
+          number: "02",
+          title: "Creative process",
+          steps: [
+            {
+              title: "A. Public store and purchase flow",
+              body: "I built the storefront with React 19 and Tailwind CSS: animated hero home, category-filterable catalog, plant detail pages with care guides, persistent cart and checkout with home delivery or local pickup. The flow guides the customer from browsing to order confirmation with visual feedback at every step.",
+            },
+            {
+              title: "B. Role-based panels",
+              body: "I designed three internal areas with protected routes: admin/manager dashboard with sales metrics and charts (Recharts), plant and category CRUD, order and user management; employee panel to update stock and process orders; customer area with purchase history. Each role sees only what they need to operate.",
+            },
+            {
+              title: "C. Hybrid Supabase backend",
+              body: "The plant and category catalog lives in Supabase with RLS; super admin authentication too. Demo orders and users persist in localStorage for the academic environment, while Netlify Functions handle sensitive operations: user creation with service role and order confirmation emails via Resend, without exposing keys to the browser.",
+            },
+            {
+              title: "D. Deploy and contact form",
+              body: "I deployed on Netlify with SPA redirects and serverless functions. The contact form uses Netlify Forms with honeypot anti-spam. I configured full SEO — Open Graph, GardenStore JSON-LD and favicons — so the store is discoverable in local searches.",
+            },
+          ],
+        },
+        outcome: {
+          number: "03",
+          title: "Final outcome",
+          body: "Platform live in production at viverotakumi.kensiweb.com. Customers buy plants online with delivery or pickup; the team manages catalog, stock and orders from dedicated panels. The project demonstrates a complete e-commerce with roles, real Supabase backend and serverless deploy, ready to scale to payments and full database persistence.",
+        },
+      },
+      specs: {
+        title: "Project specs",
+        env: "Development environment",
+        envValue: "React 19 · Vite 8",
+        frontend: "Frontend",
+        libraries: "Libraries",
+        deploy: "Deploy",
+        cta: "View live site",
+        ctaUrl: "https://viverotakumi.kensiweb.com",
+      },
+    },
   },
   about: {
     title: "About Me",
@@ -1415,7 +1525,7 @@ const en: Dict = {
           location: "Bariloche, AR",
           bullets: [
             "Conversational WhatsApp bot with Claude as the backend, integrated with the WhatsApp Cloud API (Meta Business verification).",
-            "Web booking platform in PHP + WordPress, with phpMyAdmin administration and an optimized reservation flow.",
+            "Web booking platform with Laravel 12, Livewire 3 and MySQL; online payments via Mercado Pago and an admin panel for rooms and availability.",
           ],
         },
         {
@@ -1424,7 +1534,7 @@ const en: Dict = {
           period: "Sep 2025 – Oct 2025",
           location: "Buenos Aires, AR",
           bullets: [
-            "Custom frontend in SASS + Bootstrap 5; scroll and slider integrations with Swiper.js and Lenis.",
+            "Custom frontend with Astro 5 and Tailwind CSS 4; GSAP animations and Swiper.js sliders.",
             "Data modeling for member validation, continuous deployment on Vercel and DNS management through NIC.ar.",
           ],
         },
@@ -1550,6 +1660,12 @@ const en: Dict = {
         title: "Baiardi Aventura · Reservation System",
         description:
           "Booking system for small-group trekking and photography outings. Visitors reserve and pay online; the guide manages activities, dates and confirmations from an admin panel.",
+        linkLabel: "View case",
+      },
+      viveroTakumi: {
+        title: "Vivero Takumi · Online Store",
+        description:
+          "Plant e-commerce with catalog, cart and checkout. Customers buy with delivery or pickup; the team manages stock, orders and users from role-based panels.",
         linkLabel: "View case",
       },
     },

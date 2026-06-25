@@ -68,10 +68,25 @@ html:not(.dark) .border-gray-700 {
   border-color: #cbbcb5;
 }
 
-html:not(.dark) .rounded-2xl,
+html:not(.dark) .rounded-2xl:not(.case-study-hero),
 html:not(.dark) .rounded-xl {
   background-color: #fafaf9;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Case study hero: always dark card with light text (light mode remaps gray-* to dark) */
+html:not(.dark) .case-study-hero {
+  background-color: transparent;
+  box-shadow: none;
+  color: #fafaf9;
+}
+
+html:not(.dark) .case-study-hero h1 {
+  color: #ffffff;
+}
+
+html:not(.dark) .case-study-hero .text-gray-300 {
+  color: #e7e5e4;
 }
 
 /* Navbar */
@@ -97,6 +112,11 @@ html:not(.dark) .btn-secondary {
   background-color: transparent;
   border-color: #d6d3d1;
   color: #1c1917;
+}
+
+/* Case study accent CTA: SVG icon follows inline text color from the anchor */
+html:not(.dark) a.accent-cta svg {
+  color: inherit;
 }
 
 html:not(.dark) .bg-gray-800 {

@@ -1,19 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactModal from "../components/ContactModal.astro";
+import { accentCta, accentTextColor } from "../lib/buttons";
+import { getTagBadgeClass } from "../lib/projectTags";
 import { dict } from "../i18n";
 
 const title = dict.es.caseFroment.title;
 const description = dict.es.caseFroment.summary;
 const heroImage = "/estudiofroment.webp";
 const cardImage = "/estudiofroment.webp";
+const accentColor = "#c5a059";
 
 const esC = dict.es.caseFroment;
 const enC = dict.en.caseFroment;
 
-const frontendBadges = ["SASS (SCSS)", "Bootstrap 5", "JavaScript ES6"];
-const libraryBadges = ["Swiper.js", "Lenis"];
-const deployBadges = ["Vercel + Git", "NIC.ar DNS"];
+const frontendBadges = ["Astro", "Tailwind CSS", "JavaScript ES6"];
+const libraryBadges = ["GSAP", "Swiper.js"];
+const deployBadges = ["Vercel", "NIC.ar DNS"];
 ---
 
 <BaseLayout title={title} description={description} image={heroImage}>
@@ -28,22 +31,23 @@ const deployBadges = ["Vercel + Git", "NIC.ar DNS"];
     </a>
 
     <header
-      class="relative overflow-hidden rounded-2xl border border-[#c5a059]/30 mb-10"
-      style={`background-image: linear-gradient(rgba(10,10,10,0.86), rgba(10,10,10,0.86)), url('${heroImage}'); background-size: cover; background-position: center;`}
+      class="case-study-hero relative overflow-hidden rounded-2xl border border-[#c5a059]/30 mb-10"
+      style={`background-image: linear-gradient(rgba(8,8,8,0.94), rgba(8,8,8,0.94)), url('${heroImage}'); background-size: cover; background-position: center top;`}
     >
       <div class="px-6 md:px-12 py-14 md:py-16 text-center">
         <h6 class="text-[#c5a059] uppercase tracking-[0.3em] text-xs font-bold">
           <span data-lang="es">{esC.badge}</span>
           <span data-lang="en">{enC.badge}</span>
         </h6>
-        <h1 class="mt-4 text-4xl md:text-5xl font-bold tracking-tight">
-          {esC.title}
+        <h1 class="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-white">
+          <span data-lang="es">{esC.title}</span>
+          <span data-lang="en">{enC.title}</span>
         </h1>
-        <p class="mt-4 max-w-2xl mx-auto text-base md:text-lg text-[#d3bc85]">
+        <p class="mt-4 max-w-2xl mx-auto text-base md:text-lg text-[#e8d5a8]">
           <span data-lang="es">{esC.role}</span>
           <span data-lang="en">{enC.role}</span>
         </p>
-        <p class="mt-3 max-w-2xl mx-auto text-sm text-gray-300">
+        <p class="mt-3 max-w-2xl mx-auto text-sm text-stone-300">
           <span data-lang="es">{esC.summary}</span>
           <span data-lang="en">{enC.summary}</span>
         </p>
@@ -118,8 +122,8 @@ const deployBadges = ["Vercel + Git", "NIC.ar DNS"];
 
       <!-- Specs aside -->
       <aside>
-        <div class="lg:sticky lg:top-24 rounded-xl border border-[#c5a059]/30 bg-gray-900/50 p-5">
-          <h3 class="text-base font-bold border-b border-gray-700 pb-3 mb-4">
+        <div class="lg:sticky lg:top-24 rounded-xl border border-[#c5a059]/30 border-stone-300 bg-stone-50 p-5 dark:bg-gray-900/50">
+          <h3 class="text-base font-bold border-b border-stone-300 pb-3 mb-4 text-gray-800 dark:border-gray-700 dark:text-gray-100">
             <span data-lang="es">{esC.specs.title}</span>
             <span data-lang="en">{enC.specs.title}</span>
           </h3>
@@ -143,9 +147,7 @@ const deployBadges = ["Vercel + Git", "NIC.ar DNS"];
               <div class="flex flex-wrap gap-1 mt-1">
                 {
                   frontendBadges.map((b) => (
-                    <span class="rounded-full border border-stone-300 bg-stone-100 text-stone-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 px-2 py-0.5 text-xs">
-                      {b}
-                    </span>
+                    <span class={getTagBadgeClass(b)}>{b}</span>
                   ))
                 }
               </div>
@@ -159,9 +161,7 @@ const deployBadges = ["Vercel + Git", "NIC.ar DNS"];
               <div class="flex flex-wrap gap-1 mt-1">
                 {
                   libraryBadges.map((b) => (
-                    <span class="rounded-full border border-stone-300 bg-stone-100 text-stone-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 px-2 py-0.5 text-xs">
-                      {b}
-                    </span>
+                    <span class={getTagBadgeClass(b)}>{b}</span>
                   ))
                 }
               </div>
@@ -175,9 +175,7 @@ const deployBadges = ["Vercel + Git", "NIC.ar DNS"];
               <div class="flex flex-wrap gap-1 mt-1">
                 {
                   deployBadges.map((b) => (
-                    <span class="rounded-full border border-stone-300 bg-stone-100 text-stone-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 px-2 py-0.5 text-xs">
-                      {b}
-                    </span>
+                    <span class={getTagBadgeClass(b)}>{b}</span>
                   ))
                 }
               </div>
@@ -187,7 +185,8 @@ const deployBadges = ["Vercel + Git", "NIC.ar DNS"];
               href={esC.specs.ctaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#c5a059] px-4 py-3 text-sm font-bold uppercase tracking-wider text-black transition hover:bg-[#b08d4a]"
+              class:list={[accentCta, "mt-3"]}
+              style={`background-color: ${accentColor}; color: ${accentTextColor(accentColor)}`}
             >
               <span data-lang="es">{esC.specs.cta}</span>
               <span data-lang="en">{enC.specs.cta}</span>
