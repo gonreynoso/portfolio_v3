@@ -1,0 +1,43 @@
+---
+import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import { dict } from "../../i18n";
+
+const esC = dict.es.cases.baiardiReservas;
+const enC = dict.en.cases.baiardiReservas;
+const frontendBadges = ["Livewire 3", "Tailwind CSS 4", "Alpine.js"];
+const libraryBadges = ["Mercado Pago", "Resend"];
+const deployBadges = ["Laravel 12", "MySQL", "DigitalOcean"];
+---
+
+<CaseStudyLayout
+  title={esC.title}
+  description={esC.summary}
+  image="/baiardireservas.webp"
+  heroImage="/baiardireservas.webp"
+  cardImage="/baiardireservas.webp"
+  cardAlt="Baiardi Aventura — sitio público de reservas"
+  cardCaption={{
+    es: "Sitio público — landing y reservas de actividades.",
+    en: "Public site — landing and activity bookings.",
+  }}
+  secondaryImage="/baiardireservas-admin.webp"
+  secondaryAlt="Baiardi Aventura — panel de administración"
+  secondaryCaption={{
+    es: "Panel de administración — gestión de reservas y salidas.",
+    en: "Admin dashboard — booking and trip management.",
+  }}
+  accentColor="#6b8f71"
+  esContent={{ badge: esC.badge, role: esC.role, summary: esC.summary, backToHome: esC.backToHome }}
+  enContent={{ badge: enC.badge, role: enC.role, summary: enC.summary, backToHome: enC.backToHome }}
+  esSections={esC.sections}
+  enSections={enC.sections}
+  esSpecs={esC.specs}
+  enSpecs={enC.specs}
+  specsData={{
+    envValue: esC.specs.envValue,
+    frontendBadges,
+    libraryBadges,
+    deployBadges,
+    ctaUrl: esC.specs.ctaUrl,
+  }}
+/>

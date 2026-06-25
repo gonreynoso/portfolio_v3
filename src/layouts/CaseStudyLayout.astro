@@ -63,6 +63,10 @@ interface Props {
   heroImage: string;
   cardImage: string;
   cardAlt?: string;
+  cardCaption?: { es: string; en: string };
+  secondaryImage?: string;
+  secondaryAlt?: string;
+  secondaryCaption?: { es: string; en: string };
   backHref?: string;
 }
 
@@ -81,6 +85,16 @@ const {
   heroImage,
   cardImage,
   cardAlt = "Project screenshot",
+  cardCaption = {
+    es: "Captura del proyecto — Kensiweb.",
+    en: "Project screenshot — Kensiweb.",
+  },
+  secondaryImage,
+  secondaryAlt = "Project screenshot",
+  secondaryCaption = {
+    es: "Panel de administración — Kensiweb.",
+    en: "Admin dashboard — Kensiweb.",
+  },
   backHref = "/",
 } = Astro.props as Props;
 ---
@@ -143,8 +157,8 @@ const {
               class="rounded-lg border border-gray-800 shadow-lg w-full"
             />
             <figcaption class="mt-2 text-center text-xs italic text-gray-500">
-              <span data-lang="es">Captura del proyecto — Kensiweb.</span>
-              <span data-lang="en">Project screenshot — Kensiweb.</span>
+              <span data-lang="es">{cardCaption.es}</span>
+              <span data-lang="en">{cardCaption.en}</span>
             </figcaption>
           </figure>
         </section>
@@ -186,6 +200,21 @@ const {
             <span data-lang="es">{esSections.outcome.body}</span>
             <span data-lang="en">{enSections.outcome.body}</span>
           </p>
+          {
+            secondaryImage && (
+              <figure class="mt-6">
+                <img
+                  src={secondaryImage}
+                  alt={secondaryAlt}
+                  class="rounded-lg border border-gray-800 shadow-lg w-full"
+                />
+                <figcaption class="mt-2 text-center text-xs italic text-gray-500">
+                  <span data-lang="es">{secondaryCaption.es}</span>
+                  <span data-lang="en">{secondaryCaption.en}</span>
+                </figcaption>
+              </figure>
+            )
+          }
         </section>
       </div>
 

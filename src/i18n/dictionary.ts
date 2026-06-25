@@ -526,6 +526,58 @@ const es = {
         ctaUrl: "https://legallyonthemove.kensiweb.com/",
       },
     },
+    baiardiReservas: {
+      badge: "Caso de estudio",
+      title: "Baiardi Aventura · Sistema de Reservas",
+      role: "Full-stack Developer · Kensiweb",
+      summary:
+        "Sistema de reservas para actividades de trekking y fotografía de Juan Marcelo Baiardi. Los visitantes eligen una salida con fecha fija, reservan su lugar y pagan por Mercado Pago, Modo o transferencia; Juan gestiona todo desde un panel admin.",
+      backToHome: "← Volver",
+      sections: {
+        challenge: {
+          number: "01",
+          title: "El desafío",
+          body: "Juan Marcelo Baiardi organiza expediciones de trekking y fotografía con grupos reducidos (máx. 6 personas) y fechas fijas durante todo el año. Las reservas se gestionaban de forma manual por WhatsApp e Instagram, lo que generaba errores de cupo, demoras en confirmar pagos y mucho tiempo administrativo. Necesitaba un sistema donde el visitante pudiera ver salidas disponibles, reservar en línea y pagar, mientras él controlaba actividades, fechas y confirmaciones desde un panel sin tocar código.",
+        },
+        process: {
+          number: "02",
+          title: "Proceso creativo",
+          steps: [
+            {
+              title: "A. Modelado del negocio",
+              body: "Diseñé el dominio en torno a actividades, instancias (fechas concretas con cupo) y reservas. La lógica de cupos es atómica: al crear una reserva queda pendiente, al confirmar el pago se descuenta el cupo y al cancelar se libera. Instancias sin cupo dejan de mostrarse como disponibles.",
+            },
+            {
+              title: "B. Frontend y flujo de reserva",
+              body: "Construí el sitio público con Livewire 3 y Tailwind CSS 4: landing con actividades destacadas, ficha de cada salida y flujo de reserva con selección de cantidad de personas y método de pago (Mercado Pago, Modo o transferencia). Soporte bilingüe ES/EN y diseño mobile-first acorde a la estética de la marca.",
+            },
+            {
+              title: "C. Pagos y notificaciones",
+              body: "Integré Mercado Pago con webhook firmado para confirmar pagos automáticamente. Resend envía correos transaccionales al reservar, al confirmar el pago y al cancelar. Juan recibe aviso por mail con los datos del inscripto en cada nueva reserva confirmada.",
+            },
+            {
+              title: "D. Panel administrativo",
+              body: "Desarrollé el dashboard en Livewire: calendario de salidas, CRUD de actividades e instancias, listado de reservas con estados (pendiente/confirmada/cancelada), clientes y usuarios. Juan puede crear reservas manualmente, exportar manifiestos y operar el negocio sin depender de herramientas externas.",
+            },
+          ],
+        },
+        outcome: {
+          number: "03",
+          title: "Resultado final",
+          body: "Plataforma operativa en producción sobre DigitalOcean con deploy automático vía GitHub Actions. Los visitantes reservan y pagan en minutos; Juan gestiona cupos, pagos y comunicaciones desde un solo panel. El sistema reemplazó por completo el proceso manual y quedó preparado para sumar nuevas actividades y fechas sin intervención técnica.",
+        },
+      },
+      specs: {
+        title: "Especificaciones del proyecto",
+        env: "Entorno de desarrollo",
+        envValue: "Laravel 12 · PHP 8",
+        frontend: "Frontend",
+        libraries: "Librerías",
+        deploy: "Deploy",
+        cta: "Ver sitio en vivo",
+        ctaUrl: "https://www.baiardi.com",
+      },
+    },
   },
   about: {
     title: "Sobre mí",
@@ -637,50 +689,56 @@ const es = {
       ilonBot: {
         title: "Refugio Ilón · Bot de WhatsApp con IA",
         description:
-          "Bot de WhatsApp con Claude como backend conversacional para gestionar consultas y reservas del Refugio Ilón, en Bariloche. Integración completa con la WhatsApp Cloud API (verificación Meta Business) y persistencia en PostgreSQL. Pensado para escalar a SaaS para otros refugios de montaña.",
+          "Asistente de WhatsApp con IA para el Refugio Ilón en Bariloche. Atiende consultas de disponibilidad y tarifas las 24 hs, conectado a la base de reservas en tiempo real y verificado por Meta Business.",
         linkLabel: "Ver caso",
       },
       froment: {
         title: "Estudio Froment & Asociados",
         description:
-          'Rediseño web para un estudio jurídico con 40 años de trayectoria, con estética "premium editorial" y cero deuda técnica. Frontend a medida en SASS + Bootstrap 5, integraciones con Swiper.js y Lenis para scroll suave, deploy continuo en Vercel y gestión de DNS con NIC.ar.',
+          "Rediseño digital para un estudio jurídico con 40 años de trayectoria. Estética editorial premium, animaciones de scroll y deploy continuo en Vercel — sin page builders ni deuda técnica.",
         linkLabel: "Ver caso",
       },
       ilonBooking: {
         title: "Refugio Ilón · Plataforma de Reservas",
         description:
-          "Sistema de reservas web para el Refugio Ilón cerca de la Laguna Ilón. Aplicación basada en PHP y WordPress con administración vía phpMyAdmin, flujo de reserva optimizado para visitantes y backoffice para gestionar disponibilidad.",
+          "Plataforma de reservas que reemplazó el proceso manual del Refugio Ilón. Los visitantes consultan disponibilidad y pagan online; el refugio gestiona alojamientos, cupos y confirmaciones desde un panel admin.",
         linkLabel: "Ver caso",
       },
 
       intimaOnline: {
         title: "Intima Online - Radio Online",
         description:
-          "Plataforma de radio online con Astro y Tailwind CSS. Integración de APIs de streaming en vivo, componentes modulares y diseño responsive optimizado para rendimiento.",
+          "Nuevo frontend para Intima Online, radio en vivo de Entre Ríos. Reproductor de streaming, secciones de noticias y galería, con carga ultrarrápida pensada para escuchar desde el celular.",
         linkLabel: "Ver caso",
       },
       medicinaDiagnostica: {
         title: "Medicina Diagnóstica - Centro Médico",
         description:
-          "Web institucional con sistema de turnos online para centro médico. Next.js, Tailwind CSS v4 y GSAP. +90% turnos digitales, 96/100 Lighthouse, SEO médico con SSR.",
+          "Web institucional con turnos online para un centro médico en CABA. +90% de turnos gestionados digitalmente, 96/100 en Lighthouse y contenido accesible para pacientes de todas las edades.",
         linkLabel: "Ver caso",
       },
       laCarlota: {
         title: "La Carlota del Monte - Tierra de Caballos",
         description:
-          "Sitio institucional para establecimiento ecuestre con Astro y Tailwind CSS. Formulario de contacto, Google Maps y diseño que refleja la esencia del lugar.",
+          "Sitio institucional para un establecimiento ecuestre en Capilla del Señor. Transmite la experiencia del campo, muestra servicios e instalaciones y facilita reservas por WhatsApp.",
         linkLabel: "Ver caso",
       },
       laboratorioSpotorno: {
         title: "Laboratorio Spotorno",
         description:
-          "Sitio web comercial para laboratorio de análisis clínicos. HTML semántico con Tailwind CSS, diseño accesible y SEO on-page optimizado para visibilidad local en Rosario.",
+          "Sitio informativo para un laboratorio de análisis clínicos en Wilde, Buenos Aires. Diseño accesible, información clara de servicios y preparación de estudios, optimizado para búsquedas locales.",
         linkLabel: "Ver caso",
       },
       legallyOnTheMove: {
         title: "Legally On The Move",
         description:
-          "Web multilingüe para asesoría legal a migrantes con Astro, Tailwind y GSAP. 3 idiomas, +75% consultas, 0.9s de carga y diseño inclusivo priorizado.",
+          "Web institucional para consultoría legal en movilidad sostenible con presencia global. Mapa de proyectos en 4 continentes, servicios regulatorios y formulario de contacto para gobiernos y organizaciones.",
+        linkLabel: "Ver caso",
+      },
+      baiardiReservas: {
+        title: "Baiardi Aventura · Sistema de Reservas",
+        description:
+          "Sistema de reservas para expediciones de trekking y fotografía con grupos reducidos. El visitante reserva y paga online; el guía controla actividades, fechas y confirmaciones desde un panel admin.",
         linkLabel: "Ver caso",
       },
     },
@@ -1278,6 +1336,58 @@ const en: Dict = {
         ctaUrl: "#",
       },
     },
+    baiardiReservas: {
+      badge: "Case study",
+      title: "Baiardi Aventura · Reservation System",
+      role: "Full-stack Developer · Kensiweb",
+      summary:
+        "Booking system for Juan Marcelo Baiardi's trekking and photography outings. Visitors pick a fixed-date trip, reserve their spot and pay via Mercado Pago, Modo or bank transfer; Juan manages everything from an admin panel.",
+      backToHome: "← Back",
+      sections: {
+        challenge: {
+          number: "01",
+          title: "The challenge",
+          body: "Juan Marcelo Baiardi runs trekking and photography expeditions with small groups (max. 6 people) on fixed dates year-round. Bookings were handled manually via WhatsApp and Instagram, causing quota errors, payment confirmation delays and heavy admin overhead. He needed a system where visitors could see available trips, book online and pay, while he controlled activities, dates and confirmations from a panel without touching code.",
+        },
+        process: {
+          number: "02",
+          title: "Creative process",
+          steps: [
+            {
+              title: "A. Business modeling",
+              body: "I designed the domain around activities, instances (specific dates with capacity) and reservations. Quota logic is atomic: creating a reservation leaves it pending, confirming payment deducts capacity and cancelling releases it. Instances with zero capacity stop showing as available.",
+            },
+            {
+              title: "B. Frontend and booking flow",
+              body: "I built the public site with Livewire 3 and Tailwind CSS 4: a landing page with featured activities, detail pages for each trip and a booking flow with party size and payment method selection (Mercado Pago, Modo or bank transfer). Bilingual ES/EN support and a mobile-first design aligned with the brand aesthetic.",
+            },
+            {
+              title: "C. Payments and notifications",
+              body: "I integrated Mercado Pago with a signed webhook to confirm payments automatically. Resend sends transactional emails on booking, payment confirmation and cancellation. Juan receives an email with registrant details on every confirmed reservation.",
+            },
+            {
+              title: "D. Admin dashboard",
+              body: "I developed the Livewire dashboard: trip calendar, CRUD for activities and instances, reservation list with statuses (pending/confirmed/cancelled), clients and users. Juan can create reservations manually, export manifests and run the business without external tools.",
+            },
+          ],
+        },
+        outcome: {
+          number: "03",
+          title: "Final outcome",
+          body: "Platform running in production on DigitalOcean with automatic deploy via GitHub Actions. Visitors book and pay in minutes; Juan manages capacity, payments and communications from a single panel. The system fully replaced the manual process and is ready to add new activities and dates without technical intervention.",
+        },
+      },
+      specs: {
+        title: "Project specs",
+        env: "Development environment",
+        envValue: "Laravel 12 · PHP 8",
+        frontend: "Frontend",
+        libraries: "Libraries",
+        deploy: "Deploy",
+        cta: "View live site",
+        ctaUrl: "https://www.baiardi.com",
+      },
+    },
   },
   about: {
     title: "About Me",
@@ -1390,50 +1500,56 @@ const en: Dict = {
       ilonBot: {
         title: "Refugio Ilón · AI WhatsApp Bot",
         description:
-          "WhatsApp bot with Claude as the conversational backend, handling inquiries and bookings for Refugio Ilón in Bariloche, Argentina. Full WhatsApp Cloud API integration with Meta Business verification, conversational state stored in PostgreSQL. Designed to scale into a SaaS for other mountain shelters.",
+          "AI-powered WhatsApp assistant for Refugio Ilón in Bariloche. Handles availability and pricing inquiries 24/7, connected to the live booking database with approved Meta Business verification.",
         linkLabel: "View case",
       },
       froment: {
         title: "Estudio Froment & Asociados",
         description:
-          'Digital redesign for a law firm with a 40-year legacy, aiming for a "premium editorial" aesthetic and zero technical debt. Custom frontend in SASS + Bootstrap 5, Swiper.js and Lenis for smooth scrolling, continuous deployment on Vercel and DNS management through NIC.ar.',
+          "Digital redesign for a 40-year-old law firm. Premium editorial aesthetic, scroll animations and continuous deployment on Vercel — no page builders, no technical debt.",
         linkLabel: "View case",
       },
       ilonBooking: {
         title: "Refugio Ilón · Booking Platform",
         description:
-          "Web booking system for Refugio Ilón, near Laguna Ilón. PHP + WordPress stack with phpMyAdmin-based administration, a streamlined reservation flow for visitors and a back-office for managing availability.",
+          "Booking platform that replaced Refugio Ilón's manual process. Visitors check availability and pay online; the shelter manages rooms, capacity and confirmations from an admin panel.",
         linkLabel: "View case",
       },
 
       intimaOnline: {
         title: "Intima Online - Online Radio",
         description:
-          "Online radio platform built with Astro and Tailwind CSS. Live streaming API integration, modular components and responsive design optimized for performance.",
+          "New frontend for Intima Online, a live radio station in Entre Ríos. Streaming player, news and gallery sections, with ultra-fast loading built for mobile listening.",
         linkLabel: "View case",
       },
       medicinaDiagnostica: {
         title: "Medicina Diagnóstica - Medical Center",
         description:
-          "Institutional website with online booking system for a medical center. Next.js, Tailwind CSS v4 and GSAP. +90% digital bookings, 96/100 Lighthouse, medical SEO with SSR.",
+          "Institutional website with online appointments for a medical center in Buenos Aires. +90% of bookings handled digitally, 96/100 Lighthouse score and accessible content for patients of all ages.",
         linkLabel: "View case",
       },
       laCarlota: {
         title: "La Carlota del Monte - Land of Horses",
         description:
-          "Institutional website for an equestrian estate with Astro and Tailwind CSS. Contact form, Google Maps and a design that reflects the essence of the place.",
+          "Institutional website for an equestrian estate in Capilla del Señor. Conveys the countryside experience, showcases services and facilities, and enables bookings via WhatsApp.",
         linkLabel: "View case",
       },
       laboratorioSpotorno: {
         title: "Laboratorio Spotorno",
         description:
-          "Commercial website for a clinical analysis laboratory. Semantic HTML with Tailwind CSS, accessible design and on-page SEO optimized for local visibility in Rosario.",
+          "Informational website for a clinical analysis lab in Wilde, Buenos Aires. Accessible design, clear service and preparation info, optimized for local search visibility.",
         linkLabel: "View case",
       },
       legallyOnTheMove: {
         title: "Legally On The Move",
         description:
-          "Multilingual website for migrant legal advice with Astro, Tailwind and GSAP. 3 languages, +75% inquiries, 0.9s load time and inclusive design prioritized.",
+          "Institutional website for sustainable mobility legal consultancy with global reach. Project map across 4 continents, regulatory services and a contact form for governments and organizations.",
+        linkLabel: "View case",
+      },
+      baiardiReservas: {
+        title: "Baiardi Aventura · Reservation System",
+        description:
+          "Booking system for small-group trekking and photography outings. Visitors reserve and pay online; the guide manages activities, dates and confirmations from an admin panel.",
         linkLabel: "View case",
       },
     },

@@ -27,6 +27,13 @@ const TAG: Record<string, Tag> = {
   TAILWIND: { name: "Tailwind CSS", class: "bg-[#38bdf8] text-black" },
   GSAP: { name: "GSAP", class: "bg-[#88ce02] text-black" },
   NEXTJS: { name: "Next.js", class: "bg-black text-white border border-gray-700" },
+  LARAVEL: { name: "Laravel", class: "bg-[#ff2d20] text-white" },
+  LIVEWIRE: { name: "Livewire", class: "bg-[#4e56a6] text-white" },
+  MYSQL: { name: "MySQL", class: "bg-[#4479a1] text-white" },
+  VERCEL: { name: "Vercel", class: "bg-[#111111] text-white border border-gray-700" },
+  MERCADOPAGO: { name: "Mercado Pago", class: "bg-[#009ee3] text-white" },
+  PYTHON: { name: "Python", class: "bg-[#3776ab] text-white" },
+  FASTAPI: { name: "FastAPI", class: "bg-[#009688] text-white" },
 };
 
 type ProjectKey = keyof typeof dict.es.projects.items;
@@ -48,7 +55,7 @@ const PROJECTS: Project[] = [
     link: "/casos/refugioilon-bot",
     external: false,
     github: null,
-    tags: [TAG.WA_API, TAG.CLAUDE, TAG.NODE, TAG.EXPRESS, TAG.POSTGRES, TAG.DO],
+    tags: [TAG.PYTHON, TAG.FASTAPI, TAG.CLAUDE, TAG.WA_API, TAG.POSTGRES, TAG.DO],
   },
   {
     key: "froment",
@@ -56,7 +63,7 @@ const PROJECTS: Project[] = [
     link: "/estudiofroment",
     external: false,
     github: null,
-    tags: [TAG.SASS, TAG.JS, TAG.BOOTSTRAP, TAG.HTML],
+    tags: [TAG.ASTR, TAG.TAILWIND, TAG.GSAP, TAG.VERCEL],
   },
   {
     key: "ilonBooking",
@@ -64,7 +71,15 @@ const PROJECTS: Project[] = [
     link: "/casos/refugioilon-booking",
     external: false,
     github: null,
-    tags: [TAG.WORDPRESS, TAG.PHP, TAG.SQL],
+    tags: [TAG.LARAVEL, TAG.LIVEWIRE, TAG.TAILWIND, TAG.MYSQL, TAG.MERCADOPAGO],
+  },
+  {
+    key: "baiardiReservas",
+    image: "/baiardireservas.webp",
+    link: "/casos/baiardi-reservas",
+    external: false,
+    github: null,
+    tags: [TAG.LARAVEL, TAG.LIVEWIRE, TAG.TAILWIND, TAG.MERCADOPAGO, TAG.DO],
   },
 
   {
@@ -73,7 +88,7 @@ const PROJECTS: Project[] = [
     link: "/casos/intima-online",
     external: false,
     github: null,
-    tags: [TAG.ASTR, TAG.TAILWIND],
+    tags: [TAG.ASTR, TAG.TAILWIND, TAG.TYPESCRIPT],
   },
   {
     key: "medicinaDiagnostica",
@@ -81,7 +96,7 @@ const PROJECTS: Project[] = [
     link: "/casos/medicina-diagnostica",
     external: false,
     github: null,
-    tags: [TAG.NEXTJS, TAG.TAILWIND, TAG.TYPESCRIPT, TAG.GSAP],
+    tags: [TAG.NEXTJS, TAG.TYPESCRIPT, TAG.TAILWIND, TAG.GSAP],
   },
   {
     key: "laCarlota",
@@ -105,7 +120,7 @@ const PROJECTS: Project[] = [
     link: "/casos/legally-on-the-move",
     external: false,
     github: null,
-    tags: [TAG.ASTR, TAG.TAILWIND, TAG.TYPESCRIPT, TAG.GSAP],
+    tags: [TAG.HTML, TAG.TAILWIND, TAG.GSAP],
   },
 ];
 ---
