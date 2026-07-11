@@ -101,6 +101,7 @@ const {
       image={image}
       ogType={ogType}
     />
+    <Analytics />
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
@@ -109,7 +110,6 @@ const {
       <div class="md:flex md:justify-center">
         <main class="p-4 md:p-6 pt-10 xl:max-w-[1200px] lg:max-w-[1000px] max-w-full overflow-x-hidden">
           <slot />
-          <Analytics />
         </main>
       </div>
       <Footer />
