@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+
+import Section from "./Section.astro";
+import SectionHead from "./SectionHead.astro";
+import profile from "../../assets/profile.webp";
+import { dict } from "../../i18n";
+
+// The dictionary marks emphasis with **…**. In v4 that emphasis is the accent
+// highlight the design calls `.hi`.
+const renderEmphasis = (text: string) =>
+  text.replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-ac">$1</strong>');
+
+const PARAGRAPHS = ["p1", "p2", "p3"] as const;
+---
+
+<Section id="sobre-mi" tight>
+  <SectionHead
+    number="03"
+    eyebrowEs="SOBRE MÍ"
+    eyebrowEn="ABOUT ME"
+    titleEs={dict.es.about.title}
+    titleEn={dict.en.about.title}
+  />
+
+  <div class="fu grid items-start gap-8 md:grid-cols-[1fr_300px] md:gap-16">
+    <div class="order-2 md:order-1">
+      {
+        PARAGRAPHS.map((p) => (
+          <>
+            <p
+              data-lang="es"
+              class="mb-[18px] text-[13px] leading-[1.9] text-t2 last:mb-0"
+              set:html={renderEmphasis(dict.es.about[p])}
+            />
+            <p
+              data-lang="en"
+              class="mb-[18px] text-[13px] leading-[1.9] text-t2 last:mb-0"
+              set:html={renderEmphasis(dict.en.about[p])}
+            />
+          </>
+        ))
+      }
+    </div>
+
+    <Image
+      src={profile}
+      alt="Gonzalo Reynoso"
+      widths={[300, 600]}
+      sizes="(min-width: 768px) 300px, 100vw"
+      class="order-1 aspect-video w-full rounded-v4 border border-b1 bg-s1 object-cover md:order-2 md:aspect-[3/4]"
+    />
+  </div>
+</Section>

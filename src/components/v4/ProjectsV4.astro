@@ -1,0 +1,130 @@
+---
+import { Image } from "astro:assets";
+
+import Section from "./Section.astro";
+import SectionHead from "./SectionHead.astro";
+import WhatsAppMockup from "@components/WhatsAppMockup.astro";
+import { dict } from "../../i18n";
+import { FEATURED_PROJECTS, SECONDARY_PROJECTS } from "../../data/projects";
+
+const tagClass =
+  "rounded-[2px] border border-b1 bg-s2 px-2 py-[3px] text-[10px] tracking-[0.06em] text-t3";
+const headlineTagClass =
+  "rounded-[2px] border border-ac30 bg-ac06 px-2 py-[3px] text-[10px] tracking-[0.06em] text-ac";
+const caseLink =
+  "self-start rounded-v4 border border-b1 px-3.5 py-[7px] text-[11px] tracking-[0.06em] text-t2 no-underline transition-colors duration-v4 hover:border-ac hover:text-ac";
+
+const MINI_STAGGER = ["0s", "0.06s", "0.12s", "0.18s"];
+---
+
+<Section id="proyectos" tight>
+  <SectionHead
+    number="02"
+    eyebrowEs="EXPERIENCIA"
+    eyebrowEn="EXPERIENCE"
+    titleEs={dict.es.projects.title}
+    titleEn={dict.en.projects.title}
+    subtitleEs={dict.es.projects.subtitle}
+    subtitleEn={dict.en.projects.subtitle}
+  />
+
+  <div class="flex flex-col gap-3.5">
+    {
+      FEATURED_PROJECTS.map((project, i) => {
+        const item = dict.es.projects.items[project.key];
+        const itemEn = dict.en.projects.items[project.key];
+        // Images zig-zag left/right down the page.
+        const mediaRight = i % 2 === 1;
+
+        return (
+          <article class="fu grid overflow-hidden rounded-v4 border border-b1 bg-s1 transition duration-v4 hover:border-b2 hover:shadow-[0_0_52px_var(--ac06)] md:grid-cols-2">
+            <div
+              class:list={[
+                "flex min-h-[160px] items-center justify-center overflow-hidden border-b border-b1 bg-s2 md:border-b-0",
+                mediaRight
+                  ? "md:order-2 md:border-l md:border-b1"
+                  : "md:border-r md:border-b1",
+              ]}
+            >
+              {project.mockup === "whatsapp" ? (
+                <WhatsAppMockup />
+              ) : project.image ? (
+                <Image
+                  src={project.image}
+                  alt={item.title}
+                  widths={[400, 700]}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  class="h-full w-full object-cover"
+                />
+              ) : null}
+            </div>
+
+            <div class="flex flex-col justify-center p-8">
+              <ul class="mb-4 flex list-none flex-wrap gap-1.5">
+                {project.tags.map((tag, t) => (
+                  <li class={t === 0 ? headlineTagClass : tagClass}>{tag}</li>
+                ))}
+              </ul>
+
+              <div class="mb-1.5 text-[10px] tracking-[0.12em] text-t3">
+                {String(i + 1).padStart(2, "0")}
+              </div>
+
+              <h3 class="mb-3 text-[19px] font-bold leading-[1.2] tracking-[-0.022em] text-t1">
+                <span data-lang="es">{item.title}</span>
+                <span data-lang="en">{itemEn.title}</span>
+              </h3>
+
+              <p class="mb-5 flex-1 text-[12px] leading-[1.85] text-t2">
+                <span data-lang="es">{item.description}</span>
+                <span data-lang="en">{itemEn.description}</span>
+              </p>
+
+              <a href={project.href} class={caseLink}>
+                <span data-lang="es">{item.linkLabel} →</span>
+                <span data-lang="en">{itemEn.linkLabel} →</span>
+              </a>
+            </div>
+          </article>
+        );
+      })
+    }
+
+    <div class="grid gap-3.5 md:grid-cols-2">
+      {
+        SECONDARY_PROJECTS.map((project, i) => {
+          const item = dict.es.projects.items[project.key];
+          const itemEn = dict.en.projects.items[project.key];
+
+          return (
+            <article
+              class="fu relative flex flex-col overflow-hidden rounded-v4 border border-b1 bg-s1 p-[22px] transition duration-v4 after:absolute after:inset-x-0 after:top-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-ac after:transition-transform after:duration-v4 after:content-[''] hover:-translate-y-0.5 hover:border-b2 hover:after:scale-x-100"
+              style={`transition-delay: ${MINI_STAGGER[i % MINI_STAGGER.length]}`}
+            >
+              <ul class="mb-3 flex list-none flex-wrap gap-1.5">
+                {project.tags.map((tag, t) => (
+                  <li class={t === 0 ? headlineTagClass : tagClass}>{tag}</li>
+                ))}
+              </ul>
+
+              <h3 class="mb-2 text-[14px] font-semibold tracking-[-0.01em] text-t1">
+                <span data-lang="es">{item.title}</span>
+                <span data-lang="en">{itemEn.title}</span>
+              </h3>
+
+              <p class="mb-3.5 flex-1 text-[11px] leading-[1.8] text-t2">
+                <span data-lang="es">{item.description}</span>
+                <span data-lang="en">{itemEn.description}</span>
+              </p>
+
+              <a href={project.href} class:list={[caseLink, "text-[10px]"]}>
+                <span data-lang="es">{item.linkLabel} →</span>
+                <span data-lang="en">{itemEn.linkLabel} →</span>
+              </a>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</Section>

@@ -33,6 +33,9 @@ html[data-v4] body {
 }
 
 html[data-v4] body {
+  /* Outranks the Poppins rule global.css sets for the older pages. */
+  font-family:
+    "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
   font-size: 14px;
   line-height: 1.7;
   background-image: radial-gradient(
