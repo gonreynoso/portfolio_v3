@@ -17,18 +17,18 @@ const es = dict.es.experience;
 const en = dict.en.experience;
 
 const bullet =
-  "relative pl-4 text-[12px] leading-[1.85] text-t2 before:absolute before:left-0 before:text-ac before:content-['·']";
-const meta = "text-[11px] tracking-[0.06em] text-t3";
+  "relative pl-4 text-[0.75rem] leading-[1.85] text-t2 before:absolute before:left-0 before:text-ac before:content-['·']";
+const meta = "text-[0.6875rem] tracking-[0.06em] text-t3";
 ---
 
 <div class="flex flex-col gap-8">
   <!-- Kensiweb -->
   <section class="fu relative border-l border-ac30 pl-7">
-    <span class="absolute -left-[4px] top-1.5 block h-[7px] w-[7px] rounded-full bg-ac"
+    <span class="absolute -left-[4px] top-1.5 block h-[0.4375rem] w-[0.4375rem] rounded-full bg-ac"
     ></span>
 
     <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-      <h3 class="text-[14px] font-semibold text-t1">
+      <h3 class="text-[0.875rem] font-semibold text-t1">
         <span data-lang="es">{es.kensiweb.role}</span>
         <span data-lang="en">{en.kensiweb.role}</span>
         <span class="text-t3"> · </span>
@@ -47,12 +47,12 @@ const meta = "text-[11px] tracking-[0.06em] text-t3";
       </span>
     </header>
 
-    <p class="mt-2 max-w-2xl text-[12px] leading-[1.85] text-t2">
+    <p class="mt-2 max-w-2xl text-[0.75rem] leading-[1.85] text-t2">
       <span data-lang="es">{es.kensiweb.summary}</span>
       <span data-lang="en">{en.kensiweb.summary}</span>
     </p>
 
-    <h4 class="mb-3 mt-6 text-[10px] tracking-[0.14em] text-t3">
+    <h4 class="mb-3 mt-6 text-[0.625rem] tracking-[0.14em] text-t3">
       <span data-lang="es">{es.kensiweb.clientsLabel}</span>
       <span data-lang="en">{en.kensiweb.clientsLabel}</span>
     </h4>
@@ -66,19 +66,19 @@ const meta = "text-[11px] tracking-[0.06em] text-t3";
           return (
             <li class="rounded-v4 border border-b1 bg-s1 p-5">
               <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                <span class="text-[10px] tracking-[0.14em] text-t3">
+                <span class="text-[0.625rem] tracking-[0.14em] text-t3">
                   <span data-lang="es">{es.clientLabel}</span>
                   <span data-lang="en">{en.clientLabel}</span>
                 </span>
                 {href ? (
                   <a
                     href={href}
-                    class="text-[13px] font-semibold text-t1 no-underline transition-colors duration-v4 hover:text-ac"
+                    class="text-[0.8125rem] font-semibold text-t1 no-underline transition-colors duration-v4 hover:text-ac"
                   >
                     {clientEs.name}
                   </a>
                 ) : (
-                  <span class="text-[13px] font-semibold text-t1">
+                  <span class="text-[0.8125rem] font-semibold text-t1">
                     {clientEs.name}
                   </span>
                 )}
@@ -92,7 +92,7 @@ const meta = "text-[11px] tracking-[0.06em] text-t3";
                 </span>
               </div>
 
-              <div class="mt-1.5 text-[12px] leading-[1.85] text-t2">
+              <div class="mt-1.5 text-[0.75rem] leading-[1.85] text-t2">
                 <span class="text-t3">
                   <span data-lang="es">{es.projectLabel} </span>
                   <span data-lang="en">{en.projectLabel} </span>
@@ -118,11 +118,11 @@ const meta = "text-[11px] tracking-[0.06em] text-t3";
 
   <!-- Medicina Diagnóstica -->
   <section class="fu relative border-l border-b1 pl-7">
-    <span class="absolute -left-[4px] top-1.5 block h-[7px] w-[7px] rounded-full bg-b2"
+    <span class="absolute -left-[4px] top-1.5 block h-[0.4375rem] w-[0.4375rem] rounded-full bg-b2"
     ></span>
 
     <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-      <h3 class="text-[14px] font-semibold text-t1">
+      <h3 class="text-[0.875rem] font-semibold text-t1">
         <span data-lang="es">{es.medicina.role}</span>
         <span data-lang="en">{en.medicina.role}</span>
         <span class="text-t3"> · </span>

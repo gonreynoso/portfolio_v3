@@ -30,14 +30,40 @@ html[data-v4] {
   --b2: oklch(29% 0.03 240);
   --t1: oklch(93% 0.008 240);
   --t2: oklch(62% 0.018 240);
-  --t3: oklch(40% 0.015 240);
+  /* Raised from the handoff's 40%, which measured 2.27:1 against the page.
+     The tier still reads below --t2; size and tracking carry the rest of the
+     hierarchy. */
+  --t3: oklch(56% 0.015 240);
 
   --dot: oklch(24% 0.02 240);
   --nav-bg: oklch(7.5% 0.01 240 / 0.88);
   --shadow-card: 0 14px 44px oklch(0% 0 0 / 0.3);
 
+  /* THE SIZE KNOB. Every v4 dimension is authored in rem, so this one
+     percentage scales type, padding and gaps together. It is a percentage,
+     not a px value, so a visitor who has raised their browser's default font
+     size still gets that increase on top.
+
+     It steps up with the viewport: the handoff's sizes are dense — fine on a
+     phone, where a monospace line already only fits about 42 characters, but
+     too small on a desktop. Scaling a narrow screen would just shorten those
+     lines further, so mobile keeps the authored scale. */
+  font-size: 100%;
+
   scroll-behavior: smooth;
   color-scheme: dark;
+}
+
+@media (min-width: 48rem) {
+  html[data-v4] {
+    font-size: 112.5%;
+  }
+}
+
+@media (min-width: 80rem) {
+  html[data-v4] {
+    font-size: 125%;
+  }
 }
 
 /* ── 2 & 3. Light ────────────────────────────────────────────────
@@ -61,7 +87,7 @@ html[data-v4] {
     --b2: oklch(80% 0.016 240);
     --t1: oklch(24% 0.02 240);
     --t2: oklch(47% 0.022 240);
-    --t3: oklch(58% 0.018 240);
+    --t3: oklch(54.5% 0.018 240);
 
     --dot: oklch(88% 0.012 240);
     --nav-bg: oklch(97% 0.004 240 / 0.88);
@@ -85,7 +111,7 @@ html[data-v4][data-theme="light"] {
   --b2: oklch(80% 0.016 240);
   --t1: oklch(24% 0.02 240);
   --t2: oklch(47% 0.022 240);
-  --t3: oklch(58% 0.018 240);
+  --t3: oklch(54.5% 0.018 240);
 
   --dot: oklch(88% 0.012 240);
   --nav-bg: oklch(97% 0.004 240 / 0.88);
@@ -166,7 +192,7 @@ html[data-v4] body {
 html[data-v4] body {
   font-family:
     "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.7;
   background-image: radial-gradient(circle, var(--dot) 1px, transparent 1px);
   background-size: 28px 28px;
@@ -184,10 +210,10 @@ html[data-v4] footer {
     border-color 0.25s ease;
 }
 
-/* The fixed nav is 54px tall and would otherwise cover hash targets. */
+/* Matches the fixed nav's height, which would otherwise cover hash targets. */
 html[data-v4] :target,
 html[data-v4] [id] {
-  scroll-margin-top: 54px;
+  scroll-margin-top: 3.375rem;
 }
 
 /* ── Scroll reveal ──────────────────────────────────────────────

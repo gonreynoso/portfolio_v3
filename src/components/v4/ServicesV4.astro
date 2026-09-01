@@ -29,14 +29,14 @@ const STAGGER = ["0s", "0.08s", "0.14s", "0.20s"];
           class="fu relative overflow-hidden rounded-v4 border border-b1 bg-s1 p-7 transition duration-v4 after:absolute after:inset-x-0 after:top-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-ac after:transition-transform after:duration-v4 after:content-[''] hover:-translate-y-[3px] hover:border-b2 hover:shadow-[var(--shadow-card)] hover:after:scale-x-100"
           style={`transition-delay: ${STAGGER[i] ?? "0s"}`}
         >
-          <div class="mb-3.5 text-[10px] tracking-[0.14em] text-t3">
+          <div class="mb-3.5 text-[0.625rem] tracking-[0.14em] text-t3">
             {String(i + 1).padStart(2, "0")}
           </div>
-          <h3 class="mb-2.5 text-[14px] font-semibold text-t1 before:font-normal before:text-ac before:content-['//_']">
+          <h3 class="mb-2.5 text-[0.875rem] font-semibold text-t1 before:font-normal before:text-ac before:content-['//_']">
             <span data-lang="es">{dict.es.services.items[key].title}</span>
             <span data-lang="en">{dict.en.services.items[key].title}</span>
           </h3>
-          <p class="text-[12px] leading-[1.85] text-t2">
+          <p class="text-[0.75rem] leading-[1.85] text-t2">
             <span data-lang="es">{dict.es.services.items[key].desc}</span>
             <span data-lang="en">{dict.en.services.items[key].desc}</span>
           </p>

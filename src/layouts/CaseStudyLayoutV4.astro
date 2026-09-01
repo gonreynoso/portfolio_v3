@@ -111,8 +111,8 @@ const accentVars = accent
   : undefined;
 
 const tag =
-  "rounded-[2px] border border-b1 bg-s2 px-2 py-[3px] text-[10px] tracking-[0.06em] text-t3";
-const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
+  "rounded-[2px] border border-b1 bg-s2 px-2 py-[3px] text-[0.625rem] tracking-[0.06em] text-t3";
+const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
 ---
 
 <V4Layout
@@ -122,13 +122,13 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
   navSectionPrefix="/"
 >
   <article
-    class="mx-auto max-w-[1100px] px-6 pb-[60px] pt-[100px] md:px-12 md:pb-[100px] md:pt-[130px]"
+    class="mx-auto max-w-[1200px] px-6 pb-[3.75rem] pt-[6.25rem] md:px-12 md:pb-[6.25rem] md:pt-[8.125rem]"
     data-case-accent={accent ? "" : undefined}
     style={accentVars}
   >
     <a
       href={backHref}
-      class="mb-6 inline-flex items-center gap-1.5 text-[11px] tracking-[0.12em] text-ac no-underline transition-opacity duration-v4 hover:opacity-80"
+      class="mb-6 inline-flex items-center gap-1.5 text-[0.6875rem] tracking-[0.12em] text-ac no-underline transition-opacity duration-v4 hover:opacity-80"
     >
       <span data-lang="es">{esContent.backToHome}</span>
       <span data-lang="en">{enContent.backToHome}</span>
@@ -145,23 +145,23 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
       </div>
 
       <div class="relative">
-        <div class="mb-4 text-[11px] tracking-[0.18em] text-ac">
+        <div class="mb-4 text-[0.6875rem] tracking-[0.18em] text-ac">
           <span data-lang="es">{esContent.badge}</span>
           <span data-lang="en">{enContent.badge}</span>
         </div>
 
         <h1
-          class="mx-auto max-w-3xl text-[clamp(28px,4vw,46px)] font-bold leading-[1.1] tracking-[-0.026em] text-t1"
+          class="mx-auto max-w-3xl text-[clamp(1.75rem,4vw,2.875rem)] font-bold leading-[1.1] tracking-[-0.026em] text-t1"
         >
           {title}
         </h1>
 
-        <p class="mx-auto mt-4 max-w-2xl text-[12px] tracking-[0.06em] text-ac">
+        <p class="mx-auto mt-4 max-w-2xl text-[0.75rem] tracking-[0.06em] text-ac">
           <span data-lang="es">{esContent.role}</span>
           <span data-lang="en">{enContent.role}</span>
         </p>
 
-        <p class="mx-auto mt-3 max-w-2xl text-[13px] leading-[1.85] text-t2">
+        <p class="mx-auto mt-3 max-w-2xl text-[0.8125rem] leading-[1.85] text-t2">
           <span data-lang="es">{esContent.summary}</span>
           <span data-lang="en">{enContent.summary}</span>
         </p>
@@ -172,12 +172,12 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
       <div class="lg:col-span-2">
         <!-- Challenge -->
         <section class="fu mb-12 border-b border-b1 pb-12">
-          <h2 class="mb-4 text-[19px] font-bold tracking-[-0.022em] text-t1">
+          <h2 class="mb-4 text-[1.1875rem] font-bold tracking-[-0.022em] text-t1">
             <span class="mr-2 text-ac">{esSections.challenge.number}.</span>
             <span data-lang="es">{esSections.challenge.title}</span>
             <span data-lang="en">{enSections.challenge.title}</span>
           </h2>
-          <p class="text-[13px] leading-[1.9] text-t2">
+          <p class="text-[0.8125rem] leading-[1.9] text-t2">
             <span data-lang="es">{esSections.challenge.body}</span>
             <span data-lang="en">{enSections.challenge.body}</span>
           </p>
@@ -191,7 +191,7 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
               class="w-full rounded-v4 border border-b1"
             />
             <figcaption
-              class="mt-2.5 text-center text-[10px] tracking-[0.06em] text-t3"
+              class="mt-2.5 text-center text-[0.625rem] tracking-[0.06em] text-t3"
             >
               <span data-lang="es">{cardCaption.es}</span>
               <span data-lang="en">{cardCaption.en}</span>
@@ -201,7 +201,7 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
 
         <!-- Process -->
         <section class="fu mb-12 border-b border-b1 pb-12">
-          <h2 class="mb-6 text-[19px] font-bold tracking-[-0.022em] text-t1">
+          <h2 class="mb-6 text-[1.1875rem] font-bold tracking-[-0.022em] text-t1">
             <span class="mr-2 text-ac">{esSections.process.number}.</span>
             <span data-lang="es">{esSections.process.title}</span>
             <span data-lang="en">{enSections.process.title}</span>
@@ -211,13 +211,13 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
             {
               esSections.process.steps.map((step, i) => (
                 <div>
-                  <h3 class="mb-1.5 text-[14px] font-semibold text-t1 before:font-normal before:text-ac before:content-['//_']">
+                  <h3 class="mb-1.5 text-[0.875rem] font-semibold text-t1 before:font-normal before:text-ac before:content-['//_']">
                     <span data-lang="es">{step.title}</span>
                     <span data-lang="en">
                       {enSections.process.steps[i].title}
                     </span>
                   </h3>
-                  <p class="text-[13px] leading-[1.9] text-t2">
+                  <p class="text-[0.8125rem] leading-[1.9] text-t2">
                     <span data-lang="es">{step.body}</span>
                     <span data-lang="en">
                       {enSections.process.steps[i].body}
@@ -231,12 +231,12 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
 
         <!-- Outcome -->
         <section class="fu">
-          <h2 class="mb-4 text-[19px] font-bold tracking-[-0.022em] text-t1">
+          <h2 class="mb-4 text-[1.1875rem] font-bold tracking-[-0.022em] text-t1">
             <span class="mr-2 text-ac">{esSections.outcome.number}.</span>
             <span data-lang="es">{esSections.outcome.title}</span>
             <span data-lang="en">{enSections.outcome.title}</span>
           </h2>
-          <p class="text-[13px] leading-[1.9] text-t2">
+          <p class="text-[0.8125rem] leading-[1.9] text-t2">
             <span data-lang="es">{esSections.outcome.body}</span>
             <span data-lang="en">{enSections.outcome.body}</span>
           </p>
@@ -251,7 +251,7 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
                   sizes="(min-width: 1024px) 700px, 100vw"
                   class="w-full rounded-v4 border border-b1"
                 />
-                <figcaption class="mt-2.5 text-center text-[10px] tracking-[0.06em] text-t3">
+                <figcaption class="mt-2.5 text-center text-[0.625rem] tracking-[0.06em] text-t3">
                   <span data-lang="es">{secondaryCaption.es}</span>
                   <span data-lang="en">{secondaryCaption.en}</span>
                 </figcaption>
@@ -264,10 +264,10 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
       <!-- Specs -->
       <aside class="fu">
         <div
-          class="rounded-v4 border border-b1 bg-s1 p-6 lg:sticky lg:top-[78px]"
+          class="rounded-v4 border border-b1 bg-s1 p-6 lg:sticky lg:top-[4.875rem]"
         >
           <h2
-            class="mb-5 border-b border-b1 pb-4 text-[14px] font-semibold text-t1 before:font-normal before:text-ac before:content-['//_']"
+            class="mb-5 border-b border-b1 pb-4 text-[0.875rem] font-semibold text-t1 before:font-normal before:text-ac before:content-['//_']"
           >
             <span data-lang="es">{esSpecs.title}</span>
             <span data-lang="en">{enSpecs.title}</span>
@@ -293,7 +293,7 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
                     <li
                       class={
                         i === 0
-                          ? "rounded-[2px] border border-ac30 bg-ac06 px-2 py-[3px] text-[10px] tracking-[0.06em] text-ac"
+                          ? "rounded-[2px] border border-ac30 bg-ac06 px-2 py-[3px] text-[0.625rem] tracking-[0.06em] text-ac"
                           : tag
                       }
                     >
@@ -336,7 +336,7 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
                   href={specsData.ctaUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="mt-1 inline-flex items-center justify-center gap-2 rounded-v4 bg-ac px-4 py-3 text-[11px] font-bold tracking-[0.1em] text-onac no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]"
+                  class="mt-1 inline-flex items-center justify-center gap-2 rounded-v4 bg-ac px-4 py-3 text-[0.6875rem] font-bold tracking-[0.1em] text-onac no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]"
                 >
                   <span data-lang="es">{esSpecs.cta}</span>
                   <span data-lang="en">{enSpecs.cta}</span>
@@ -366,7 +366,7 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
     <div class="mt-16 border-t border-b1 pt-8 text-center">
       <a
         href={backHref}
-        class="inline-flex items-center gap-2 rounded-v4 border border-b1 px-4 py-2.5 text-[11px] tracking-[0.06em] text-t2 no-underline transition-colors duration-v4 hover:border-ac hover:text-ac"
+        class="inline-flex items-center gap-2 rounded-v4 border border-b1 px-4 py-2.5 text-[0.6875rem] tracking-[0.06em] text-t2 no-underline transition-colors duration-v4 hover:border-ac hover:text-ac"
       >
         ←
         <span data-lang="es">{dict.es.projects.title}</span>

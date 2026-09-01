@@ -13,13 +13,13 @@ const RESUME_ES = "/Resume_Gonzalo_Reynoso_ES.pdf";
 const RESUME_EN = "/Resume_Gonzalo_Reynoso_EN.pdf";
 
 const sectionHeading =
-  "mb-6 text-[19px] font-bold tracking-[-0.022em] text-t1";
+  "mb-6 text-[1.1875rem] font-bold tracking-[-0.022em] text-t1";
 const card = "rounded-v4 border border-b1 bg-s1 p-5";
-const meta = "text-[11px] tracking-[0.06em] text-t3";
+const meta = "text-[0.6875rem] tracking-[0.06em] text-t3";
 const bullet =
-  "relative pl-4 text-[12px] leading-[1.85] text-t2 before:absolute before:left-0 before:text-ac before:content-['·']";
+  "relative pl-4 text-[0.75rem] leading-[1.85] text-t2 before:absolute before:left-0 before:text-ac before:content-['·']";
 const downloadBtn =
-  "inline-flex items-center gap-2 rounded-v4 bg-ac px-[22px] py-3 text-[11px] font-bold tracking-[0.1em] text-onac no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]";
+  "inline-flex items-center gap-2 rounded-v4 bg-ac px-[1.375rem] py-3 text-[0.6875rem] font-bold tracking-[0.1em] text-onac no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]";
 ---
 
 <V4Layout
@@ -28,7 +28,7 @@ const downloadBtn =
   navSectionPrefix="/"
 >
   <article
-    class="mx-auto max-w-[1100px] px-6 pb-[60px] pt-[100px] md:px-12 md:pb-[100px] md:pt-[130px]"
+    class="mx-auto max-w-[1200px] px-6 pb-[3.75rem] pt-[6.25rem] md:px-12 md:pb-[6.25rem] md:pt-[8.125rem]"
   >
     <!-- Profile -->
     <header
@@ -41,24 +41,24 @@ const downloadBtn =
       </div>
 
       <div class="relative">
-        <div class="mb-4 text-[11px] tracking-[0.18em] text-ac">
+        <div class="mb-4 text-[0.6875rem] tracking-[0.18em] text-ac">
           <span data-lang="es">{esR.profileTitle}</span>
           <span data-lang="en">{enR.profileTitle}</span>
         </div>
 
         <h1
-          class="text-[clamp(28px,4vw,46px)] font-bold leading-[1.1] tracking-[-0.026em] text-t1"
+          class="text-[clamp(1.75rem,4vw,2.875rem)] font-bold leading-[1.1] tracking-[-0.026em] text-t1"
         >
           Gonzalo Reynoso
         </h1>
 
-        <p class="mt-2 text-[12px] tracking-[0.14em] text-t2">
+        <p class="mt-2 text-[0.75rem] tracking-[0.14em] text-t2">
           <span data-lang="es">{dict.es.hero.roleLead}</span>
           <span data-lang="en">{dict.en.hero.roleLead}</span>
           &middot; <span class="text-ac">Kensiweb</span>
         </p>
 
-        <p class="mt-5 max-w-3xl text-[13px] leading-[1.9] text-t2">
+        <p class="mt-5 max-w-3xl text-[0.8125rem] leading-[1.9] text-t2">
           <span data-lang="es">{esR.profileBody}</span>
           <span data-lang="en">{enR.profileBody}</span>
         </p>
@@ -106,10 +106,10 @@ const downloadBtn =
 
       <div class="relative border-l border-b1 pl-7">
         <span
-          class="absolute -left-[4px] top-1.5 block h-[7px] w-[7px] rounded-full bg-b2"></span>
+          class="absolute -left-[4px] top-1.5 block h-[0.4375rem] w-[0.4375rem] rounded-full bg-b2"></span>
 
         <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <h3 class="text-[14px] font-semibold text-t1">
+          <h3 class="text-[0.875rem] font-semibold text-t1">
             {esR.internship.role}
             <span class="text-t3"> · </span>
             {esR.internship.company}
@@ -153,12 +153,12 @@ const downloadBtn =
             return (
               <article class={card}>
                 <header class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                  <h3 class="text-[13px] font-semibold text-t1">
+                  <h3 class="text-[0.8125rem] font-semibold text-t1">
                     <span data-lang="es">{item.title}</span>
                     <span data-lang="en">{en.title}</span>
                   </h3>
                   <span class="text-t3"> · </span>
-                  <span class="text-[12px] text-t2">{item.where}</span>
+                  <span class="text-[0.75rem] text-t2">{item.where}</span>
                   <span class:list={[meta, "ml-auto"]}>
                     <span data-lang="es">
                       {item.period}
@@ -204,11 +204,11 @@ const downloadBtn =
                 rel="noopener noreferrer"
                 class="flex h-full flex-col gap-1 rounded-v4 border border-b1 bg-s1 p-4 no-underline transition duration-v4 hover:-translate-y-0.5 hover:border-b2"
               >
-                <span class="text-[12px] leading-[1.7] text-t2">
+                <span class="text-[0.75rem] leading-[1.7] text-t2">
                   <span data-lang="es">{c.label}</span>
                   <span data-lang="en">{enR.certifications[i].label}</span>
                 </span>
-                <span class="text-[10px] tracking-[0.14em] text-ac">
+                <span class="text-[0.625rem] tracking-[0.14em] text-ac">
                   {c.issuer}
                 </span>
               </a>
@@ -230,13 +230,13 @@ const downloadBtn =
         {
           skillGroups.map((g) => (
             <div class="grid gap-2 md:grid-cols-[140px_1fr] md:gap-4">
-              <span class="text-[10px] tracking-[0.14em] text-ac md:pt-1">
+              <span class="text-[0.625rem] tracking-[0.14em] text-ac md:pt-1">
                 <span data-lang="es">{esR.skillsGroupLabels[g]}</span>
                 <span data-lang="en">{enR.skillsGroupLabels[g]}</span>
               </span>
               <ul class="flex list-none flex-wrap gap-1.5">
                 {esR.skillsGroups[g].map((skill) => (
-                  <li class="rounded-[2px] border border-b1 bg-s2 px-2 py-[3px] text-[10px] tracking-[0.06em] text-t3">
+                  <li class="rounded-[2px] border border-b1 bg-s2 px-2 py-[3px] text-[0.625rem] tracking-[0.06em] text-t3">
                     {skill}
                   </li>
                 ))}
