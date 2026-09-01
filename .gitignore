@@ -19,3 +19,4 @@ pnpm-debug.log*
 .astro/
 .vercel
 .env*.local
+portfolio/

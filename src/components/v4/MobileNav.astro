@@ -1,0 +1,144 @@
+---
+// App-style bottom navigation. The top bar keeps the wordmark and the theme
+// and language controls; wayfinding moves down here, within thumb reach.
+//
+// The handoff left the mobile menu undecided ("decide with Gonzalo whether to
+// add a drawer or leave nav link-free"). This is that decision.
+interface Props {
+  /** Pages without the home sections point their links back at "/". */
+  sectionPrefix?: string;
+}
+
+const { sectionPrefix = "" } = Astro.props;
+
+const ITEMS = [
+  {
+    id: "inicio",
+    href: `${sectionPrefix}#inicio`,
+    es: "inicio",
+    en: "home",
+    icon: `<path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/>`,
+  },
+  {
+    id: "servicios",
+    href: `${sectionPrefix}#servicios`,
+    es: "servicios",
+    en: "services",
+    icon: `<rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/>`,
+  },
+  {
+    id: "proyectos",
+    href: `${sectionPrefix}#proyectos`,
+    es: "proyectos",
+    en: "projects",
+    icon: `<path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4L10 8h9.5A1.5 1.5 0 0 1 21 9.5v8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/>`,
+  },
+  {
+    id: "sobre-mi",
+    href: `${sectionPrefix}#sobre-mi`,
+    es: "sobre mí",
+    en: "about",
+    icon: `<circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/>`,
+  },
+  {
+    id: "cv",
+    href: "/resume",
+    es: "cv",
+    en: "cv",
+    icon: `<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h4"/>`,
+  },
+];
+---
+
+<nav
+  data-mobile-nav
+  class="fixed inset-x-3 bottom-3 z-[100] rounded-[0.875rem] border border-b1 shadow-[0_8px_32px_oklch(0%_0_0_/_0.35)] backdrop-blur-[1rem] md:hidden"
+  style="background: var(--nav-bg); padding-bottom: env(safe-area-inset-bottom, 0px)"
+  aria-label="Secciones"
+>
+  <ul class="flex list-none items-stretch justify-around px-1 py-1.5">
+    {
+      ITEMS.map((item) => (
+        <li class="flex-1">
+          <a
+            href={item.href}
+            data-mobile-link={item.id}
+            class="flex flex-col items-center gap-1 rounded-[0.625rem] px-1 py-1.5 text-t3 no-underline transition-colors duration-v4 [&[data-active]]:bg-ac12 [&[data-active]]:text-ac"
+          >
+            <svg
+              class="h-[1.15rem] w-[1.15rem]"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              set:html={item.icon}
+            />
+            <span class="text-[0.5625rem] leading-none tracking-[0.06em]">
+              <span data-lang="es">{item.es}</span>
+              <span data-lang="en">{item.en}</span>
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  // Highlights whichever section is under the middle of the viewport, which
+  // is what makes a bottom bar read as an app nav rather than a link row.
+  // Pages with no in-page sections simply never light anything up.
+  //
+  // A scroll listener rather than an IntersectionObserver: the observer only
+  // reports when an element crosses its band, so a fast scroll or a throttled
+  // frame leaves the highlight stale. rAF keeps this to one read per frame.
+  const spy = () => {
+    const links = document.querySelectorAll<HTMLAnchorElement>(
+      "[data-mobile-link]",
+    );
+    if (!links.length) return;
+
+    const pairs = [...links]
+      .map((link) => {
+        const section = document.getElementById(link.dataset.mobileLink ?? "");
+        return section ? { link, section } : null;
+      })
+      .filter((p): p is { link: HTMLAnchorElement; section: HTMLElement } =>
+        p !== null,
+      );
+
+    if (!pairs.length) return;
+
+    let queued = false;
+
+    const update = () => {
+      queued = false;
+      const middle = window.innerHeight / 2;
+      // The last section whose top has passed the middle is the current one.
+      let current: HTMLAnchorElement | null = null;
+      for (const { link, section } of pairs) {
+        if (section.getBoundingClientRect().top <= middle) current = link;
+      }
+      for (const { link } of pairs) {
+        if (link === current) link.setAttribute("data-active", "");
+        else link.removeAttribute("data-active");
+      }
+    };
+
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(update);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+  };
+
+  spy();
+  document.addEventListener("astro:after-swap", spy);
+</script>

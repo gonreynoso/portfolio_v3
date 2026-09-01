@@ -1,12 +1,39 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import V4Layout from "../layouts/V4Layout.astro";
+import { dict } from "../i18n";
 ---
 
-<BaseLayout title="404: Not Found" includeSidebar={false}>
-  <div class="text-center mt-28">
-    <h1 class="text-9xl font-bold mb-4">🏝</h1>
-    <h1 class="text-9xl font-bold mb-2">404</h1>
-    <h3 class="text-2xl">The page you're looking for couldn't be found.</h3>
-    <a class="btn btn-accent mt-9" href="/">Home</a>
-  </div>
-</BaseLayout>
+<V4Layout title="404: Not Found" navSectionPrefix="/">
+  <section
+    class="mx-auto flex min-h-screen max-w-[1200px] flex-col items-center justify-center px-6 py-[6.25rem] text-center md:px-12"
+  >
+    <div class="mb-9 text-[0.6875rem] tracking-[0.12em] text-ac">
+      route_not_found()
+      <span class="ml-2 inline-block h-[0.8125rem] w-[0.4375rem] animate-v4-blink bg-ac align-[-2px]"
+      ></span>
+    </div>
+
+    <h1
+      class="mb-4 text-[clamp(4rem,12vw,8.75rem)] font-bold leading-none tracking-[-0.04em] text-t1"
+    >
+      404
+    </h1>
+
+    <p class="mb-10 max-w-[26.25rem] text-[0.8125rem] leading-[1.85] text-t2">
+      <span data-lang="es">
+        La página que buscás no existe o cambió de dirección.
+      </span>
+      <span data-lang="en">
+        The page you're looking for doesn't exist or has moved.
+      </span>
+    </p>
+
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 rounded-v4 bg-ac px-[1.875rem] py-[0.8125rem] text-[0.75rem] font-bold tracking-[0.1em] text-onac no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]"
+    >
+      <span data-lang="es">{dict.es.nav.home}_</span>
+      <span data-lang="en">{dict.en.nav.home}_</span>
+    </a>
+  </section>
+</V4Layout>

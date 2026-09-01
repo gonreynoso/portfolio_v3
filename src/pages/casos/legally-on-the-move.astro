@@ -1,23 +1,22 @@
 ---
-import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import CaseStudyLayoutV4 from "../../layouts/CaseStudyLayoutV4.astro";
 import { dict } from "../../i18n";
+import { legallyOnTheMoveImg } from "../../data/projects";
 
 const esC = dict.es.cases.legallyOnTheMove;
 const enC = dict.en.cases.legallyOnTheMove;
-const key = "legally-on-the-move";
 const frontendBadges = ["Astro", "Tailwind CSS", "TypeScript"];
 const libraryBadges = ["GSAP"];
 const deployBadges: string[] = [];
 ---
 
-<CaseStudyLayout
+<CaseStudyLayoutV4
   title={esC.title}
   description={esC.summary}
-  image="/legallyonthemove.webp"
-  heroImage="/legallyonthemove.webp"
-  cardImage="/legallyonthemove.webp"
+  image={legallyOnTheMoveImg}
+  cardImage={legallyOnTheMoveImg}
   cardAlt="Legally On The Move"
-  accentColor="#8b5cf6"
+  accentKey="legally-on-the-move"
   esContent={{ badge: esC.badge, role: esC.role, summary: esC.summary, backToHome: esC.backToHome }}
   enContent={{ badge: enC.badge, role: enC.role, summary: enC.summary, backToHome: enC.backToHome }}
   esSections={esC.sections}

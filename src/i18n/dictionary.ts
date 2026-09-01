@@ -8,7 +8,14 @@ const es = {
   hero: {
     greeting: "Hola,",
     name: "Soy Gonzalo Reynoso",
+    // The v4 hero renders the name in three pieces: the lead word, the given
+    // name (dimmed) and the surname on its own line.
+    nameLead: "Soy",
+    firstName: "Gonzalo",
+    lastName: "Reynoso",
     role: "Desarrollador Freelance · Kensiweb",
+    // Same as `role`, minus the brand — the v4 hero accents Kensiweb apart.
+    roleLead: "Desarrollador Freelance",
     tagline: "Sistemas web a medida e integraciones con IA.",
     bio: "Construyo plataformas a medida y automatizaciones con LLMs para PyMEs y proyectos independientes. Trabajo end-to-end: backend, frontend, infraestructura y deploy. Estudio Análisis de Sistemas en Da Vinci.",
     availableBadge: "Disponible para trabajar",
@@ -876,7 +883,11 @@ const en: Dict = {
   hero: {
     greeting: "Hi,",
     name: "I'm Gonzalo Reynoso",
+    nameLead: "I'm",
+    firstName: "Gonzalo",
+    lastName: "Reynoso",
     role: "Freelance Developer · Kensiweb",
+    roleLead: "Freelance Developer",
     tagline: "Custom web systems and AI integrations.",
     bio: "I build tailored platforms and LLM-powered automations for small businesses and independent teams. End-to-end work: backend, frontend, infrastructure and deployment. Currently studying Systems Analysis at Da Vinci.",
     availableBadge: "Available for work",

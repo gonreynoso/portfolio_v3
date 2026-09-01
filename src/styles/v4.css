@@ -1,0 +1,280 @@
+/* Portfolio v4 design tokens and base layer.
+ *
+ * Everything is scoped to `html[data-v4]`.
+ *
+ * Colors stay in oklch: the accent-alpha variants are derived from the same
+ * hue, and keeping one color space is what makes them harmonious.
+ *
+ * THEMING — three states, in this order:
+ *   1. the dark palette on bare `html[data-v4]` is the authored default;
+ *   2. a `prefers-color-scheme: light` block flips it for visitors whose
+ *      system says light, unless they explicitly picked dark;
+ *   3. `[data-theme="light"]` / `[data-theme="dark"]` win over both, so the
+ *      toggle can override the system in either direction.
+ * Step 2 is a plain media query, so system detection works with JS disabled
+ * and there is nothing to repaint after first render.
+ */
+
+/* ── 1. Dark (authored default) ──────────────────────────────── */
+html[data-v4] {
+  --ac: oklch(72% 0.2 185);
+  --ac06: oklch(72% 0.2 185 / 0.06);
+  --ac12: oklch(72% 0.2 185 / 0.12);
+  --ac30: oklch(72% 0.2 185 / 0.3);
+  --on-ac: oklch(8% 0.01 240);
+
+  --bg: oklch(7.5% 0.01 240);
+  --s1: oklch(11.5% 0.015 240);
+  --s2: oklch(14.5% 0.015 240);
+  --b1: oklch(21% 0.022 240);
+  --b2: oklch(29% 0.03 240);
+  --t1: oklch(93% 0.008 240);
+  --t2: oklch(62% 0.018 240);
+  /* Raised from the handoff's 40%, which measured 2.27:1 against the page.
+     The tier still reads below --t2; size and tracking carry the rest of the
+     hierarchy. */
+  --t3: oklch(56% 0.015 240);
+
+  --dot: oklch(24% 0.02 240);
+  --nav-bg: oklch(7.5% 0.01 240 / 0.88);
+  --shadow-card: 0 14px 44px oklch(0% 0 0 / 0.3);
+
+  /* THE SIZE KNOB. Every v4 dimension is authored in rem, so this one
+     percentage scales type, padding and gaps together. It is a percentage,
+     not a px value, so a visitor who has raised their browser's default font
+     size still gets that increase on top.
+
+     It steps up with the viewport: the handoff's sizes are dense — fine on a
+     phone, where a monospace line already only fits about 42 characters, but
+     too small on a desktop. Scaling a narrow screen would just shorten those
+     lines further, so mobile keeps the authored scale. */
+  font-size: 100%;
+
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+@media (min-width: 48rem) {
+  html[data-v4] {
+    font-size: 112.5%;
+  }
+}
+
+@media (min-width: 80rem) {
+  html[data-v4] {
+    font-size: 125%;
+  }
+}
+
+/* ── 2 & 3. Light ────────────────────────────────────────────────
+ * Not an inversion. In dark, surfaces step UP in lightness from the page;
+ * in light, cards go to pure white while nested fills recess below the page.
+ * The accent drops from 72% to 51% lightness at the same hue — the cyan that
+ * reads at 10:1 on near-black only manages 1.8:1 on near-white.
+ */
+@media (prefers-color-scheme: light) {
+  html[data-v4]:not([data-theme="dark"]) {
+    --ac: oklch(51% 0.14 185);
+    --ac06: oklch(51% 0.14 185 / 0.12);
+    --ac12: oklch(51% 0.14 185 / 0.14);
+    --ac30: oklch(51% 0.14 185 / 0.4);
+    --on-ac: oklch(100% 0 0);
+
+    --bg: oklch(97% 0.004 240);
+    --s1: oklch(100% 0 0);
+    --s2: oklch(95.5% 0.006 240);
+    --b1: oklch(90% 0.01 240);
+    --b2: oklch(80% 0.016 240);
+    --t1: oklch(24% 0.02 240);
+    --t2: oklch(47% 0.022 240);
+    --t3: oklch(54.5% 0.018 240);
+
+    --dot: oklch(88% 0.012 240);
+    --nav-bg: oklch(97% 0.004 240 / 0.88);
+    --shadow-card: 0 14px 44px oklch(0% 0 0 / 0.08);
+
+    color-scheme: light;
+  }
+}
+
+html[data-v4][data-theme="light"] {
+  --ac: oklch(51% 0.14 185);
+  --ac06: oklch(51% 0.14 185 / 0.12);
+  --ac12: oklch(51% 0.14 185 / 0.14);
+  --ac30: oklch(51% 0.14 185 / 0.4);
+  --on-ac: oklch(100% 0 0);
+
+  --bg: oklch(97% 0.004 240);
+  --s1: oklch(100% 0 0);
+  --s2: oklch(95.5% 0.006 240);
+  --b1: oklch(90% 0.01 240);
+  --b2: oklch(80% 0.016 240);
+  --t1: oklch(24% 0.02 240);
+  --t2: oklch(47% 0.022 240);
+  --t3: oklch(54.5% 0.018 240);
+
+  --dot: oklch(88% 0.012 240);
+  --nav-bg: oklch(97% 0.004 240 / 0.88);
+  --shadow-card: 0 14px 44px oklch(0% 0 0 / 0.08);
+
+  color-scheme: light;
+}
+
+/* ── Per-case accents ────────────────────────────────────────────
+ * A case study sets `--ac-dark` and `--ac-light` inline; these rules pick the
+ * one that matches the active theme. The alpha variants are re-derived here
+ * because custom properties resolve where they are declared — inheriting
+ * `--ac06` from the root would keep the site accent, not the case's.
+ */
+html[data-v4] [data-case-accent] {
+  --ac: var(--ac-dark);
+  --ac06: color-mix(in oklch, var(--ac-dark) 6%, transparent);
+  --ac12: color-mix(in oklch, var(--ac-dark) 12%, transparent);
+  --ac30: color-mix(in oklch, var(--ac-dark) 30%, transparent);
+}
+
+@media (prefers-color-scheme: light) {
+  html[data-v4]:not([data-theme="dark"]) [data-case-accent] {
+    --ac: var(--ac-light);
+    --ac06: color-mix(in oklch, var(--ac-light) 12%, transparent);
+    --ac12: color-mix(in oklch, var(--ac-light) 14%, transparent);
+    --ac30: color-mix(in oklch, var(--ac-light) 40%, transparent);
+  }
+}
+
+html[data-v4][data-theme="light"] [data-case-accent] {
+  --ac: var(--ac-light);
+  --ac06: color-mix(in oklch, var(--ac-light) 12%, transparent);
+  --ac12: color-mix(in oklch, var(--ac-light) 14%, transparent);
+  --ac30: color-mix(in oklch, var(--ac-light) 40%, transparent);
+}
+
+/* ── Theme toggle icon ───────────────────────────────────────────
+ * The icon is a view of the theme, so it follows the same cascade the
+ * palette does rather than being synced from JS — the inline theme script
+ * runs in <head>, where the nav does not exist yet.
+ */
+html[data-v4] [data-theme-icon="light"] {
+  display: none;
+}
+
+@media (prefers-color-scheme: light) {
+  html[data-v4]:not([data-theme="dark"]) [data-theme-icon="dark"] {
+    display: none;
+  }
+  html[data-v4]:not([data-theme="dark"]) [data-theme-icon="light"] {
+    display: block;
+  }
+}
+
+html[data-v4][data-theme="light"] [data-theme-icon="dark"] {
+  display: none;
+}
+html[data-v4][data-theme="light"] [data-theme-icon="light"] {
+  display: block;
+}
+html[data-v4][data-theme="dark"] [data-theme-icon="dark"] {
+  display: block;
+}
+html[data-v4][data-theme="dark"] [data-theme-icon="light"] {
+  display: none;
+}
+
+/* ── Base ────────────────────────────────────────────────────────
+ * The `html[data-v4]` prefix outranks the Poppins rule the older pages used.
+ */
+html[data-v4],
+html[data-v4] body {
+  background-color: var(--bg);
+  color: var(--t1);
+}
+
+html[data-v4] body {
+  font-family:
+    "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  background-image: radial-gradient(circle, var(--dot) 1px, transparent 1px);
+  background-size: 28px 28px;
+  overflow-x: hidden;
+}
+
+/* Theme changes should settle, not snap — but only the page chrome, so hover
+   states keep their own faster transition. */
+html[data-v4] body,
+html[data-v4] nav,
+html[data-v4] footer {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Matches the fixed nav's height, which would otherwise cover hash targets. */
+html[data-v4] :target,
+html[data-v4] [id] {
+  scroll-margin-top: 3.375rem;
+}
+
+/* Room for the floating bottom bar so it never covers the footer. */
+@media (max-width: 47.99rem) {
+  html[data-v4] body {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ── Scroll reveal ──────────────────────────────────────────────
+ * The hidden state is gated behind `.js`, which an inline head script adds.
+ * Without it a no-JS visitor would get a permanently invisible page, and
+ * above-the-fold content would flash hidden for a frame before the
+ * IntersectionObserver runs.
+ */
+html[data-v4].js .fu {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.58s ease,
+    transform 0.58s ease;
+}
+
+html[data-v4].js .fu.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Animations ──────────────────────────────────────────────────
+ * `v4-blink` and `v4-spin` are declared in tailwind.config.cjs. This one
+ * lives here because it has to compose with the translateX(-50%) that
+ * centers the scroll cue, which Tailwind's keyframe config can't express.
+ */
+@keyframes v4-bob {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(7px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-v4] {
+    scroll-behavior: auto;
+  }
+
+  html[data-v4].js .fu {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  html[data-v4] body,
+  html[data-v4] nav,
+  html[data-v4] footer {
+    transition: none;
+  }
+
+  html[data-v4] [class*="animate-v4-"] {
+    animation: none !important;
+  }
+}

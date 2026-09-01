@@ -1,23 +1,22 @@
 ---
-import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import CaseStudyLayoutV4 from "../../layouts/CaseStudyLayoutV4.astro";
 import { dict } from "../../i18n";
+import { laCarlotaImg } from "../../data/projects";
 
 const esC = dict.es.cases.laCarlota;
 const enC = dict.en.cases.laCarlota;
-const key = "la-carlota";
 const frontendBadges = ["Astro", "Tailwind CSS"];
 const libraryBadges: string[] = [];
 const deployBadges: string[] = [];
 ---
 
-<CaseStudyLayout
+<CaseStudyLayoutV4
   title={esC.title}
   description={esC.summary}
-  image="/lacarlota.webp"
-  heroImage="/lacarlota.webp"
-  cardImage="/lacarlota.webp"
+  image={laCarlotaImg}
+  cardImage={laCarlotaImg}
   cardAlt="La Carlota del Monte - Tierra de Caballos"
-  accentColor="#b8860b"
+  accentKey="la-carlota"
   esContent={{ badge: esC.badge, role: esC.role, summary: esC.summary, backToHome: esC.backToHome }}
   enContent={{ badge: enC.badge, role: enC.role, summary: enC.summary, backToHome: enC.backToHome }}
   esSections={esC.sections}

@@ -5,5 +5,11 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://gonreynoso.dev',
-  integrations: [sitemap(), tailwind()]
+  integrations: [sitemap(), tailwind()],
+  vite: {
+    ssr: {
+      // sharp ships native bindings; Vite must not try to process it.
+      external: ['sharp'],
+    },
+  },
 });

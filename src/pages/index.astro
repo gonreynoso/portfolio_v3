@@ -1,22 +1,18 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import AboutMe from "@components/AboutMe.astro";
-import Intro from "@components/Intro.astro";
-import Services from "@components/Services.astro";
-
-import FeaturedProjects from "@components/FeaturedProjects.astro";
-import ContactCTA from "@components/ContactCTA.astro";
-import ContactModal from "@components/ContactModal.astro";
-import Analytics from '@vercel/analytics/astro';
+import V4Layout from "../layouts/V4Layout.astro";
+import Hero from "@components/v4/Hero.astro";
+import ServicesV4 from "@components/v4/ServicesV4.astro";
+import ProjectsV4 from "@components/v4/ProjectsV4.astro";
+import AboutV4 from "@components/v4/AboutV4.astro";
+import ContactCTAV4 from "@components/v4/ContactCTAV4.astro";
+import Analytics from "@vercel/analytics/astro";
 ---
 
-<BaseLayout>
-  <Intro />
-  <Services />
-
-  <FeaturedProjects />
-  <AboutMe />
-  <ContactCTA />
-  <ContactModal />
+<V4Layout>
+  <Hero />
+  <ServicesV4 />
+  <ProjectsV4 />
+  <AboutV4 />
+  <ContactCTAV4 />
   <Analytics />
-</BaseLayout>
+</V4Layout>

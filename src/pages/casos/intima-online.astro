@@ -1,21 +1,20 @@
 ---
-import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import CaseStudyLayoutV4 from "../../layouts/CaseStudyLayoutV4.astro";
 import { dict } from "../../i18n";
+import { intimaOnlineImg } from "../../data/projects";
 
 const esC = dict.es.cases.intimaOnline;
 const enC = dict.en.cases.intimaOnline;
-const key = "intimaonline";
 const frontendBadges = ["Astro", "Tailwind CSS", "TypeScript"];
 const libraryBadges: string[] = [];
 const deployBadges: string[] = [];
 ---
 
-<CaseStudyLayout
+<CaseStudyLayoutV4
   title={esC.title}
   description={esC.summary}
-  image="/intimaonline.webp"
-  heroImage="/intimaonline.webp"
-  cardImage="/intimaonline.webp"
+  image={intimaOnlineImg}
+  cardImage={intimaOnlineImg}
   cardAlt="Intima Online - Radio Online"
   esContent={{ badge: esC.badge, role: esC.role, summary: esC.summary, backToHome: esC.backToHome }}
   enContent={{ badge: enC.badge, role: enC.role, summary: enC.summary, backToHome: enC.backToHome }}
