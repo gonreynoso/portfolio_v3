@@ -1,4 +1,6 @@
 ---
+import ThemeToggleV4 from "./ThemeToggleV4.astro";
+
 interface Props {
   /** Case-study pages have no in-page sections, so their links point home. */
   sectionPrefix?: string;
@@ -17,7 +19,7 @@ const LINKS = [
 
 <nav
   class="fixed inset-x-0 top-0 z-[100] flex h-[54px] items-center justify-between border-b border-b1 px-5 backdrop-blur-[16px] md:px-12"
-  style="background: oklch(7.5% 0.01 240 / 0.88)"
+  style="background: var(--nav-bg)"
 >
   <a
     href="/"
@@ -26,7 +28,7 @@ const LINKS = [
     // <b class="font-medium text-ac">gonzalo</b>.dev
   </a>
 
-  <div class="flex items-center gap-7">
+  <div class="flex items-center gap-4 md:gap-7">
     <ul class="hidden list-none gap-[22px] md:flex">
       {
         LINKS.map((link) => (
@@ -42,6 +44,8 @@ const LINKS = [
         ))
       }
     </ul>
+
+    <ThemeToggleV4 />
 
     <div
       class="flex overflow-hidden rounded-[3px] border border-b1"

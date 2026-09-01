@@ -19,7 +19,7 @@ const meta = "text-[11px] tracking-[0.06em] text-t3";
 const bullet =
   "relative pl-4 text-[12px] leading-[1.85] text-t2 before:absolute before:left-0 before:text-ac before:content-['·']";
 const downloadBtn =
-  "inline-flex items-center gap-2 rounded-v4 bg-ac px-[22px] py-3 text-[11px] font-bold tracking-[0.1em] no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]";
+  "inline-flex items-center gap-2 rounded-v4 bg-ac px-[22px] py-3 text-[11px] font-bold tracking-[0.1em] text-onac no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]";
 ---
 
 <V4Layout
@@ -70,7 +70,6 @@ const downloadBtn =
             rel="noopener noreferrer"
             data-lang="es"
             class={downloadBtn}
-            style="color: oklch(8% 0.01 240)"
           >
             ↓ {esR.downloadPdf}
           </a>
@@ -80,7 +79,6 @@ const downloadBtn =
             rel="noopener noreferrer"
             data-lang="en"
             class={downloadBtn}
-            style="color: oklch(8% 0.01 240)"
           >
             ↓ {enR.downloadPdf}
           </a>

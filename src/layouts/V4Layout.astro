@@ -30,13 +30,62 @@ const {
 ---
 
 <!doctype html>
-<html lang="es" data-v4 class="dark lang-es" data-theme="dark">
+<html lang="es" data-v4 class="lang-es">
   <head>
     <script is:inline>
       // Marks JS as available so the scroll-reveal hidden state can be
       // applied from CSS. Without it, a no-JS visitor would see an empty
       // page and above-the-fold content would flash hidden for a frame.
       document.documentElement.classList.add("js");
+    </script>
+    <script is:inline>
+      // Theme: applied before first paint so there is no flash.
+      //
+      // Only an EXPLICIT choice is written to the root. With nothing stored,
+      // no attribute is set and the stylesheet's `prefers-color-scheme` block
+      // follows the visitor's system — which is also why this still works
+      // with JS disabled.
+      (() => {
+        const root = document.documentElement;
+
+        const stored = () => {
+          try {
+            const v = localStorage.getItem("theme");
+            return v === "light" || v === "dark" ? v : null;
+          } catch (_) {
+            return null;
+          }
+        };
+
+        // Held in a variable on purpose: a MediaQueryList with no strong
+        // reference can be garbage-collected along with its listener.
+        const mql = window.matchMedia("(prefers-color-scheme: light)");
+        const systemTheme = () => (mql.matches ? "light" : "dark");
+
+        // Only an explicit choice is written; clearing it hands control back
+        // to the stylesheet's prefers-color-scheme block. The toggle icon
+        // follows from CSS, so there is nothing to sync here.
+        const apply = (theme) => {
+          if (theme) root.setAttribute("data-theme", theme);
+          else root.removeAttribute("data-theme");
+        };
+
+        apply(stored());
+
+        // Click delegation on `document`, which survives View Transitions.
+        document.addEventListener("click", (e) => {
+          const t = e.target instanceof Element ? e.target : null;
+          if (!t || !t.closest("[data-theme-toggle]")) return;
+          const next =
+            (root.getAttribute("data-theme") || systemTheme()) === "dark"
+              ? "light"
+              : "dark";
+          try { localStorage.setItem("theme", next); } catch (_) {}
+          apply(next);
+        });
+
+        document.addEventListener("astro:after-swap", () => apply(stored()));
+      })();
     </script>
     <script is:inline>
       // i18n runtime:

@@ -26,7 +26,7 @@ const STAGGER = ["0s", "0.08s", "0.14s", "0.20s"];
     {
       SERVICE_KEYS.map((key, i) => (
         <article
-          class="fu relative overflow-hidden rounded-v4 border border-b1 bg-s1 p-7 transition duration-v4 after:absolute after:inset-x-0 after:top-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-ac after:transition-transform after:duration-v4 after:content-[''] hover:-translate-y-[3px] hover:border-b2 hover:shadow-[0_14px_44px_oklch(0%_0_0_/_0.3)] hover:after:scale-x-100"
+          class="fu relative overflow-hidden rounded-v4 border border-b1 bg-s1 p-7 transition duration-v4 after:absolute after:inset-x-0 after:top-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-ac after:transition-transform after:duration-v4 after:content-[''] hover:-translate-y-[3px] hover:border-b2 hover:shadow-[var(--shadow-card)] hover:after:scale-x-100"
           style={`transition-delay: ${STAGGER[i] ?? "0s"}`}
         >
           <div class="mb-3.5 text-[10px] tracking-[0.14em] text-t3">

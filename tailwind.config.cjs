@@ -20,6 +20,7 @@ module.exports = {
         t1: "var(--t1)",
         t2: "var(--t2)",
         t3: "var(--t3)",
+        onac: "var(--on-ac)",
       },
       fontFamily: {
         mono: [

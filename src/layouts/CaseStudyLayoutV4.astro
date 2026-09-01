@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 
 import V4Layout from "./V4Layout.astro";
 import { dict } from "../i18n";
+import { CASE_ACCENTS, type AccentKey } from "../lib/accents";
 
 interface ContentObj {
   badge: string;
@@ -64,7 +65,7 @@ interface Props {
   specsData: SpecsData;
   /** Per-case accent. Overrides the site accent for this page's content only —
    *  the nav and footer stay on the brand cyan. */
-  accentColor?: string;
+  accentKey?: AccentKey;
   image: ImageMetadata;
   cardImage: ImageMetadata;
   cardAlt?: string;
@@ -85,7 +86,7 @@ const {
   esSpecs,
   enSpecs,
   specsData,
-  accentColor,
+  accentKey,
   image,
   cardImage,
   cardAlt = "Project screenshot",
@@ -102,15 +103,11 @@ const {
   backHref = "/",
 } = Astro.props as Props;
 
-// The alpha variants are derived from the base so a per-case accent stays as
-// harmonious as the cyan the design ships with.
-const accentVars = accentColor
-  ? [
-      `--ac: ${accentColor}`,
-      `--ac06: color-mix(in oklch, ${accentColor} 6%, transparent)`,
-      `--ac12: color-mix(in oklch, ${accentColor} 12%, transparent)`,
-      `--ac30: color-mix(in oklch, ${accentColor} 30%, transparent)`,
-    ].join("; ")
+// Each case ships both of its accents; v4.css picks the one matching the
+// active theme and re-derives the alpha variants from it.
+const accent = accentKey ? CASE_ACCENTS[accentKey] : undefined;
+const accentVars = accent
+  ? `--ac-dark: ${accent.dark}; --ac-light: ${accent.light}`
   : undefined;
 
 const tag =
@@ -126,6 +123,7 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
 >
   <article
     class="mx-auto max-w-[1100px] px-6 pb-[60px] pt-[100px] md:px-12 md:pb-[100px] md:pt-[130px]"
+    data-case-accent={accent ? "" : undefined}
     style={accentVars}
   >
     <a
@@ -338,8 +336,7 @@ const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
                   href={specsData.ctaUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="mt-1 inline-flex items-center justify-center gap-2 rounded-v4 bg-ac px-4 py-3 text-[11px] font-bold tracking-[0.1em] no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]"
-                  style="color: oklch(8% 0.01 240)"
+                  class="mt-1 inline-flex items-center justify-center gap-2 rounded-v4 bg-ac px-4 py-3 text-[11px] font-bold tracking-[0.1em] text-onac no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]"
                 >
                   <span data-lang="es">{esSpecs.cta}</span>
                   <span data-lang="en">{enSpecs.cta}</span>
