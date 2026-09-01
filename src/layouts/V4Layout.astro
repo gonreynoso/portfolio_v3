@@ -5,6 +5,7 @@ import BaseHead from "@components/BaseHead.astro";
 import Analytics from "@components/Analytics/Analytics.astro";
 import NavV4 from "@components/v4/NavV4.astro";
 import FooterV4 from "@components/v4/FooterV4.astro";
+import MobileNav from "@components/v4/MobileNav.astro";
 import { ViewTransitions } from "astro:transitions";
 
 import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
@@ -150,6 +151,7 @@ const {
     <NavV4 sectionPrefix={navSectionPrefix} />
     <slot />
     <FooterV4 />
+    <MobileNav sectionPrefix={navSectionPrefix} />
 
     <script>
       // Scroll reveal. Re-runs after every View Transitions swap because the

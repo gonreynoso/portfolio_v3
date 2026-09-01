@@ -216,6 +216,13 @@ html[data-v4] [id] {
   scroll-margin-top: 3.375rem;
 }
 
+/* Room for the floating bottom bar so it never covers the footer. */
+@media (max-width: 47.99rem) {
+  html[data-v4] body {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* ── Scroll reveal ──────────────────────────────────────────────
  * The hidden state is gated behind `.js`, which an inline head script adds.
  * Without it a no-JS visitor would get a permanently invisible page, and
