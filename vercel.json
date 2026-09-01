@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/casos/refugioilon-bot",
+      "destination": "/casos/refugioilon-booking",
+      "statusCode": 301
+    }
+  ]
+}
