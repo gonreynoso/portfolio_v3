@@ -1,0 +1,39 @@
+---
+import CaseStudyLayoutV4 from "../../layouts/CaseStudyLayoutV4.astro";
+import { useTranslations } from "../../i18n";
+import { estudioFromentImg } from "../../data/projects";
+
+// Kept out of `src/data/cases.ts` because it sits at `/estudiofroment` rather
+// than under the case-study collection, and its copy lives in
+// `dict[lang].caseFroment`.
+const { lang, t } = useTranslations(Astro.url);
+const c = t.caseFroment;
+
+const CARD_ALT = {
+  es: "Estudio Froment & Asociados — sitio del estudio jurídico",
+  en: "Estudio Froment & Asociados — law firm website",
+};
+---
+
+<CaseStudyLayoutV4
+  title={c.title}
+  description={c.summary}
+  content={{
+    badge: c.badge,
+    role: c.role,
+    summary: c.summary,
+    backToHome: c.backToHome,
+  }}
+  sections={c.sections}
+  specs={c.specs}
+  specsData={{
+    envValue: c.specs.envValue,
+    frontendBadges: ["Astro", "Tailwind CSS", "JavaScript ES6"],
+    libraryBadges: ["GSAP", "Swiper.js"],
+    deployBadges: ["Vercel", "NIC.ar DNS"],
+    ctaUrl: c.specs.ctaUrl,
+  }}
+  accentKey="estudiofroment"
+  image={estudioFromentImg}
+  cardAlt={CARD_ALT[lang]}
+/>

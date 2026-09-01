@@ -8,7 +8,8 @@ import FooterV4 from "@components/v4/FooterV4.astro";
 import MobileNav from "@components/v4/MobileNav.astro";
 import { ViewTransitions } from "astro:transitions";
 
-import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
+import { TRANSITION_API } from "../config";
+import { HTML_LANG, useTranslations } from "../i18n";
 import "@fontsource-variable/jetbrains-mono";
 import "../styles/v4.css";
 
@@ -21,17 +22,14 @@ interface Props {
   navSectionPrefix?: string;
 }
 
-const {
-  title = SITE_TITLE,
-  description = SITE_DESCRIPTION,
-  image,
-  ogType,
-  navSectionPrefix = "",
-} = Astro.props;
+const { image, ogType, navSectionPrefix = "" } = Astro.props;
+const { lang, t } = useTranslations(Astro.url);
+
+const { title = t.site.title, description = t.site.description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" data-v4 class="lang-es">
+<html lang={HTML_LANG[lang]} data-locale={lang} data-v4>
   <head>
     <script is:inline>
       // Marks JS as available so the scroll-reveal hidden state can be
@@ -89,53 +87,40 @@ const {
       })();
     </script>
     <script is:inline>
-      // i18n runtime:
-      //   - runs synchronously before first paint so the wrong language
-      //     never flickers,
-      //   - re-applies on every View Transitions swap (the new static HTML
-      //     always ships with `class="lang-es"`),
-      //   - click delegation on `document` so the language pill keeps
-      //     working after swaps without rebinding.
+      // The locale lives in the URL, so nothing here decides it. This only
+      // remembers a choice the visitor made and, on a bare visit to the
+      // Spanish root, honours it — before first paint, so there is no flash.
+      // Any other path is left alone: a shared link must resolve to the page
+      // it names.
       (() => {
-        const apply = (forceLang) => {
-          let lang = forceLang;
-          if (!lang) {
-            try { lang = localStorage.getItem("lang"); } catch (_) {}
-          }
-          if (lang !== "es" && lang !== "en") {
-            lang =
-              typeof navigator !== "undefined" &&
-              navigator.language &&
-              navigator.language.toLowerCase().startsWith("es")
-                ? "es"
-                : "en";
-          }
-          const html = document.documentElement;
-          html.classList.remove("lang-es", "lang-en");
-          html.classList.add("lang-" + lang);
-          html.setAttribute("lang", lang);
+        let stored = null;
+        try {
+          stored = localStorage.getItem("lang");
+        } catch (_) {}
 
-          document.querySelectorAll("[data-lang-set]").forEach((btn) => {
-            const on = btn.dataset.langSet === lang;
-            btn.classList.toggle("bg-ac12", on);
-            btn.classList.toggle("text-ac", on);
-            btn.classList.toggle("text-t3", !on);
-            btn.setAttribute("aria-pressed", String(on));
-          });
-        };
+        const path = window.location.pathname;
+        const current = document.documentElement.dataset.locale;
 
-        apply();
+        // Read the stored preference BEFORE recording this visit, or landing
+        // on "/" would overwrite it with "es" and the redirect below could
+        // never fire.
+        if ((path === "/" || path === "/index.html") && stored === "en") {
+          window.location.replace("/en/" + window.location.hash);
+          return;
+        }
+
+        try {
+          if (current) localStorage.setItem("lang", current);
+        } catch (_) {}
 
         document.addEventListener("click", (e) => {
           const t = e.target instanceof Element ? e.target : null;
-          const btn = t && t.closest("[data-lang-set]");
-          if (!btn) return;
-          const next = btn.dataset.langSet;
-          try { localStorage.setItem("lang", next); } catch (_) {}
-          apply(next);
+          const link = t && t.closest("[data-lang-choice]");
+          if (!link) return;
+          try {
+            localStorage.setItem("lang", link.dataset.langChoice);
+          } catch (_) {}
         });
-
-        document.addEventListener("astro:after-swap", () => apply());
       })();
     </script>
     <BaseHead

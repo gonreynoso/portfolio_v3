@@ -1,6 +1,7 @@
 ---
-import { dict } from "../../i18n";
+import { useTranslations } from "../../i18n";
 
+const { t } = useTranslations(Astro.url);
 const year = new Date().getFullYear();
 ---
 
@@ -9,13 +10,11 @@ const year = new Date().getFullYear();
 >
   <span>
     // gonreynoso.dev &middot;{" "}
-    <span data-lang="es">{dict.es.footer.developedBy}</span>
-    <span data-lang="en">{dict.en.footer.developedBy}</span>
+    {t.footer.developedBy}
     &copy; {year}
   </span>
   <span>
-    <span data-lang="es">{dict.es.footer.brandNote}</span>
-    <span data-lang="en">{dict.en.footer.brandNote}</span>{" "}
+    {t.footer.brandNote}{" "}
     <a
       href="https://kensiweb.com"
       target="_blank"

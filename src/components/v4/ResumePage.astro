@@ -1,0 +1,215 @@
+---
+import V4Layout from "../../layouts/V4Layout.astro";
+import WorkExperienceV4 from "@components/v4/WorkExperienceV4.astro";
+import { useTranslations } from "../../i18n";
+
+const { lang, t } = useTranslations(Astro.url);
+const r = t.resume;
+
+type SkillGroup = keyof typeof r.skillsGroups;
+const skillGroups = Object.keys(r.skillsGroups) as SkillGroup[];
+
+// One CV per language.
+const RESUME_PDF =
+  lang === "en"
+    ? "/Resume_Gonzalo_Reynoso_EN.pdf"
+    : "/Resume_Gonzalo_Reynoso_ES.pdf";
+
+const sectionHeading =
+  "mb-6 text-[1.1875rem] font-bold tracking-[-0.022em] text-t1";
+const card = "rounded-v4 border border-b1 bg-s1 p-5";
+const meta = "text-[0.6875rem] tracking-[0.06em] text-t3";
+const bullet =
+  "relative pl-4 text-[0.75rem] leading-[1.85] text-t2 before:absolute before:left-0 before:text-ac before:content-['·']";
+const downloadBtn =
+  "inline-flex items-center gap-2 rounded-v4 bg-ac px-[1.375rem] py-3 text-[0.6875rem] font-bold tracking-[0.1em] text-onac no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]";
+---
+
+<V4Layout
+  title="Gonzalo Reynoso · Resume"
+  description={r.profileBody}
+  navSectionPrefix="/"
+>
+  <article
+    class="mx-auto max-w-[1200px] px-6 pb-[3.75rem] pt-[6.25rem] md:px-12 md:pb-[6.25rem] md:pt-[8.125rem]"
+  >
+    <!-- Profile -->
+    <header
+      class="relative mb-14 overflow-hidden rounded-v4 border border-b1 bg-s1 px-6 py-12 md:px-12 md:py-14"
+    >
+      <div
+        class="pointer-events-none absolute inset-0"
+        style="background: radial-gradient(ellipse 70% 340px at 50% -40px, var(--ac06), transparent 70%)"
+      >
+      </div>
+
+      <div class="relative">
+        <div class="mb-4 text-[0.6875rem] tracking-[0.18em] text-ac">
+          {r.profileTitle}
+        </div>
+
+        <h1
+          class="text-[clamp(1.75rem,4vw,2.875rem)] font-bold leading-[1.1] tracking-[-0.026em] text-t1"
+        >
+          Gonzalo Reynoso
+        </h1>
+
+        <p class="mt-2 text-[0.75rem] tracking-[0.14em] text-t2">
+          {t.hero.roleLead}
+          &middot; <span class="text-ac">Kensiweb</span>
+        </p>
+
+        <p class="mt-5 max-w-3xl text-[0.8125rem] leading-[1.9] text-t2">
+          {r.profileBody}
+        </p>
+
+        <div class="mt-8">
+          <a
+            href={RESUME_PDF}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={downloadBtn}
+          >
+            ↓ {r.downloadPdf}
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 01 · Experience -->
+    <section class="mb-14">
+      <h2 class={sectionHeading}>
+        <span class="mr-2 text-ac">01.</span>
+        {r.experienceTitle}
+      </h2>
+      <WorkExperienceV4 />
+    </section>
+
+    <!-- 02 · Internships -->
+    <section class="fu mb-14">
+      <h2 class={sectionHeading}>
+        <span class="mr-2 text-ac">02.</span>
+        {r.internshipsTitle}
+      </h2>
+
+      <div class="relative border-l border-b1 pl-7">
+        <span
+          class="absolute -left-[4px] top-1.5 block h-[0.4375rem] w-[0.4375rem] rounded-full bg-b2"></span>
+
+        <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <h3 class="text-[0.875rem] font-semibold text-t1">
+            {r.internship.role}
+            <span class="text-t3"> · </span>
+            {r.internship.company}
+          </h3>
+          <span class={meta}>
+            {r.internship.period} · {r.internship.location}
+          </span>
+        </header>
+
+        <ul class="mt-3 flex list-none flex-col gap-1">
+          {
+            r.internship.bullets.map((b) => (
+              <li class={bullet}>
+                {b}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- 03 · Education -->
+    <section class="fu mb-14">
+      <h2 class={sectionHeading}>
+        <span class="mr-2 text-ac">03.</span>
+        {r.educationTitle}
+      </h2>
+
+      <div class="grid gap-3.5">
+        {
+          r.education.map((item) => (
+              <article class={card}>
+                <header class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                  <h3 class="text-[0.8125rem] font-semibold text-t1">
+                    {item.title}
+                  </h3>
+                  <span class="text-t3"> · </span>
+                  <span class="text-[0.75rem] text-t2">{item.where}</span>
+                  <span class:list={[meta, "ml-auto"]}>
+                    {item.period}
+                    {item.location ? ` · ${item.location}` : ""}
+                  </span>
+                </header>
+
+                <ul class="mt-3 flex list-none flex-col gap-1">
+                  {item.bullets.map((b) => (
+                    <li class={bullet}>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- 04 · Certifications -->
+    <section class="fu mb-14">
+      <h2 class={sectionHeading}>
+        <span class="mr-2 text-ac">04.</span>
+        {r.certificationsTitle}
+      </h2>
+
+      <ul class="grid list-none gap-2.5 md:grid-cols-2">
+        {
+          r.certifications.map((c) => (
+            <li>
+              <a
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex h-full flex-col gap-1 rounded-v4 border border-b1 bg-s1 p-4 no-underline transition duration-v4 hover:-translate-y-0.5 hover:border-b2"
+              >
+                <span class="text-[0.75rem] leading-[1.7] text-t2">
+                  {c.label}
+                </span>
+                <span class="text-[0.625rem] tracking-[0.14em] text-ac">
+                  {c.issuer}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- 05 · Skills -->
+    <section class="fu">
+      <h2 class={sectionHeading}>
+        <span class="mr-2 text-ac">05.</span>
+        {r.skillsTitle}
+      </h2>
+
+      <div class="flex flex-col gap-4">
+        {
+          skillGroups.map((g) => (
+            <div class="grid gap-2 md:grid-cols-[140px_1fr] md:gap-4">
+              <span class="text-[0.625rem] tracking-[0.14em] text-ac md:pt-1">
+                {r.skillsGroupLabels[g]}
+              </span>
+              <ul class="flex list-none flex-wrap gap-1.5">
+                {r.skillsGroups[g].map((skill) => (
+                  <li class="rounded-[2px] border border-b1 bg-s2 px-2 py-[3px] text-[0.625rem] tracking-[0.06em] text-t3">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </article>
+</V4Layout>

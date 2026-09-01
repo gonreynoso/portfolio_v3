@@ -1,7 +1,9 @@
 ---
-import { dict } from "../../i18n";
+import { dict, localizePath, useTranslations } from "../../i18n";
 
-// Clients that have a case study of their own.
+// Clients that have a case study of their own, keyed by their SPANISH name:
+// at least one client name is translated, so keying by the active locale's
+// name would silently miss in English.
 const CASE_LINKS: Record<string, string> = {
   "Refugio Ilón": "/casos/refugioilon-booking",
   "Estudio Froment & Asociados": "/estudiofroment",
@@ -13,8 +15,8 @@ const CASE_LINKS: Record<string, string> = {
     "/casos/legally-on-the-move",
 };
 
-const es = dict.es.experience;
-const en = dict.en.experience;
+const { lang, t } = useTranslations(Astro.url);
+const e = t.experience;
 
 const bullet =
   "relative pl-4 text-[0.75rem] leading-[1.85] text-t2 before:absolute before:left-0 before:text-ac before:content-['·']";
@@ -29,8 +31,7 @@ const meta = "text-[0.6875rem] tracking-[0.06em] text-t3";
 
     <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
       <h3 class="text-[0.875rem] font-semibold text-t1">
-        <span data-lang="es">{es.kensiweb.role}</span>
-        <span data-lang="en">{en.kensiweb.role}</span>
+        {e.kensiweb.role}
         <span class="text-t3"> · </span>
         <a
           href="https://kensiweb.com"
@@ -38,74 +39,63 @@ const meta = "text-[0.6875rem] tracking-[0.06em] text-t3";
           rel="noopener noreferrer"
           class="text-ac no-underline transition-opacity duration-v4 hover:opacity-80"
         >
-          {es.kensiweb.company}
+          {e.kensiweb.company}
         </a>
       </h3>
       <span class={meta}>
-        <span data-lang="es">{es.kensiweb.period} · {es.kensiweb.location}</span>
-        <span data-lang="en">{en.kensiweb.period} · {en.kensiweb.location}</span>
+        {e.kensiweb.period} · {e.kensiweb.location}
       </span>
     </header>
 
     <p class="mt-2 max-w-2xl text-[0.75rem] leading-[1.85] text-t2">
-      <span data-lang="es">{es.kensiweb.summary}</span>
-      <span data-lang="en">{en.kensiweb.summary}</span>
+      {e.kensiweb.summary}
     </p>
 
     <h4 class="mb-3 mt-6 text-[0.625rem] tracking-[0.14em] text-t3">
-      <span data-lang="es">{es.kensiweb.clientsLabel}</span>
-      <span data-lang="en">{en.kensiweb.clientsLabel}</span>
+      {e.kensiweb.clientsLabel}
     </h4>
 
     <ul class="flex list-none flex-col gap-3.5">
       {
-        es.kensiweb.clients.map((clientEs, i) => {
-          const clientEn = en.kensiweb.clients[i];
-          const href = CASE_LINKS[clientEs.name];
+        e.kensiweb.clients.map((client, i) => {
+          const href =
+            CASE_LINKS[dict.es.experience.kensiweb.clients[i].name];
+          const localized = href ? localizePath(href, lang) : undefined;
 
           return (
             <li class="rounded-v4 border border-b1 bg-s1 p-5">
               <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                 <span class="text-[0.625rem] tracking-[0.14em] text-t3">
-                  <span data-lang="es">{es.clientLabel}</span>
-                  <span data-lang="en">{en.clientLabel}</span>
+                  {e.clientLabel}
                 </span>
-                {href ? (
+                {localized ? (
                   <a
-                    href={href}
+                    href={localized}
                     class="text-[0.8125rem] font-semibold text-t1 no-underline transition-colors duration-v4 hover:text-ac"
                   >
-                    {clientEs.name}
+                    {client.name}
                   </a>
                 ) : (
                   <span class="text-[0.8125rem] font-semibold text-t1">
-                    {clientEs.name}
+                    {client.name}
                   </span>
                 )}
                 <span class={meta}>
-                  <span data-lang="es">
-                    {clientEs.period} · {clientEs.location}
-                  </span>
-                  <span data-lang="en">
-                    {clientEn.period} · {clientEn.location}
-                  </span>
+                  {client.period} · {client.location}
                 </span>
               </div>
 
               <div class="mt-1.5 text-[0.75rem] leading-[1.85] text-t2">
                 <span class="text-t3">
-                  <span data-lang="es">{es.projectLabel} </span>
-                  <span data-lang="en">{en.projectLabel} </span>
+                  {e.projectLabel} 
                 </span>
-                <span data-lang="es">{clientEs.project}</span>
-                <span data-lang="en">{clientEn.project}</span>
+                {client.project}
               </div>
 
               <ul class="mt-3 flex list-none flex-col gap-1">
-                {clientEs.bullets.map((b, j) => (
+                {client.bullets.map((b) => (
                   <li class={bullet}>
-                    <span data-lang="es">{b}</span>
-                    <span data-lang="en">{clientEn.bullets[j]}</span>
+                    {b}
                   </li>
                 ))}
               </ul>
@@ -123,23 +113,20 @@ const meta = "text-[0.6875rem] tracking-[0.06em] text-t3";
 
     <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
       <h3 class="text-[0.875rem] font-semibold text-t1">
-        <span data-lang="es">{es.medicina.role}</span>
-        <span data-lang="en">{en.medicina.role}</span>
+        {e.medicina.role}
         <span class="text-t3"> · </span>
-        {es.medicina.company}
+        {e.medicina.company}
       </h3>
       <span class={meta}>
-        <span data-lang="es">{es.medicina.period} · {es.medicina.location}</span>
-        <span data-lang="en">{en.medicina.period} · {en.medicina.location}</span>
+        {e.medicina.period} · {e.medicina.location}
       </span>
     </header>
 
     <ul class="mt-3 flex list-none flex-col gap-1">
       {
-        es.medicina.bullets.map((b, i) => (
+        e.medicina.bullets.map((b, i) => (
           <li class={bullet}>
-            <span data-lang="es">{b}</span>
-            <span data-lang="en">{en.medicina.bullets[i]}</span>
+            {b}
           </li>
         ))
       }

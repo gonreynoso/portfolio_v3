@@ -4,6 +4,41 @@ const es = {
   nav: {
     home: "Inicio",
     resume: "CV",
+    languageLabel: "Idioma",
+    // Desktop nav; the leading underscore is deliberate, it is design.
+    sections: {
+      home: "_inicio",
+      services: "_servicios",
+      projects: "_proyectos",
+      about: "_sobre_mí",
+      cv: "_cv",
+    },
+    // Mobile bottom bar — same targets, no underscore, lower case.
+    mobile: {
+      home: "inicio",
+      services: "servicios",
+      projects: "proyectos",
+      about: "sobre mí",
+      cv: "cv",
+    },
+  },
+  // Uppercase eyebrows above each section heading.
+  // Defaults for <title> and the meta description on pages that set none.
+  site: {
+    title: "Gonzalo Reynoso · Kensiweb",
+    description:
+      "Desarrollador freelance. Sistemas web a medida e integraciones con IA bajo la marca Kensiweb.",
+  },
+  // Fallback figure captions for case studies that do not set their own.
+  caseDefaults: {
+    cardCaption: "Captura del proyecto — Kensiweb.",
+    secondaryCaption: "Panel de administración — Kensiweb.",
+  },
+  eyebrows: {
+    services: "SERVICIOS",
+    projects: "EXPERIENCIA",
+    about: "SOBRE MÍ",
+    contact: "CONTACTO",
   },
   hero: {
     greeting: "Hola,",
@@ -879,6 +914,36 @@ const en: Dict = {
   nav: {
     home: "Home",
     resume: "Resume",
+    languageLabel: "Language",
+    sections: {
+      home: "_home",
+      services: "_services",
+      projects: "_projects",
+      about: "_about",
+      cv: "_cv",
+    },
+    mobile: {
+      home: "home",
+      services: "services",
+      projects: "projects",
+      about: "about",
+      cv: "cv",
+    },
+  },
+  site: {
+    title: "Gonzalo Reynoso · Kensiweb",
+    description:
+      "Freelance developer. Custom web systems and AI integrations under the Kensiweb brand.",
+  },
+  caseDefaults: {
+    cardCaption: "Project screenshot — Kensiweb.",
+    secondaryCaption: "Admin dashboard — Kensiweb.",
+  },
+  eyebrows: {
+    services: "SERVICES",
+    projects: "EXPERIENCE",
+    about: "ABOUT ME",
+    contact: "CONTACT",
   },
   hero: {
     greeting: "Hi,",

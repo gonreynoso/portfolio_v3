@@ -3,7 +3,7 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
 import V4Layout from "./V4Layout.astro";
-import { dict } from "../i18n";
+import { localizePath, useTranslations } from "../i18n";
 import { CASE_ACCENTS, type AccentKey } from "../lib/accents";
 
 interface ContentObj {
@@ -18,22 +18,10 @@ interface SectionBase {
   title: string;
 }
 
-interface ChallengeSection extends SectionBase {
-  body: string;
-}
-
-interface ProcessSection extends SectionBase {
-  steps: Array<{ title: string; body: string }>;
-}
-
-interface OutcomeSection extends SectionBase {
-  body: string;
-}
-
 interface Sections {
-  challenge: ChallengeSection;
-  process: ProcessSection;
-  outcome: OutcomeSection;
+  challenge: SectionBase & { body: string };
+  process: SectionBase & { steps: Array<{ title: string; body: string }> };
+  outcome: SectionBase & { body: string };
 }
 
 interface Specs {
@@ -56,52 +44,39 @@ interface SpecsData {
 interface Props {
   title: string;
   description: string;
-  esContent: ContentObj;
-  enContent: ContentObj;
-  esSections: Sections;
-  enSections: Sections;
-  esSpecs: Specs;
-  enSpecs: Specs;
+  /** Already resolved to the page's locale by the caller. */
+  content: ContentObj;
+  sections: Sections;
+  specs: Specs;
   specsData: SpecsData;
-  /** Per-case accent. Overrides the site accent for this page's content only —
-   *  the nav and footer stay on the brand cyan. */
+  /** Overrides the site accent for this page's content only — the nav and
+   *  footer stay on the brand cyan. */
   accentKey?: AccentKey;
   image: ImageMetadata;
-  cardImage: ImageMetadata;
-  cardAlt?: string;
-  cardCaption?: { es: string; en: string };
+  cardAlt: string;
+  cardCaption?: string;
   secondaryImage?: ImageMetadata;
   secondaryAlt?: string;
-  secondaryCaption?: { es: string; en: string };
-  backHref?: string;
+  secondaryCaption?: string;
 }
 
 const {
   title,
   description,
-  esContent,
-  enContent,
-  esSections,
-  enSections,
-  esSpecs,
-  enSpecs,
+  content,
+  sections,
+  specs,
   specsData,
   accentKey,
   image,
-  cardImage,
-  cardAlt = "Project screenshot",
-  cardCaption = {
-    es: "Captura del proyecto — Kensiweb.",
-    en: "Project screenshot — Kensiweb.",
-  },
+  cardAlt,
+  cardCaption,
   secondaryImage,
-  secondaryAlt = "Project screenshot",
-  secondaryCaption = {
-    es: "Panel de administración — Kensiweb.",
-    en: "Admin dashboard — Kensiweb.",
-  },
-  backHref = "/",
+  secondaryAlt = cardAlt,
+  secondaryCaption,
 } = Astro.props as Props;
+
+const { lang, t } = useTranslations(Astro.url);
 
 // Each case ships both of its accents; v4.css picks the one matching the
 // active theme and re-derives the alpha variants from it.
@@ -113,6 +88,7 @@ const accentVars = accent
 const tag =
   "rounded-[2px] border border-b1 bg-s2 px-2 py-[3px] text-[0.625rem] tracking-[0.06em] text-t3";
 const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
+const home = localizePath("/", lang);
 ---
 
 <V4Layout
@@ -127,11 +103,10 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
     style={accentVars}
   >
     <a
-      href={backHref}
+      href={home}
       class="mb-6 inline-flex items-center gap-1.5 text-[0.6875rem] tracking-[0.12em] text-ac no-underline transition-opacity duration-v4 hover:opacity-80"
     >
-      <span data-lang="es">{esContent.backToHome}</span>
-      <span data-lang="en">{enContent.backToHome}</span>
+      {content.backToHome}
     </a>
 
     <!-- Hero -->
@@ -146,8 +121,7 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
 
       <div class="relative">
         <div class="mb-4 text-[0.6875rem] tracking-[0.18em] text-ac">
-          <span data-lang="es">{esContent.badge}</span>
-          <span data-lang="en">{enContent.badge}</span>
+          {content.badge}
         </div>
 
         <h1
@@ -157,13 +131,11 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
         </h1>
 
         <p class="mx-auto mt-4 max-w-2xl text-[0.75rem] tracking-[0.06em] text-ac">
-          <span data-lang="es">{esContent.role}</span>
-          <span data-lang="en">{enContent.role}</span>
+          {content.role}
         </p>
 
         <p class="mx-auto mt-3 max-w-2xl text-[0.8125rem] leading-[1.85] text-t2">
-          <span data-lang="es">{esContent.summary}</span>
-          <span data-lang="en">{enContent.summary}</span>
+          {content.summary}
         </p>
       </div>
     </header>
@@ -173,18 +145,16 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
         <!-- Challenge -->
         <section class="fu mb-12 border-b border-b1 pb-12">
           <h2 class="mb-4 text-[1.1875rem] font-bold tracking-[-0.022em] text-t1">
-            <span class="mr-2 text-ac">{esSections.challenge.number}.</span>
-            <span data-lang="es">{esSections.challenge.title}</span>
-            <span data-lang="en">{enSections.challenge.title}</span>
+            <span class="mr-2 text-ac">{sections.challenge.number}.</span>
+            {sections.challenge.title}
           </h2>
           <p class="text-[0.8125rem] leading-[1.9] text-t2">
-            <span data-lang="es">{esSections.challenge.body}</span>
-            <span data-lang="en">{enSections.challenge.body}</span>
+            {sections.challenge.body}
           </p>
 
           <figure class="mt-8">
             <Image
-              src={cardImage}
+              src={image}
               alt={cardAlt}
               widths={[600, 1000]}
               sizes="(min-width: 1024px) 700px, 100vw"
@@ -193,8 +163,7 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
             <figcaption
               class="mt-2.5 text-center text-[0.625rem] tracking-[0.06em] text-t3"
             >
-              <span data-lang="es">{cardCaption.es}</span>
-              <span data-lang="en">{cardCaption.en}</span>
+              {cardCaption ?? t.caseDefaults.cardCaption}
             </figcaption>
           </figure>
         </section>
@@ -202,26 +171,19 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
         <!-- Process -->
         <section class="fu mb-12 border-b border-b1 pb-12">
           <h2 class="mb-6 text-[1.1875rem] font-bold tracking-[-0.022em] text-t1">
-            <span class="mr-2 text-ac">{esSections.process.number}.</span>
-            <span data-lang="es">{esSections.process.title}</span>
-            <span data-lang="en">{enSections.process.title}</span>
+            <span class="mr-2 text-ac">{sections.process.number}.</span>
+            {sections.process.title}
           </h2>
 
           <div class="flex flex-col gap-6">
             {
-              esSections.process.steps.map((step, i) => (
+              sections.process.steps.map((step) => (
                 <div>
                   <h3 class="mb-1.5 text-[0.875rem] font-semibold text-t1 before:font-normal before:text-ac before:content-['//_']">
-                    <span data-lang="es">{step.title}</span>
-                    <span data-lang="en">
-                      {enSections.process.steps[i].title}
-                    </span>
+                    {step.title}
                   </h3>
                   <p class="text-[0.8125rem] leading-[1.9] text-t2">
-                    <span data-lang="es">{step.body}</span>
-                    <span data-lang="en">
-                      {enSections.process.steps[i].body}
-                    </span>
+                    {step.body}
                   </p>
                 </div>
               ))
@@ -232,13 +194,11 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
         <!-- Outcome -->
         <section class="fu">
           <h2 class="mb-4 text-[1.1875rem] font-bold tracking-[-0.022em] text-t1">
-            <span class="mr-2 text-ac">{esSections.outcome.number}.</span>
-            <span data-lang="es">{esSections.outcome.title}</span>
-            <span data-lang="en">{enSections.outcome.title}</span>
+            <span class="mr-2 text-ac">{sections.outcome.number}.</span>
+            {sections.outcome.title}
           </h2>
           <p class="text-[0.8125rem] leading-[1.9] text-t2">
-            <span data-lang="es">{esSections.outcome.body}</span>
-            <span data-lang="en">{enSections.outcome.body}</span>
+            {sections.outcome.body}
           </p>
 
           {
@@ -252,8 +212,7 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
                   class="w-full rounded-v4 border border-b1"
                 />
                 <figcaption class="mt-2.5 text-center text-[0.625rem] tracking-[0.06em] text-t3">
-                  <span data-lang="es">{secondaryCaption.es}</span>
-                  <span data-lang="en">{secondaryCaption.en}</span>
+                  {secondaryCaption ?? t.caseDefaults.secondaryCaption}
                 </figcaption>
               </figure>
             )
@@ -269,24 +228,17 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
           <h2
             class="mb-5 border-b border-b1 pb-4 text-[0.875rem] font-semibold text-t1 before:font-normal before:text-ac before:content-['//_']"
           >
-            <span data-lang="es">{esSpecs.title}</span>
-            <span data-lang="en">{enSpecs.title}</span>
+            {specs.title}
           </h2>
 
           <div class="flex flex-col gap-5">
             <div>
-              <div class={specLabel}>
-                <span data-lang="es">{esSpecs.env}</span>
-                <span data-lang="en">{enSpecs.env}</span>
-              </div>
+              <div class={specLabel}>{specs.env}</div>
               <span class={tag}>{specsData.envValue}</span>
             </div>
 
             <div>
-              <div class={specLabel}>
-                <span data-lang="es">{esSpecs.frontend}</span>
-                <span data-lang="en">{enSpecs.frontend}</span>
-              </div>
+              <div class={specLabel}>{specs.frontend}</div>
               <ul class="flex list-none flex-wrap gap-1.5">
                 {
                   specsData.frontendBadges.map((b, i) => (
@@ -307,10 +259,7 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
             {
               specsData.libraryBadges.length > 0 && (
                 <div>
-                  <div class={specLabel}>
-                    <span data-lang="es">{esSpecs.libraries}</span>
-                    <span data-lang="en">{enSpecs.libraries}</span>
-                  </div>
+                  <div class={specLabel}>{specs.libraries}</div>
                   <ul class="flex list-none flex-wrap gap-1.5">
                     {specsData.libraryBadges.map((b) => (
                       <li class={tag}>{b}</li>
@@ -320,15 +269,18 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
               )
             }
 
-            <div>
-              <div class={specLabel}>
-                <span data-lang="es">{esSpecs.deploy}</span>
-                <span data-lang="en">{enSpecs.deploy}</span>
-              </div>
-              <ul class="flex list-none flex-wrap gap-1.5">
-                {specsData.deployBadges.map((b) => <li class={tag}>{b}</li>)}
-              </ul>
-            </div>
+            {
+              specsData.deployBadges.length > 0 && (
+                <div>
+                  <div class={specLabel}>{specs.deploy}</div>
+                  <ul class="flex list-none flex-wrap gap-1.5">
+                    {specsData.deployBadges.map((b) => (
+                      <li class={tag}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
 
             {
               specsData.ctaUrl && (
@@ -338,8 +290,7 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
                   rel="noopener noreferrer"
                   class="mt-1 inline-flex items-center justify-center gap-2 rounded-v4 bg-ac px-4 py-3 text-[0.6875rem] font-bold tracking-[0.1em] text-onac no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]"
                 >
-                  <span data-lang="es">{esSpecs.cta}</span>
-                  <span data-lang="en">{enSpecs.cta}</span>
+                  {specs.cta}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="h-3.5 w-3.5"
@@ -365,12 +316,10 @@ const specLabel = "mb-2 text-[0.625rem] tracking-[0.14em] text-t3";
     <!-- Back to the project list -->
     <div class="mt-16 border-t border-b1 pt-8 text-center">
       <a
-        href={backHref}
+        href={`${home}#proyectos`}
         class="inline-flex items-center gap-2 rounded-v4 border border-b1 px-4 py-2.5 text-[0.6875rem] tracking-[0.06em] text-t2 no-underline transition-colors duration-v4 hover:border-ac hover:text-ac"
       >
-        ←
-        <span data-lang="es">{dict.es.projects.title}</span>
-        <span data-lang="en">{dict.en.projects.title}</span>
+        ← {t.projects.title}
       </a>
     </div>
   </article>

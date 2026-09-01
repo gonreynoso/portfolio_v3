@@ -2,44 +2,30 @@
 interface Props {
   /** Two-digit section index, e.g. "01". */
   number: string;
-  eyebrowEs: string;
-  eyebrowEn: string;
-  titleEs: string;
-  titleEn: string;
-  subtitleEs?: string;
-  subtitleEn?: string;
+  /** Uppercase label beside the index. Already translated by the caller. */
+  eyebrow: string;
+  title: string;
+  subtitle?: string;
 }
 
-const {
-  number,
-  eyebrowEs,
-  eyebrowEn,
-  titleEs,
-  titleEn,
-  subtitleEs,
-  subtitleEn,
-} = Astro.props;
+const { number, eyebrow, title, subtitle } = Astro.props;
 ---
 
 <div class="fu mb-14">
   <div class="mb-2.5 text-[0.6875rem] tracking-[0.18em] text-ac">
-    {number} /{" "}
-    <span data-lang="es">{eyebrowEs}</span>
-    <span data-lang="en">{eyebrowEn}</span>
+    {number} / {eyebrow}
   </div>
 
   <h2
     class="text-[clamp(1.75rem,4vw,2.875rem)] font-bold leading-[1.1] tracking-[-0.026em] text-t1"
   >
-    <span data-lang="es">{titleEs}</span>
-    <span data-lang="en">{titleEn}</span>
+    {title}
   </h2>
 
   {
-    subtitleEs && (
+    subtitle && (
       <p class="mt-3.5 max-w-[36.25rem] text-[0.8125rem] leading-[1.85] text-t2">
-        <span data-lang="es">{subtitleEs}</span>
-        <span data-lang="en">{subtitleEn}</span>
+        {subtitle}
       </p>
     )
   }

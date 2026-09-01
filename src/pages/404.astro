@@ -1,9 +1,14 @@
 ---
 import V4Layout from "../layouts/V4Layout.astro";
-import { dict } from "../i18n";
+import { DEFAULT_LANG, dict, localizePath } from "../i18n";
+
+// A static host serves one 404 for every unmatched path, including
+// /en/anything, so this page cannot know which locale was intended. It renders
+// in the default locale and offers a way into both.
+const t = dict[DEFAULT_LANG];
 ---
 
-<V4Layout title="404: Not Found" navSectionPrefix="/">
+<V4Layout title="404" navSectionPrefix="/">
   <section
     class="mx-auto flex min-h-screen max-w-[1200px] flex-col items-center justify-center px-6 py-[6.25rem] text-center md:px-12"
   >
@@ -20,20 +25,25 @@ import { dict } from "../i18n";
     </h1>
 
     <p class="mb-10 max-w-[26.25rem] text-[0.8125rem] leading-[1.85] text-t2">
-      <span data-lang="es">
-        La página que buscás no existe o cambió de dirección.
-      </span>
-      <span data-lang="en">
+      La página que buscás no existe o cambió de dirección.<br />
+      <span class="text-t3">
         The page you're looking for doesn't exist or has moved.
       </span>
     </p>
 
-    <a
-      href="/"
-      class="inline-flex items-center gap-2 rounded-v4 bg-ac px-[1.875rem] py-[0.8125rem] text-[0.75rem] font-bold tracking-[0.1em] text-onac no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]"
-    >
-      <span data-lang="es">{dict.es.nav.home}_</span>
-      <span data-lang="en">{dict.en.nav.home}_</span>
-    </a>
+    <div class="flex flex-wrap justify-center gap-2">
+      <a
+        href={localizePath("/", "es")}
+        class="inline-flex items-center gap-2 rounded-v4 bg-ac px-[1.875rem] py-[0.8125rem] text-[0.75rem] font-bold tracking-[0.1em] text-onac no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]"
+      >
+        {t.nav.home}_
+      </a>
+      <a
+        href={localizePath("/", "en")}
+        class="inline-flex items-center gap-2 rounded-v4 border border-b1 px-[1.875rem] py-[0.8125rem] text-[0.75rem] font-bold tracking-[0.1em] text-t2 no-underline transition-colors duration-v4 hover:border-ac hover:text-ac"
+      >
+        Home_
+      </a>
+    </div>
   </section>
 </V4Layout>
