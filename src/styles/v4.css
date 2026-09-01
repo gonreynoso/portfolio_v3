@@ -1,0 +1,101 @@
+/* Portfolio v4 design tokens and base layer.
+ *
+ * Everything is scoped to `html[data-v4]` so the v4 pages can live next to
+ * the older Poppins/green pages without either one leaking into the other.
+ *
+ * Colors stay in oklch: the accent-alpha variants are derived from the same
+ * hue, and keeping one color space is what makes them harmonious.
+ */
+
+html[data-v4] {
+  --ac: oklch(72% 0.2 185);
+  --ac12: oklch(72% 0.2 185 / 0.12);
+  --ac06: oklch(72% 0.2 185 / 0.06);
+  --ac30: oklch(72% 0.2 185 / 0.3);
+
+  --bg: oklch(7.5% 0.01 240);
+  --s1: oklch(11.5% 0.015 240);
+  --s2: oklch(14.5% 0.015 240);
+  --b1: oklch(21% 0.022 240);
+  --b2: oklch(29% 0.03 240);
+  --t1: oklch(93% 0.008 240);
+  --t2: oklch(62% 0.018 240);
+  --t3: oklch(40% 0.015 240);
+
+  scroll-behavior: smooth;
+}
+
+/* The `html[data-v4]` prefix outranks daisyUI's base rules on :root/body. */
+html[data-v4],
+html[data-v4] body {
+  background-color: var(--bg);
+  color: var(--t1);
+}
+
+html[data-v4] body {
+  font-size: 14px;
+  line-height: 1.7;
+  background-image: radial-gradient(
+    circle,
+    oklch(24% 0.02 240) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+  overflow-x: hidden;
+}
+
+/* The fixed nav is 54px tall and would otherwise cover hash targets. */
+html[data-v4] :target,
+html[data-v4] [id] {
+  scroll-margin-top: 54px;
+}
+
+/* ── Scroll reveal ──────────────────────────────────────────────
+ * The hidden state is gated behind `.js`, which an inline head script adds.
+ * Without it a no-JS visitor would get a permanently invisible page, and
+ * above-the-fold content would flash hidden for a frame before the
+ * IntersectionObserver runs.
+ */
+html[data-v4].js .fu {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.58s ease,
+    transform 0.58s ease;
+}
+
+html[data-v4].js .fu.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Animations ──────────────────────────────────────────────────
+ * `v4-blink` and `v4-spin` are declared in tailwind.config.cjs. This one
+ * lives here because it has to compose with the translateX(-50%) that
+ * centers the scroll cue, which Tailwind's keyframe config can't express.
+ */
+@keyframes v4-bob {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(7px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-v4] {
+    scroll-behavior: auto;
+  }
+
+  html[data-v4].js .fu {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  html[data-v4] [class*="animate-v4-"] {
+    animation: none !important;
+  }
+}

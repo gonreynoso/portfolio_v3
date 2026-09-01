@@ -15,6 +15,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.0.1",
     "@astrojs/tailwind": "^5.0.3",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
     "@types/react": "^19.0.8",
     "@vercel/analytics": "^1.4.1",
     "astro": "^4.0.2",
