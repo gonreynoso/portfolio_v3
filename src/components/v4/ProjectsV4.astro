@@ -98,9 +98,22 @@ const MINI_STAGGER = ["0s", "0.06s", "0.12s", "0.18s"];
 
           return (
             <article
-              class="fu relative flex flex-col overflow-hidden rounded-v4 border border-b1 bg-s1 p-[22px] transition duration-v4 after:absolute after:inset-x-0 after:top-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-ac after:transition-transform after:duration-v4 after:content-[''] hover:-translate-y-0.5 hover:border-b2 hover:after:scale-x-100"
+              class="fu relative flex flex-col overflow-hidden rounded-v4 border border-b1 bg-s1 transition duration-v4 after:absolute after:inset-x-0 after:top-0 after:z-10 after:h-0.5 after:origin-left after:scale-x-0 after:bg-ac after:transition-transform after:duration-v4 after:content-[''] hover:-translate-y-0.5 hover:border-b2 hover:after:scale-x-100"
               style={`transition-delay: ${MINI_STAGGER[i % MINI_STAGGER.length]}`}
             >
+              {project.image && (
+                <div class="aspect-video overflow-hidden border-b border-b1 bg-s2">
+                  <Image
+                    src={project.image}
+                    alt={item.title}
+                    widths={[400, 700]}
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    class="h-full w-full object-cover"
+                  />
+                </div>
+              )}
+
+              <div class="flex flex-1 flex-col p-[22px]">
               <ul class="mb-3 flex list-none flex-wrap gap-1.5">
                 {project.tags.map((tag, t) => (
                   <li class={t === 0 ? headlineTagClass : tagClass}>{tag}</li>
@@ -121,6 +134,7 @@ const MINI_STAGGER = ["0s", "0.06s", "0.12s", "0.18s"];
                 <span data-lang="es">{item.linkLabel} →</span>
                 <span data-lang="en">{itemEn.linkLabel} →</span>
               </a>
+              </div>
             </article>
           );
         })

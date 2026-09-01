@@ -1,181 +1,252 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import WorkExperience from "../components/WorkExperience.astro";
-import ContactModal from "../components/ContactModal.astro";
+import V4Layout from "../layouts/V4Layout.astro";
+import WorkExperienceV4 from "@components/v4/WorkExperienceV4.astro";
 import { dict } from "../i18n";
-import { primaryCta } from "../lib/buttons";
 
 const esR = dict.es.resume;
 const enR = dict.en.resume;
 
 type SkillGroup = keyof typeof esR.skillsGroups;
 const skillGroups = Object.keys(esR.skillsGroups) as SkillGroup[];
+
+const RESUME_ES = "/Resume_Gonzalo_Reynoso_ES.pdf";
+const RESUME_EN = "/Resume_Gonzalo_Reynoso_EN.pdf";
+
+const sectionHeading =
+  "mb-6 text-[19px] font-bold tracking-[-0.022em] text-t1";
+const card = "rounded-v4 border border-b1 bg-s1 p-5";
+const meta = "text-[11px] tracking-[0.06em] text-t3";
+const bullet =
+  "relative pl-4 text-[12px] leading-[1.85] text-t2 before:absolute before:left-0 before:text-ac before:content-['·']";
+const downloadBtn =
+  "inline-flex items-center gap-2 rounded-v4 bg-ac px-[22px] py-3 text-[11px] font-bold tracking-[0.1em] no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]";
 ---
 
-<BaseLayout title="Gonzalo Reynoso · Resume">
-  <div class="w-full max-w-5xl">
-    <div class="mt-28 mb-6 flex flex-wrap items-center justify-between gap-4">
-      <h1 class="text-3xl font-bold text-gray-100">
-        <span data-lang="es">{esR.profileTitle}</span>
-        <span data-lang="en">{enR.profileTitle}</span>
-      </h1>
-      <a
-        href="/Resume_Gonzalo_Reynoso_ES.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-lang="es"
-        class={primaryCta}
+<V4Layout
+  title="Gonzalo Reynoso · Resume"
+  description={esR.profileBody}
+  navSectionPrefix="/"
+>
+  <article
+    class="mx-auto max-w-[1100px] px-6 pb-[60px] pt-[100px] md:px-12 md:pb-[100px] md:pt-[130px]"
+  >
+    <!-- Profile -->
+    <header
+      class="relative mb-14 overflow-hidden rounded-v4 border border-b1 bg-s1 px-6 py-12 md:px-12 md:py-14"
+    >
+      <div
+        class="pointer-events-none absolute inset-0"
+        style="background: radial-gradient(ellipse 70% 340px at 50% -40px, var(--ac06), transparent 70%)"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-          <polyline points="7 10 12 15 17 10"/>
-          <line x1="12" y1="15" x2="12" y2="3"/>
-        </svg>
-        {esR.downloadPdf}
-      </a>
-      <a
-        href="/Resume_Gonzalo_Reynoso_EN.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-lang="en"
-        class={primaryCta}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-          <polyline points="7 10 12 15 17 10"/>
-          <line x1="12" y1="15" x2="12" y2="3"/>
-        </svg>
-        {enR.downloadPdf}
-      </a>
-    </div>
+      </div>
 
-    <p class="mb-10 text-gray-300 leading-relaxed">
-      <span data-lang="es">{esR.profileBody}</span>
-      <span data-lang="en">{enR.profileBody}</span>
-    </p>
+      <div class="relative">
+        <div class="mb-4 text-[11px] tracking-[0.18em] text-ac">
+          <span data-lang="es">{esR.profileTitle}</span>
+          <span data-lang="en">{enR.profileTitle}</span>
+        </div>
 
-    <WorkExperience />
+        <h1
+          class="text-[clamp(28px,4vw,46px)] font-bold leading-[1.1] tracking-[-0.026em] text-t1"
+        >
+          Gonzalo Reynoso
+        </h1>
 
-    <!-- Internship -->
-    <div class="mt-12 mb-4">
-      <h2 class="text-3xl font-bold text-gray-100">
+        <p class="mt-2 text-[12px] tracking-[0.14em] text-t2">
+          <span data-lang="es">{dict.es.hero.roleLead}</span>
+          <span data-lang="en">{dict.en.hero.roleLead}</span>
+          &middot; <span class="text-ac">Kensiweb</span>
+        </p>
+
+        <p class="mt-5 max-w-3xl text-[13px] leading-[1.9] text-t2">
+          <span data-lang="es">{esR.profileBody}</span>
+          <span data-lang="en">{enR.profileBody}</span>
+        </p>
+
+        <div class="mt-8">
+          <a
+            href={RESUME_ES}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-lang="es"
+            class={downloadBtn}
+            style="color: oklch(8% 0.01 240)"
+          >
+            ↓ {esR.downloadPdf}
+          </a>
+          <a
+            href={RESUME_EN}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-lang="en"
+            class={downloadBtn}
+            style="color: oklch(8% 0.01 240)"
+          >
+            ↓ {enR.downloadPdf}
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 01 · Experience -->
+    <section class="mb-14">
+      <h2 class={sectionHeading}>
+        <span class="mr-2 text-ac">01.</span>
+        <span data-lang="es">{esR.experienceTitle}</span>
+        <span data-lang="en">{enR.experienceTitle}</span>
+      </h2>
+      <WorkExperienceV4 />
+    </section>
+
+    <!-- 02 · Internships -->
+    <section class="fu mb-14">
+      <h2 class={sectionHeading}>
+        <span class="mr-2 text-ac">02.</span>
         <span data-lang="es">{esR.internshipsTitle}</span>
         <span data-lang="en">{enR.internshipsTitle}</span>
       </h2>
-    </div>
 
-    <section class="relative pl-10 ml-4 border-l-2 border-gray-700 text-gray-200 dark:text-gray-100 mb-10">
-    <span class="absolute -left-[9px] top-1 block w-4 h-4 rounded-full bg-gray-500"></span>
-    <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-      <h3 class="text-xl font-semibold">{esR.internship.role} · {esR.internship.company}</h3>
-      <span class="text-sm text-gray-400">
-        <span data-lang="es">{esR.internship.period} · {esR.internship.location}</span>
-        <span data-lang="en">{enR.internship.period} · {enR.internship.location}</span>
-      </span>
-    </header>
-    <ul class="mt-2 list-disc list-inside text-sm text-gray-300 space-y-1 marker:text-gray-500">
-      {
-        esR.internship.bullets.map((b, i) => (
-          <li>
-            <span data-lang="es">{b}</span>
-            <span data-lang="en">{enR.internship.bullets[i]}</span>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
+      <div class="relative border-l border-b1 pl-7">
+        <span
+          class="absolute -left-[4px] top-1.5 block h-[7px] w-[7px] rounded-full bg-b2"></span>
 
-  <!-- Education -->
-  <div class="mt-12 mb-4">
-    <h2 class="text-3xl font-bold text-gray-100">
-      <span data-lang="es">{esR.educationTitle}</span>
-      <span data-lang="en">{enR.educationTitle}</span>
-    </h2>
-  </div>
-
-  <div class="grid gap-4 mb-10">
-    {
-      esR.education.map((item, i) => {
-        const en = enR.education[i];
-        return (
-          <article class="rounded-lg border border-gray-800 bg-gray-900/40 p-4 text-gray-200 dark:text-gray-100">
-            <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <h3 class="text-lg font-semibold">
-                <span data-lang="es">{item.title}</span>
-                <span data-lang="en">{en.title}</span>
-              </h3>
-              <span class="text-gray-400"> · </span>
-              <span class="text-sm text-gray-300">{item.where}</span>
-              <span class="text-sm text-gray-500 ml-auto">
-                <span data-lang="es">
-                  {item.period}{item.location ? ` · ${item.location}` : ""}
-                </span>
-                <span data-lang="en">
-                  {en.period}{en.location ? ` · ${en.location}` : ""}
-                </span>
-              </span>
-            </header>
-            <ul class="mt-2 list-disc list-inside text-sm text-gray-300 space-y-1 marker:text-[#54da7a]">
-              {
-                item.bullets.map((b, j) => (
-                  <li>
-                    <span data-lang="es">{b}</span>
-                    <span data-lang="en">{en.bullets[j]}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </article>
-        );
-      })
-    }
-  </div>
-
-  <!-- Certifications -->
-  <div class="mt-12 mb-4">
-    <h2 class="text-3xl font-bold text-gray-100">
-      <span data-lang="es">{esR.certificationsTitle}</span>
-      <span data-lang="en">{enR.certificationsTitle}</span>
-    </h2>
-  </div>
-
-  <ul class="list-disc mx-6 mb-10 grid gap-2 text-gray-200">
-    {
-      esR.certifications.map((c, i) => (
-        <li>
-          <a href={c.href} target="_blank" rel="noopener noreferrer" class="hover:text-[#54da7a] transition">
-            <span data-lang="es">{c.label}</span>
-            <span data-lang="en">{enR.certifications[i].label}</span>
-            {" "}
-            <strong class="font-semibold">{c.issuer}</strong>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-
-  <!-- Skills -->
-  <div class="mt-12 mb-4">
-    <h2 class="text-3xl font-bold text-gray-100">
-      <span data-lang="es">{esR.skillsTitle}</span>
-      <span data-lang="en">{enR.skillsTitle}</span>
-    </h2>
-  </div>
-
-  <div class="grid gap-3 mb-16 text-gray-200 dark:text-gray-100">
-    {
-      skillGroups.map((g) => (
-        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <span class="text-sm font-semibold text-[#54da7a] min-w-[5.5rem]">
-            <span data-lang="es">{esR.skillsGroupLabels[g]}</span>
-            <span data-lang="en">{enR.skillsGroupLabels[g]}</span>
+        <header class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <h3 class="text-[14px] font-semibold text-t1">
+            {esR.internship.role}
+            <span class="text-t3"> · </span>
+            {esR.internship.company}
+          </h3>
+          <span class={meta}>
+            <span data-lang="es">
+              {esR.internship.period} · {esR.internship.location}
+            </span>
+            <span data-lang="en">
+              {enR.internship.period} · {enR.internship.location}
+            </span>
           </span>
-          <span class="text-sm text-gray-300">{esR.skillsGroups[g].join(" · ")}</span>
-        </div>
-      ))
-    }
-  </div>
+        </header>
 
-  <ContactModal />
-  </div>
-</BaseLayout>
+        <ul class="mt-3 flex list-none flex-col gap-1">
+          {
+            esR.internship.bullets.map((b, i) => (
+              <li class={bullet}>
+                <span data-lang="es">{b}</span>
+                <span data-lang="en">{enR.internship.bullets[i]}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- 03 · Education -->
+    <section class="fu mb-14">
+      <h2 class={sectionHeading}>
+        <span class="mr-2 text-ac">03.</span>
+        <span data-lang="es">{esR.educationTitle}</span>
+        <span data-lang="en">{enR.educationTitle}</span>
+      </h2>
+
+      <div class="grid gap-3.5">
+        {
+          esR.education.map((item, i) => {
+            const en = enR.education[i];
+
+            return (
+              <article class={card}>
+                <header class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                  <h3 class="text-[13px] font-semibold text-t1">
+                    <span data-lang="es">{item.title}</span>
+                    <span data-lang="en">{en.title}</span>
+                  </h3>
+                  <span class="text-t3"> · </span>
+                  <span class="text-[12px] text-t2">{item.where}</span>
+                  <span class:list={[meta, "ml-auto"]}>
+                    <span data-lang="es">
+                      {item.period}
+                      {item.location ? ` · ${item.location}` : ""}
+                    </span>
+                    <span data-lang="en">
+                      {en.period}
+                      {en.location ? ` · ${en.location}` : ""}
+                    </span>
+                  </span>
+                </header>
+
+                <ul class="mt-3 flex list-none flex-col gap-1">
+                  {item.bullets.map((b, j) => (
+                    <li class={bullet}>
+                      <span data-lang="es">{b}</span>
+                      <span data-lang="en">{en.bullets[j]}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    <!-- 04 · Certifications -->
+    <section class="fu mb-14">
+      <h2 class={sectionHeading}>
+        <span class="mr-2 text-ac">04.</span>
+        <span data-lang="es">{esR.certificationsTitle}</span>
+        <span data-lang="en">{enR.certificationsTitle}</span>
+      </h2>
+
+      <ul class="grid list-none gap-2.5 md:grid-cols-2">
+        {
+          esR.certifications.map((c, i) => (
+            <li>
+              <a
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex h-full flex-col gap-1 rounded-v4 border border-b1 bg-s1 p-4 no-underline transition duration-v4 hover:-translate-y-0.5 hover:border-b2"
+              >
+                <span class="text-[12px] leading-[1.7] text-t2">
+                  <span data-lang="es">{c.label}</span>
+                  <span data-lang="en">{enR.certifications[i].label}</span>
+                </span>
+                <span class="text-[10px] tracking-[0.14em] text-ac">
+                  {c.issuer}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- 05 · Skills -->
+    <section class="fu">
+      <h2 class={sectionHeading}>
+        <span class="mr-2 text-ac">05.</span>
+        <span data-lang="es">{esR.skillsTitle}</span>
+        <span data-lang="en">{enR.skillsTitle}</span>
+      </h2>
+
+      <div class="flex flex-col gap-4">
+        {
+          skillGroups.map((g) => (
+            <div class="grid gap-2 md:grid-cols-[140px_1fr] md:gap-4">
+              <span class="text-[10px] tracking-[0.14em] text-ac md:pt-1">
+                <span data-lang="es">{esR.skillsGroupLabels[g]}</span>
+                <span data-lang="en">{enR.skillsGroupLabels[g]}</span>
+              </span>
+              <ul class="flex list-none flex-wrap gap-1.5">
+                {esR.skillsGroups[g].map((skill) => (
+                  <li class="rounded-[2px] border border-b1 bg-s2 px-2 py-[3px] text-[10px] tracking-[0.06em] text-t3">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </article>
+</V4Layout>
