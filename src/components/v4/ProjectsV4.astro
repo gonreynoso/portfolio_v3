@@ -3,8 +3,10 @@ import { Image } from "astro:assets";
 
 import Section from "./Section.astro";
 import SectionHead from "./SectionHead.astro";
-import { dict } from "../../i18n";
+import { localizePath, useTranslations } from "../../i18n";
 import { FEATURED_PROJECTS, SECONDARY_PROJECTS } from "../../data/projects";
+
+const { lang, t } = useTranslations(Astro.url);
 
 const tagClass =
   "rounded-[2px] border border-b1 bg-s2 px-2 py-[3px] text-[0.625rem] tracking-[0.06em] text-t3";
@@ -24,19 +26,15 @@ const MINI_STAGGER = ["0s", "0.06s", "0.12s", "0.18s"];
 <Section id="proyectos" tight>
   <SectionHead
     number="02"
-    eyebrowEs="EXPERIENCIA"
-    eyebrowEn="EXPERIENCE"
-    titleEs={dict.es.projects.title}
-    titleEn={dict.en.projects.title}
-    subtitleEs={dict.es.projects.subtitle}
-    subtitleEn={dict.en.projects.subtitle}
+    eyebrow={t.eyebrows.projects}
+    title={t.projects.title}
+    subtitle={t.projects.subtitle}
   />
 
   <div class="flex flex-col gap-3.5">
     {
       FEATURED_PROJECTS.map((project, i) => {
-        const item = dict.es.projects.items[project.key];
-        const itemEn = dict.en.projects.items[project.key];
+        const item = t.projects.items[project.key];
         // Images zig-zag left/right down the page.
         const mediaRight = i % 2 === 1;
 
@@ -71,18 +69,15 @@ const MINI_STAGGER = ["0s", "0.06s", "0.12s", "0.18s"];
               </div>
 
               <h3 class="mb-3 text-[1.1875rem] font-bold leading-[1.2] tracking-[-0.022em] text-t1">
-                <span data-lang="es">{item.title}</span>
-                <span data-lang="en">{itemEn.title}</span>
+                {item.title}
               </h3>
 
               <p class="mb-5 flex-1 text-[0.75rem] leading-[1.85] text-t2">
-                <span data-lang="es">{item.description}</span>
-                <span data-lang="en">{itemEn.description}</span>
+                {item.description}
               </p>
 
-              <a href={project.href} class={caseLink}>
-                <span data-lang="es">{item.linkLabel} →</span>
-                <span data-lang="en">{itemEn.linkLabel} →</span>
+              <a href={localizePath(project.href, lang)} class={caseLink}>
+                {item.linkLabel} →
               </a>
             </div>
           </article>
@@ -93,8 +88,7 @@ const MINI_STAGGER = ["0s", "0.06s", "0.12s", "0.18s"];
     <div class="grid gap-3.5 md:grid-cols-2">
       {
         SECONDARY_PROJECTS.map((project, i) => {
-          const item = dict.es.projects.items[project.key];
-          const itemEn = dict.en.projects.items[project.key];
+          const item = t.projects.items[project.key];
 
           return (
             <article
@@ -119,18 +113,15 @@ const MINI_STAGGER = ["0s", "0.06s", "0.12s", "0.18s"];
               </ul>
 
               <h3 class="mb-2 text-[0.875rem] font-semibold tracking-[-0.01em] text-t1">
-                <span data-lang="es">{item.title}</span>
-                <span data-lang="en">{itemEn.title}</span>
+                {item.title}
               </h3>
 
               <p class="mb-3.5 flex-1 text-[0.6875rem] leading-[1.8] text-t2">
-                <span data-lang="es">{item.description}</span>
-                <span data-lang="en">{itemEn.description}</span>
+                {item.description}
               </p>
 
-              <a href={project.href} class:list={[caseLink, "text-[0.625rem]"]}>
-                <span data-lang="es">{item.linkLabel} →</span>
-                <span data-lang="en">{itemEn.linkLabel} →</span>
+              <a href={localizePath(project.href, lang)} class:list={[caseLink, "text-[0.625rem]"]}>
+                {item.linkLabel} →
               </a>
               </div>
             </article>

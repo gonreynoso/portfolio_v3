@@ -1,5 +1,11 @@
 ---
 import ThemeToggleV4 from "./ThemeToggleV4.astro";
+import {
+  LANGS,
+  alternatePath,
+  localizePath,
+  useTranslations,
+} from "../../i18n";
 
 interface Props {
   /** Case-study pages have no in-page sections, so their links point home. */
@@ -7,13 +13,18 @@ interface Props {
 }
 
 const { sectionPrefix = "" } = Astro.props;
+const { lang, t } = useTranslations(Astro.url);
+
+// On pages with no in-page sections the anchors need a page to hang off, and
+// that page has to carry the locale so English stays on the English home.
+const home = sectionPrefix ? localizePath("/", lang) : "";
 
 const LINKS = [
-  { href: `${sectionPrefix}#inicio`, es: "_inicio", en: "_home" },
-  { href: `${sectionPrefix}#servicios`, es: "_servicios", en: "_services" },
-  { href: `${sectionPrefix}#proyectos`, es: "_proyectos", en: "_projects" },
-  { href: `${sectionPrefix}#sobre-mi`, es: "_sobre_mí", en: "_about" },
-  { href: "/resume", es: "_cv", en: "_cv" },
+  { href: `${home}#inicio`, label: t.nav.sections.home },
+  { href: `${home}#servicios`, label: t.nav.sections.services },
+  { href: `${home}#proyectos`, label: t.nav.sections.projects },
+  { href: `${home}#sobre-mi`, label: t.nav.sections.about },
+  { href: localizePath("/resume", lang), label: t.nav.sections.cv },
 ];
 ---
 
@@ -22,7 +33,7 @@ const LINKS = [
   style="background: var(--nav-bg)"
 >
   <a
-    href="/"
+    href={localizePath("/", lang)}
     class="text-[0.75rem] tracking-[0.05em] text-t3 no-underline transition-colors duration-v4 hover:text-t2"
   >
     // <b class="font-medium text-ac">gonreynoso</b>.dev
@@ -37,8 +48,7 @@ const LINKS = [
               href={link.href}
               class="text-[0.6875rem] tracking-[0.1em] text-t2 no-underline transition-colors duration-v4 hover:text-ac"
             >
-              <span data-lang="es">{link.es}</span>
-              <span data-lang="en">{link.en}</span>
+              {link.label}
             </a>
           </li>
         ))
@@ -47,28 +57,31 @@ const LINKS = [
 
     <ThemeToggleV4 />
 
+    <!-- Real links to the same page in the other locale, not a JS switch. -->
     <div
       class="flex overflow-hidden rounded-[3px] border border-b1"
       role="group"
-      aria-label="Language"
+      aria-label={t.nav.languageLabel}
     >
-      <button
-        type="button"
-        data-lang-set="es"
-        aria-pressed="true"
-        class="bg-ac12 px-[0.625rem] py-1 font-mono text-[0.6875rem] font-semibold tracking-[0.1em] text-ac transition-colors duration-v4"
-      >
-        ES
-      </button>
-      <div class="w-px bg-b1"></div>
-      <button
-        type="button"
-        data-lang-set="en"
-        aria-pressed="false"
-        class="px-[0.625rem] py-1 font-mono text-[0.6875rem] font-semibold tracking-[0.1em] text-t3 transition-colors duration-v4"
-      >
-        EN
-      </button>
+      {
+        LANGS.map((code, i) => (
+          <>
+            {i > 0 && <div class="w-px bg-b1" />}
+            <a
+              href={alternatePath(Astro.url, code)}
+              hreflang={code}
+              data-lang-choice={code}
+              aria-current={code === lang ? "true" : undefined}
+              class:list={[
+                "px-[0.625rem] py-1 font-mono text-[0.6875rem] font-semibold uppercase tracking-[0.1em] no-underline transition-colors duration-v4",
+                code === lang ? "bg-ac12 text-ac" : "text-t3 hover:text-t2",
+              ]}
+            >
+              {code}
+            </a>
+          </>
+        ))
+      }
     </div>
   </div>
 </nav>

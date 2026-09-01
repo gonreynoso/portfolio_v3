@@ -1,34 +1,39 @@
 ---
 import CaseStudyLayoutV4 from "../layouts/CaseStudyLayoutV4.astro";
-import { dict } from "../i18n";
+import { useTranslations } from "../i18n";
 import { estudioFromentImg } from "../data/projects";
 
-const esC = dict.es.caseFroment;
-const enC = dict.en.caseFroment;
+// Kept out of `src/data/cases.ts` because it sits at `/estudiofroment` rather
+// than under the case-study collection, and its copy lives in
+// `dict[lang].caseFroment`.
+const { lang, t } = useTranslations(Astro.url);
+const c = t.caseFroment;
 
-const frontendBadges = ["Astro", "Tailwind CSS", "JavaScript ES6"];
-const libraryBadges = ["GSAP", "Swiper.js"];
-const deployBadges = ["Vercel", "NIC.ar DNS"];
+const CARD_ALT = {
+  es: "Estudio Froment & Asociados — sitio del estudio jurídico",
+  en: "Estudio Froment & Asociados — law firm website",
+};
 ---
 
 <CaseStudyLayoutV4
-  title={esC.title}
-  description={esC.summary}
-  image={estudioFromentImg}
-  cardImage={estudioFromentImg}
-  cardAlt="Estudio Froment & Asociados"
-  accentKey="estudiofroment"
-  esContent={{ badge: esC.badge, role: esC.role, summary: esC.summary, backToHome: esC.backToHome }}
-  enContent={{ badge: enC.badge, role: enC.role, summary: enC.summary, backToHome: enC.backToHome }}
-  esSections={esC.sections}
-  enSections={enC.sections}
-  esSpecs={esC.specs}
-  enSpecs={enC.specs}
-  specsData={{
-    envValue: esC.specs.envValue,
-    frontendBadges,
-    libraryBadges,
-    deployBadges,
-    ctaUrl: esC.specs.ctaUrl,
+  title={c.title}
+  description={c.summary}
+  content={{
+    badge: c.badge,
+    role: c.role,
+    summary: c.summary,
+    backToHome: c.backToHome,
   }}
+  sections={c.sections}
+  specs={c.specs}
+  specsData={{
+    envValue: c.specs.envValue,
+    frontendBadges: ["Astro", "Tailwind CSS", "JavaScript ES6"],
+    libraryBadges: ["GSAP", "Swiper.js"],
+    deployBadges: ["Vercel", "NIC.ar DNS"],
+    ctaUrl: c.specs.ctaUrl,
+  }}
+  accentKey="estudiofroment"
+  image={estudioFromentImg}
+  cardAlt={CARD_ALT[lang]}
 />

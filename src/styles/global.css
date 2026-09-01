@@ -1,6 +1,6 @@
-/* i18n: hide the inactive-language content. Both languages render at
-   build time; a root class on <html> chooses which one is visible. */
-html.lang-es [data-lang="en"],
-html.lang-en [data-lang="es"] {
-  display: none;
-}
+/* Intentionally near-empty.
+ *
+ * This held the rule that hid the inactive language when both locales were
+ * rendered into the same page. Locale now lives in the URL and each page ships
+ * one language, so nothing needs hiding. Kept as the import point BaseHead
+ * uses for global styles. */

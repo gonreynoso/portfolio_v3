@@ -1,0 +1,43 @@
+---
+import CaseStudyLayoutV4 from "../../../layouts/CaseStudyLayoutV4.astro";
+import { CASES, type CaseConfig } from "../../../data/cases";
+import { useTranslations } from "../../../i18n";
+
+export function getStaticPaths() {
+  return CASES.map((config) => ({
+    params: { slug: config.slug },
+    props: { config },
+  }));
+}
+
+const { config } = Astro.props as { config: CaseConfig };
+const { lang, t } = useTranslations(Astro.url);
+const c = t.cases[config.key];
+---
+
+<CaseStudyLayoutV4
+  title={c.title}
+  description={c.summary}
+  content={{
+    badge: c.badge,
+    role: c.role,
+    summary: c.summary,
+    backToHome: c.backToHome,
+  }}
+  sections={c.sections}
+  specs={c.specs}
+  specsData={{
+    envValue: c.specs.envValue,
+    frontendBadges: config.frontendBadges,
+    libraryBadges: config.libraryBadges,
+    deployBadges: config.deployBadges,
+    ctaUrl: c.specs.ctaUrl,
+  }}
+  accentKey={config.accentKey}
+  image={config.image}
+  cardAlt={config.cardAlt[lang]}
+  cardCaption={config.cardCaption?.[lang]}
+  secondaryImage={config.secondaryImage}
+  secondaryAlt={config.secondaryAlt?.[lang]}
+  secondaryCaption={config.secondaryCaption?.[lang]}
+/>

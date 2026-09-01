@@ -4,47 +4,49 @@
 //
 // The handoff left the mobile menu undecided ("decide with Gonzalo whether to
 // add a drawer or leave nav link-free"). This is that decision.
+import { localizePath, useTranslations } from "../../i18n";
+
 interface Props {
   /** Pages without the home sections point their links back at "/". */
   sectionPrefix?: string;
 }
 
 const { sectionPrefix = "" } = Astro.props;
+const { lang, t } = useTranslations(Astro.url);
+
+// On pages with no in-page sections the anchors need a page to hang off, and
+// that page has to carry the locale.
+const home = sectionPrefix ? localizePath("/", lang) : "";
 
 const ITEMS = [
   {
     id: "inicio",
-    href: `${sectionPrefix}#inicio`,
-    es: "inicio",
-    en: "home",
+    label: t.nav.mobile.home,
+    href: `${home}#inicio`,
     icon: `<path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/>`,
   },
   {
     id: "servicios",
-    href: `${sectionPrefix}#servicios`,
-    es: "servicios",
-    en: "services",
+    label: t.nav.mobile.services,
+    href: `${home}#servicios`,
     icon: `<rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/>`,
   },
   {
     id: "proyectos",
-    href: `${sectionPrefix}#proyectos`,
-    es: "proyectos",
-    en: "projects",
+    label: t.nav.mobile.projects,
+    href: `${home}#proyectos`,
     icon: `<path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4L10 8h9.5A1.5 1.5 0 0 1 21 9.5v8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/>`,
   },
   {
     id: "sobre-mi",
-    href: `${sectionPrefix}#sobre-mi`,
-    es: "sobre mí",
-    en: "about",
+    label: t.nav.mobile.about,
+    href: `${home}#sobre-mi`,
     icon: `<circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/>`,
   },
   {
     id: "cv",
-    href: "/resume",
-    es: "cv",
-    en: "cv",
+    label: t.nav.mobile.cv,
+    href: localizePath("/resume", lang),
     icon: `<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h4"/>`,
   },
 ];
@@ -77,8 +79,7 @@ const ITEMS = [
               set:html={item.icon}
             />
             <span class="text-[0.5625rem] leading-none tracking-[0.06em]">
-              <span data-lang="es">{item.es}</span>
-              <span data-lang="en">{item.en}</span>
+              {item.label}
             </span>
           </a>
         </li>

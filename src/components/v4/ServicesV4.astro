@@ -1,7 +1,9 @@
 ---
 import Section from "./Section.astro";
 import SectionHead from "./SectionHead.astro";
-import { dict } from "../../i18n";
+import { dict, useTranslations } from "../../i18n";
+
+const { t } = useTranslations(Astro.url);
 
 type ServiceKey = keyof typeof dict.es.services.items;
 
@@ -14,12 +16,9 @@ const STAGGER = ["0s", "0.08s", "0.14s", "0.20s"];
 <Section id="servicios">
   <SectionHead
     number="01"
-    eyebrowEs="SERVICIOS"
-    eyebrowEn="SERVICES"
-    titleEs={dict.es.services.title}
-    titleEn={dict.en.services.title}
-    subtitleEs={dict.es.services.subtitle}
-    subtitleEn={dict.en.services.subtitle}
+    eyebrow={t.eyebrows.services}
+    title={t.services.title}
+    subtitle={t.services.subtitle}
   />
 
   <div class="grid gap-3.5 md:grid-cols-2">
@@ -33,12 +32,10 @@ const STAGGER = ["0s", "0.08s", "0.14s", "0.20s"];
             {String(i + 1).padStart(2, "0")}
           </div>
           <h3 class="mb-2.5 text-[0.875rem] font-semibold text-t1 before:font-normal before:text-ac before:content-['//_']">
-            <span data-lang="es">{dict.es.services.items[key].title}</span>
-            <span data-lang="en">{dict.en.services.items[key].title}</span>
+            {t.services.items[key].title}
           </h3>
           <p class="text-[0.75rem] leading-[1.85] text-t2">
-            <span data-lang="es">{dict.es.services.items[key].desc}</span>
-            <span data-lang="en">{dict.en.services.items[key].desc}</span>
+            {t.services.items[key].desc}
           </p>
         </article>
       ))
