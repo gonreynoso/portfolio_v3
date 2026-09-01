@@ -22,9 +22,7 @@ export type ProjectKey = keyof typeof dict.es.projects.items;
 export type Project = {
   key: ProjectKey;
   href: string;
-  /** Absent when the card renders a mockup instead of a screenshot. */
-  image?: ImageMetadata;
-  mockup?: "whatsapp";
+  image: ImageMetadata;
   /** Display names. The first one is rendered as the headline technology. */
   tags: string[];
   /** Featured projects get the large alternating layout; the rest are mini cards. */
@@ -32,20 +30,6 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
-  {
-    key: "ilonBot",
-    href: "/casos/refugioilon-bot",
-    mockup: "whatsapp",
-    tags: [
-      TAG.CLAUDE.name,
-      TAG.WA_API.name,
-      TAG.PYTHON.name,
-      TAG.FASTAPI.name,
-      TAG.POSTGRES.name,
-      TAG.DO.name,
-    ],
-    featured: true,
-  },
   {
     key: "froment",
     href: "/estudiofroment",
