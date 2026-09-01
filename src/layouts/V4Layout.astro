@@ -1,0 +1,136 @@
+---
+// Shell for the v4 redesign. Runs alongside BaseLayout, which still serves
+// /resume and /404 in the previous design.
+import BaseHead from "@components/BaseHead.astro";
+import Analytics from "@components/Analytics/Analytics.astro";
+import NavV4 from "@components/v4/NavV4.astro";
+import FooterV4 from "@components/v4/FooterV4.astro";
+import { ViewTransitions } from "astro:transitions";
+
+import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
+import "@fontsource-variable/jetbrains-mono";
+import "../styles/v4.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  ogType?: string;
+}
+
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  image,
+  ogType,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" data-v4 class="dark lang-es" data-theme="dark">
+  <head>
+    <script is:inline>
+      // Marks JS as available so the scroll-reveal hidden state can be
+      // applied from CSS. Without it, a no-JS visitor would see an empty
+      // page and above-the-fold content would flash hidden for a frame.
+      document.documentElement.classList.add("js");
+    </script>
+    <script is:inline>
+      // i18n runtime:
+      //   - runs synchronously before first paint so the wrong language
+      //     never flickers,
+      //   - re-applies on every View Transitions swap (the new static HTML
+      //     always ships with `class="lang-es"`),
+      //   - click delegation on `document` so the language pill keeps
+      //     working after swaps without rebinding.
+      (() => {
+        const apply = (forceLang) => {
+          let lang = forceLang;
+          if (!lang) {
+            try { lang = localStorage.getItem("lang"); } catch (_) {}
+          }
+          if (lang !== "es" && lang !== "en") {
+            lang =
+              typeof navigator !== "undefined" &&
+              navigator.language &&
+              navigator.language.toLowerCase().startsWith("es")
+                ? "es"
+                : "en";
+          }
+          const html = document.documentElement;
+          html.classList.remove("lang-es", "lang-en");
+          html.classList.add("lang-" + lang);
+          html.setAttribute("lang", lang);
+
+          document.querySelectorAll("[data-lang-set]").forEach((btn) => {
+            const on = btn.dataset.langSet === lang;
+            btn.classList.toggle("bg-ac12", on);
+            btn.classList.toggle("text-ac", on);
+            btn.classList.toggle("text-t3", !on);
+            btn.setAttribute("aria-pressed", String(on));
+          });
+        };
+
+        apply();
+
+        document.addEventListener("click", (e) => {
+          const t = e.target instanceof Element ? e.target : null;
+          const btn = t && t.closest("[data-lang-set]");
+          if (!btn) return;
+          const next = btn.dataset.langSet;
+          try { localStorage.setItem("lang", next); } catch (_) {}
+          apply(next);
+        });
+
+        document.addEventListener("astro:after-swap", () => apply());
+      })();
+    </script>
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      ogType={ogType}
+    />
+    <Analytics />
+    {TRANSITION_API && <ViewTransitions />}
+  </head>
+  <body>
+    <NavV4 />
+    <slot />
+    <FooterV4 />
+
+    <script>
+      // Scroll reveal. Re-runs after every View Transitions swap because the
+      // observer only ever holds elements from the page it was created on.
+      const reveal = () => {
+        const targets = document.querySelectorAll<HTMLElement>(".fu");
+        if (!targets.length) return;
+
+        const reduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        if (reduced) {
+          targets.forEach((el) => el.classList.add("show"));
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add("show");
+              observer.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.1 },
+        );
+
+        targets.forEach((el) => observer.observe(el));
+      };
+
+      reveal();
+      document.addEventListener("astro:after-swap", reveal);
+    </script>
+  </body>
+</html>

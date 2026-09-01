@@ -1,0 +1,21 @@
+---
+interface Props {
+  id?: string;
+  /** Consecutive sections drop their top padding so the rhythm doesn't double. */
+  tight?: boolean;
+  class?: string;
+}
+
+const { id, tight = false, class: className = "" } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    "mx-auto max-w-[1100px] px-6 pb-[60px] md:px-12 md:pb-[100px]",
+    tight ? "pt-0" : "pt-[60px] md:pt-[100px]",
+    className,
+  ]}
+>
+  <slot />
+</section>

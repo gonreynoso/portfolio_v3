@@ -1,0 +1,70 @@
+---
+interface Props {
+  /** Case-study pages have no in-page sections, so their links point home. */
+  sectionPrefix?: string;
+}
+
+const { sectionPrefix = "" } = Astro.props;
+
+const LINKS = [
+  { href: `${sectionPrefix}#inicio`, es: "_inicio", en: "_home" },
+  { href: `${sectionPrefix}#servicios`, es: "_servicios", en: "_services" },
+  { href: `${sectionPrefix}#proyectos`, es: "_proyectos", en: "_projects" },
+  { href: `${sectionPrefix}#sobre-mi`, es: "_sobre_mí", en: "_about" },
+  { href: "/resume", es: "_cv", en: "_cv" },
+];
+---
+
+<nav
+  class="fixed inset-x-0 top-0 z-[100] flex h-[54px] items-center justify-between border-b border-b1 px-5 backdrop-blur-[16px] md:px-12"
+  style="background: oklch(7.5% 0.01 240 / 0.88)"
+>
+  <a
+    href="/"
+    class="text-[12px] tracking-[0.05em] text-t3 no-underline transition-colors duration-v4 hover:text-t2"
+  >
+    // <b class="font-medium text-ac">gonzalo</b>.dev
+  </a>
+
+  <div class="flex items-center gap-7">
+    <ul class="hidden list-none gap-[22px] md:flex">
+      {
+        LINKS.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="text-[11px] tracking-[0.1em] text-t3 no-underline transition-colors duration-v4 hover:text-ac"
+            >
+              <span data-lang="es">{link.es}</span>
+              <span data-lang="en">{link.en}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div
+      class="flex overflow-hidden rounded-[3px] border border-b1"
+      role="group"
+      aria-label="Language"
+    >
+      <button
+        type="button"
+        data-lang-set="es"
+        aria-pressed="true"
+        class="bg-ac12 px-[10px] py-1 font-mono text-[11px] font-semibold tracking-[0.1em] text-ac transition-colors duration-v4"
+      >
+        ES
+      </button>
+      <div class="w-px bg-b1"></div>
+      <button
+        type="button"
+        data-lang-set="en"
+        aria-pressed="false"
+        class="px-[10px] py-1 font-mono text-[11px] font-semibold tracking-[0.1em] text-t3 transition-colors duration-v4"
+      >
+        EN
+      </button>
+    </div>
+  </div>
+</nav>
