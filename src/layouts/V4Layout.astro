@@ -16,6 +16,8 @@ interface Props {
   description?: string;
   image?: string;
   ogType?: string;
+  /** Pages without the home sections point their nav links back at "/". */
+  navSectionPrefix?: string;
 }
 
 const {
@@ -23,6 +25,7 @@ const {
   description = SITE_DESCRIPTION,
   image,
   ogType,
+  navSectionPrefix = "",
 } = Astro.props;
 ---
 
@@ -95,7 +98,7 @@ const {
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
-    <NavV4 />
+    <NavV4 sectionPrefix={navSectionPrefix} />
     <slot />
     <FooterV4 />
 

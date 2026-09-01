@@ -1,0 +1,381 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+import V4Layout from "./V4Layout.astro";
+import { dict } from "../i18n";
+
+interface ContentObj {
+  badge: string;
+  role: string;
+  summary: string;
+  backToHome: string;
+}
+
+interface SectionBase {
+  number: string;
+  title: string;
+}
+
+interface ChallengeSection extends SectionBase {
+  body: string;
+}
+
+interface ProcessSection extends SectionBase {
+  steps: Array<{ title: string; body: string }>;
+}
+
+interface OutcomeSection extends SectionBase {
+  body: string;
+}
+
+interface Sections {
+  challenge: ChallengeSection;
+  process: ProcessSection;
+  outcome: OutcomeSection;
+}
+
+interface Specs {
+  title: string;
+  env: string;
+  frontend: string;
+  libraries: string;
+  deploy: string;
+  cta?: string;
+}
+
+interface SpecsData {
+  envValue: string;
+  frontendBadges: string[];
+  libraryBadges: string[];
+  deployBadges: string[];
+  ctaUrl?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  esContent: ContentObj;
+  enContent: ContentObj;
+  esSections: Sections;
+  enSections: Sections;
+  esSpecs: Specs;
+  enSpecs: Specs;
+  specsData: SpecsData;
+  /** Per-case accent. Overrides the site accent for this page's content only —
+   *  the nav and footer stay on the brand cyan. */
+  accentColor?: string;
+  image: ImageMetadata;
+  cardImage: ImageMetadata;
+  cardAlt?: string;
+  cardCaption?: { es: string; en: string };
+  secondaryImage?: ImageMetadata;
+  secondaryAlt?: string;
+  secondaryCaption?: { es: string; en: string };
+  backHref?: string;
+}
+
+const {
+  title,
+  description,
+  esContent,
+  enContent,
+  esSections,
+  enSections,
+  esSpecs,
+  enSpecs,
+  specsData,
+  accentColor,
+  image,
+  cardImage,
+  cardAlt = "Project screenshot",
+  cardCaption = {
+    es: "Captura del proyecto — Kensiweb.",
+    en: "Project screenshot — Kensiweb.",
+  },
+  secondaryImage,
+  secondaryAlt = "Project screenshot",
+  secondaryCaption = {
+    es: "Panel de administración — Kensiweb.",
+    en: "Admin dashboard — Kensiweb.",
+  },
+  backHref = "/",
+} = Astro.props as Props;
+
+// The alpha variants are derived from the base so a per-case accent stays as
+// harmonious as the cyan the design ships with.
+const accentVars = accentColor
+  ? [
+      `--ac: ${accentColor}`,
+      `--ac06: color-mix(in oklch, ${accentColor} 6%, transparent)`,
+      `--ac12: color-mix(in oklch, ${accentColor} 12%, transparent)`,
+      `--ac30: color-mix(in oklch, ${accentColor} 30%, transparent)`,
+    ].join("; ")
+  : undefined;
+
+const tag =
+  "rounded-[2px] border border-b1 bg-s2 px-2 py-[3px] text-[10px] tracking-[0.06em] text-t3";
+const specLabel = "mb-2 text-[10px] tracking-[0.14em] text-t3";
+---
+
+<V4Layout
+  title={title}
+  description={description}
+  image={image.src}
+  navSectionPrefix="/"
+>
+  <article
+    class="mx-auto max-w-[1100px] px-6 pb-[60px] pt-[100px] md:px-12 md:pb-[100px] md:pt-[130px]"
+    style={accentVars}
+  >
+    <a
+      href={backHref}
+      class="mb-6 inline-flex items-center gap-1.5 text-[11px] tracking-[0.12em] text-ac no-underline transition-opacity duration-v4 hover:opacity-80"
+    >
+      ←
+      <span data-lang="es">{esContent.backToHome}</span>
+      <span data-lang="en">{enContent.backToHome}</span>
+    </a>
+
+    <!-- Hero -->
+    <header
+      class="relative mb-14 overflow-hidden rounded-v4 border border-b1 bg-s1 px-6 py-14 text-center md:px-12 md:py-16"
+    >
+      <div
+        class="pointer-events-none absolute inset-0"
+        style="background: radial-gradient(ellipse 70% 340px at 50% -40px, var(--ac06), transparent 70%)"
+      >
+      </div>
+
+      <div class="relative">
+        <div class="mb-4 text-[11px] tracking-[0.18em] text-ac">
+          <span data-lang="es">{esContent.badge}</span>
+          <span data-lang="en">{enContent.badge}</span>
+        </div>
+
+        <h1
+          class="mx-auto max-w-3xl text-[clamp(28px,4vw,46px)] font-bold leading-[1.1] tracking-[-0.026em] text-t1"
+        >
+          {title}
+        </h1>
+
+        <p class="mx-auto mt-4 max-w-2xl text-[12px] tracking-[0.06em] text-ac">
+          <span data-lang="es">{esContent.role}</span>
+          <span data-lang="en">{enContent.role}</span>
+        </p>
+
+        <p class="mx-auto mt-3 max-w-2xl text-[13px] leading-[1.85] text-t2">
+          <span data-lang="es">{esContent.summary}</span>
+          <span data-lang="en">{enContent.summary}</span>
+        </p>
+      </div>
+    </header>
+
+    <div class="grid gap-10 lg:grid-cols-3 lg:gap-16">
+      <div class="lg:col-span-2">
+        <!-- Challenge -->
+        <section class="fu mb-12 border-b border-b1 pb-12">
+          <h2 class="mb-4 text-[19px] font-bold tracking-[-0.022em] text-t1">
+            <span class="mr-2 text-ac">{esSections.challenge.number}.</span>
+            <span data-lang="es">{esSections.challenge.title}</span>
+            <span data-lang="en">{enSections.challenge.title}</span>
+          </h2>
+          <p class="text-[13px] leading-[1.9] text-t2">
+            <span data-lang="es">{esSections.challenge.body}</span>
+            <span data-lang="en">{enSections.challenge.body}</span>
+          </p>
+
+          <figure class="mt-8">
+            <Image
+              src={cardImage}
+              alt={cardAlt}
+              widths={[600, 1000]}
+              sizes="(min-width: 1024px) 700px, 100vw"
+              class="w-full rounded-v4 border border-b1"
+            />
+            <figcaption
+              class="mt-2.5 text-center text-[10px] tracking-[0.06em] text-t3"
+            >
+              <span data-lang="es">{cardCaption.es}</span>
+              <span data-lang="en">{cardCaption.en}</span>
+            </figcaption>
+          </figure>
+        </section>
+
+        <!-- Process -->
+        <section class="fu mb-12 border-b border-b1 pb-12">
+          <h2 class="mb-6 text-[19px] font-bold tracking-[-0.022em] text-t1">
+            <span class="mr-2 text-ac">{esSections.process.number}.</span>
+            <span data-lang="es">{esSections.process.title}</span>
+            <span data-lang="en">{enSections.process.title}</span>
+          </h2>
+
+          <div class="flex flex-col gap-6">
+            {
+              esSections.process.steps.map((step, i) => (
+                <div>
+                  <h3 class="mb-1.5 text-[14px] font-semibold text-t1 before:font-normal before:text-ac before:content-['//_']">
+                    <span data-lang="es">{step.title}</span>
+                    <span data-lang="en">
+                      {enSections.process.steps[i].title}
+                    </span>
+                  </h3>
+                  <p class="text-[13px] leading-[1.9] text-t2">
+                    <span data-lang="es">{step.body}</span>
+                    <span data-lang="en">
+                      {enSections.process.steps[i].body}
+                    </span>
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Outcome -->
+        <section class="fu">
+          <h2 class="mb-4 text-[19px] font-bold tracking-[-0.022em] text-t1">
+            <span class="mr-2 text-ac">{esSections.outcome.number}.</span>
+            <span data-lang="es">{esSections.outcome.title}</span>
+            <span data-lang="en">{enSections.outcome.title}</span>
+          </h2>
+          <p class="text-[13px] leading-[1.9] text-t2">
+            <span data-lang="es">{esSections.outcome.body}</span>
+            <span data-lang="en">{enSections.outcome.body}</span>
+          </p>
+
+          {
+            secondaryImage && (
+              <figure class="mt-8">
+                <Image
+                  src={secondaryImage}
+                  alt={secondaryAlt}
+                  widths={[600, 1000]}
+                  sizes="(min-width: 1024px) 700px, 100vw"
+                  class="w-full rounded-v4 border border-b1"
+                />
+                <figcaption class="mt-2.5 text-center text-[10px] tracking-[0.06em] text-t3">
+                  <span data-lang="es">{secondaryCaption.es}</span>
+                  <span data-lang="en">{secondaryCaption.en}</span>
+                </figcaption>
+              </figure>
+            )
+          }
+        </section>
+      </div>
+
+      <!-- Specs -->
+      <aside class="fu">
+        <div
+          class="rounded-v4 border border-b1 bg-s1 p-6 lg:sticky lg:top-[78px]"
+        >
+          <h2
+            class="mb-5 border-b border-b1 pb-4 text-[14px] font-semibold text-t1 before:font-normal before:text-ac before:content-['//_']"
+          >
+            <span data-lang="es">{esSpecs.title}</span>
+            <span data-lang="en">{enSpecs.title}</span>
+          </h2>
+
+          <div class="flex flex-col gap-5">
+            <div>
+              <div class={specLabel}>
+                <span data-lang="es">{esSpecs.env}</span>
+                <span data-lang="en">{enSpecs.env}</span>
+              </div>
+              <span class={tag}>{specsData.envValue}</span>
+            </div>
+
+            <div>
+              <div class={specLabel}>
+                <span data-lang="es">{esSpecs.frontend}</span>
+                <span data-lang="en">{enSpecs.frontend}</span>
+              </div>
+              <ul class="flex list-none flex-wrap gap-1.5">
+                {
+                  specsData.frontendBadges.map((b, i) => (
+                    <li
+                      class={
+                        i === 0
+                          ? "rounded-[2px] border border-ac30 bg-ac06 px-2 py-[3px] text-[10px] tracking-[0.06em] text-ac"
+                          : tag
+                      }
+                    >
+                      {b}
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+
+            {
+              specsData.libraryBadges.length > 0 && (
+                <div>
+                  <div class={specLabel}>
+                    <span data-lang="es">{esSpecs.libraries}</span>
+                    <span data-lang="en">{enSpecs.libraries}</span>
+                  </div>
+                  <ul class="flex list-none flex-wrap gap-1.5">
+                    {specsData.libraryBadges.map((b) => (
+                      <li class={tag}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+
+            <div>
+              <div class={specLabel}>
+                <span data-lang="es">{esSpecs.deploy}</span>
+                <span data-lang="en">{enSpecs.deploy}</span>
+              </div>
+              <ul class="flex list-none flex-wrap gap-1.5">
+                {specsData.deployBadges.map((b) => <li class={tag}>{b}</li>)}
+              </ul>
+            </div>
+
+            {
+              specsData.ctaUrl && (
+                <a
+                  href={specsData.ctaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-1 inline-flex items-center justify-center gap-2 rounded-v4 bg-ac px-4 py-3 text-[11px] font-bold tracking-[0.1em] no-underline transition duration-v4 hover:-translate-y-0.5 hover:opacity-[0.87] hover:shadow-[0_10px_36px_var(--ac30)]"
+                  style="color: oklch(8% 0.01 240)"
+                >
+                  <span data-lang="es">{esSpecs.cta}</span>
+                  <span data-lang="en">{enSpecs.cta}</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 17L17 7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+              )
+            }
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Back to the project list -->
+    <div class="mt-16 border-t border-b1 pt-8 text-center">
+      <a
+        href={backHref}
+        class="inline-flex items-center gap-2 rounded-v4 border border-b1 px-4 py-2.5 text-[11px] tracking-[0.06em] text-t2 no-underline transition-colors duration-v4 hover:border-ac hover:text-ac"
+      >
+        ←
+        <span data-lang="es">{dict.es.projects.title}</span>
+        <span data-lang="en">{dict.en.projects.title}</span>
+      </a>
+    </div>
+  </article>
+</V4Layout>

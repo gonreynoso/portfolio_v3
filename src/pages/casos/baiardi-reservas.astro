@@ -1,6 +1,7 @@
 ---
-import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import CaseStudyLayoutV4 from "../../layouts/CaseStudyLayoutV4.astro";
 import { dict } from "../../i18n";
+import { baiardiReservasImg, ADMIN_SCREENSHOTS } from "../../data/projects";
 
 const esC = dict.es.cases.baiardiReservas;
 const enC = dict.en.cases.baiardiReservas;
@@ -9,18 +10,17 @@ const libraryBadges = ["Mercado Pago", "Resend"];
 const deployBadges = ["Laravel 12", "MySQL", "DigitalOcean"];
 ---
 
-<CaseStudyLayout
+<CaseStudyLayoutV4
   title={esC.title}
   description={esC.summary}
-  image="/baiardireservas.webp"
-  heroImage="/baiardireservas.webp"
-  cardImage="/baiardireservas.webp"
+  image={baiardiReservasImg}
+  cardImage={baiardiReservasImg}
   cardAlt="Baiardi Aventura — sitio público de reservas"
   cardCaption={{
     es: "Sitio público — landing y reservas de actividades.",
     en: "Public site — landing and activity bookings.",
   }}
-  secondaryImage="/baiardireservas-admin.webp"
+  secondaryImage={ADMIN_SCREENSHOTS.baiardiReservas}
   secondaryAlt="Baiardi Aventura — panel de administración"
   secondaryCaption={{
     es: "Panel de administración — gestión de reservas y salidas.",

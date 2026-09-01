@@ -1,6 +1,7 @@
 ---
-import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import CaseStudyLayoutV4 from "../../layouts/CaseStudyLayoutV4.astro";
 import { dict } from "../../i18n";
+import { viveroTakumiImg, ADMIN_SCREENSHOTS } from "../../data/projects";
 
 const esC = dict.es.cases.viveroTakumi;
 const enC = dict.en.cases.viveroTakumi;
@@ -9,18 +10,17 @@ const libraryBadges = ["Supabase", "Motion", "Recharts", "Resend"];
 const deployBadges = ["Netlify", "Netlify Functions"];
 ---
 
-<CaseStudyLayout
+<CaseStudyLayoutV4
   title={esC.title}
   description={esC.summary}
-  image="/viverotakumi.webp"
-  heroImage="/viverotakumi.webp"
-  cardImage="/viverotakumi.webp"
+  image={viveroTakumiImg}
+  cardImage={viveroTakumiImg}
   cardAlt="Vivero Takumi — tienda online de plantas"
   cardCaption={{
     es: "Tienda pública — catálogo, carrito y checkout.",
     en: "Public store — catalog, cart and checkout.",
   }}
-  secondaryImage="/viverotakumi-admin.webp"
+  secondaryImage={ADMIN_SCREENSHOTS.viveroTakumi}
   secondaryAlt="Vivero Takumi — panel de administración"
   secondaryCaption={{
     es: "Panel de administración — métricas, plantas y pedidos.",
