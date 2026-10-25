@@ -7,7 +7,7 @@
     email: "gonzalo.reynoso9@gmail.com",
     phone: "+54 9 11 — —",
     location: "Buenos Aires, Argentina",
-    website: "gonreynoso.dev",
+    website: "gonreynoso.com",
     linkedin: "linkedin.com/in/gonreynoso",
     github: "github.com/gonreynoso",
     brand: "kensiweb.com",

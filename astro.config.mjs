@@ -4,7 +4,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://gonreynoso.dev',
+  site: 'https://gonreynoso.com',
   integrations: [
     // No `i18n` option here: it assumes every locale carries a URL prefix,
     // and Spanish deliberately does not, which collapsed the sitemap to a

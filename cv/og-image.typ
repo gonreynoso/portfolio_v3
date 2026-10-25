@@ -1,4 +1,4 @@
-// Open Graph social card for gonreynoso.dev.
+// Open Graph social card for gonreynoso.com.
 // Renders 1200×630 (the standard Open Graph size). Output is PNG;
 // the build script converts it to WebP with sharp.
 
@@ -48,7 +48,7 @@
   #grid(
     columns: (1fr, auto),
     align: (left + bottom, right + bottom),
-    text(size: 16pt, fill: rgb("#9ca3af"))[gonreynoso.dev],
+    text(size: 16pt, fill: rgb("#9ca3af"))[gonreynoso.com],
     stack(dir: ltr, spacing: 10pt,
       box(
         inset: (x: 12pt, y: 6pt),
