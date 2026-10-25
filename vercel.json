@@ -5,6 +5,11 @@
       "source": "/casos/refugioilon-bot",
       "destination": "/casos/refugioilon-booking",
       "statusCode": 301
+    },
+    {
+      "source": "/en/cases/refugioilon-bot",
+      "destination": "/en/cases/refugioilon-booking",
+      "statusCode": 301
     }
   ]
 }

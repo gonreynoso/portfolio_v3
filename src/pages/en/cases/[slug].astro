@@ -31,7 +31,7 @@ const c = t.cases[config.key];
     frontendBadges: config.frontendBadges,
     libraryBadges: config.libraryBadges,
     deployBadges: config.deployBadges,
-    ctaUrl: c.specs.ctaUrl,
+    ctaUrl: "ctaUrl" in c.specs ? c.specs.ctaUrl : undefined,
   }}
   accentKey={config.accentKey}
   image={config.image}
