@@ -1,23 +1,13 @@
 ---
-import { GOOGLE_ANALYTICS_ID } from "../../config";
+// Google tags are loaded by Google Tag Manager (see `Gtm.astro`). Nothing here
+// may load gtag.js as well: GA4 lives inside the container, and a second direct
+// loader makes every page view count twice.
 ---
 
-{import.meta.env.PROD && (
-  <>
-    <script
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
-    />
-    <script is:inline define:vars={{ GOOGLE_ANALYTICS_ID }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", GOOGLE_ANALYTICS_ID);
-    </script>
+{
+  import.meta.env.PROD && (
     <script is:inline>
       import("@vercel/analytics").then(({ inject }) => inject());
     </script>
-  </>
-)}
+  )
+}

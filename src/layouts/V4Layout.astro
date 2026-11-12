@@ -3,6 +3,8 @@
 // /resume and /404 in the previous design.
 import BaseHead from "@components/BaseHead.astro";
 import Analytics from "@components/Analytics/Analytics.astro";
+import Gtm from "@components/Analytics/Gtm.astro";
+import GtmNoScript from "@components/Analytics/GtmNoScript.astro";
 import NavV4 from "@components/v4/NavV4.astro";
 import FooterV4 from "@components/v4/FooterV4.astro";
 import MobileNav from "@components/v4/MobileNav.astro";
@@ -123,6 +125,7 @@ const { title = t.site.title, description = t.site.description } = Astro.props;
         });
       })();
     </script>
+    <Gtm />
     <BaseHead
       title={title}
       description={description}
@@ -133,6 +136,7 @@ const { title = t.site.title, description = t.site.description } = Astro.props;
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>
+    <GtmNoScript />
     <NavV4 sectionPrefix={navSectionPrefix} />
     <slot />
     <FooterV4 />

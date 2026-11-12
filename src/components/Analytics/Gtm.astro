@@ -1,0 +1,26 @@
+---
+import { GTM_ID } from "../../config";
+---
+
+<!--
+  Google Tag Manager loader. Keep this format: `gtm.start` must reach
+  dataLayer before the container script is requested, otherwise tags bound to
+  Initialization or Page View never fire. Do not add gtag.js here — GA4 is a
+  tag inside the container, and loading both double-counts every page view.
+-->
+{
+  import.meta.env.PROD && (
+    <script is:inline define:vars={{ GTM_ID }}>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l !== "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", GTM_ID);
+    </script>
+  )
+}
