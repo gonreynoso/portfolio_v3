@@ -61,7 +61,10 @@ const OG_IMAGE_ALT = {
 <!-- Open Graph -->
 <meta property="og:type" content={ogType} />
 <meta property="og:url" content={Astro.url} />
-<meta property="og:site_name" content="Kensiweb" />
+<!-- This site is the person; KensiWeb is a separate agency site. Naming this
+     page "Kensiweb" made search engines treat one brand as two competing
+     entities. The agency is linked from the JSON-LD instead. -->
+<meta property="og:site_name" content="Gonzalo Reynoso" />
 <meta property="og:locale" content={OG_LOCALE[lang]} />
 {LANGS.filter((code) => code !== lang).map((code) => (
 	<meta property="og:locale:alternate" content={OG_LOCALE[code]} />
@@ -93,8 +96,9 @@ const OG_IMAGE_ALT = {
   ],
   "jobTitle": "Freelance Developer",
   "description": description,
-  "brand": {
-    "@type": "Brand",
-    "name": "Kensiweb"
+  "worksFor": {
+    "@type": "Organization",
+    "name": "KensiWeb",
+    "url": "https://kensiweb.com"
   }
 })} />
