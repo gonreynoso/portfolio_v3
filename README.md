@@ -117,4 +117,4 @@ The legacy Refugio Ilón bot URLs are redirected permanently in `vercel.json` fo
 - `/casos/refugioilon-bot` → `/casos/refugioilon-booking`
 - `/en/cases/refugioilon-bot` → `/en/cases/refugioilon-booking`
 
-The former `.dev` domain is not configured by this repository; DNS and registrar settings must point the `.com` domain to the deployment provider.
+The former `gonreynoso.dev` domain is no longer under this project's control: it is registered by a third party and parked, so it cannot serve a redirect. `gonreynoso.com` is the only canonical domain, and it is set in `astro.config.mjs`.
