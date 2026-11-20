@@ -10,7 +10,16 @@
  * (vivero-takumi and laboratorio-spotorno); their `dark` values are the
  * corrected ones.
  */
-export type AccentPair = { dark: string; light: string };
+export type AccentPair = {
+  dark: string;
+  light: string;
+  /** Optional label color for accent-filled buttons (`text-onac`). Only set
+   *  it when the theme's default `--on-ac` fails on the accent — e.g. a light
+   *  accent like a neon lime, where the light theme's white label is unreadable.
+   *  It applies in both themes, so pick a color measured against the accent in
+   *  each (the same ink usually works when the accent stays light in both). */
+  on?: string;
+};
 
 export const CASE_ACCENTS = {
   estudiofroment: { dark: "#c5a059", light: "#8e6b20" },
@@ -21,6 +30,11 @@ export const CASE_ACCENTS = {
   "la-carlota": { dark: "#b8860b", light: "#986700" },
   "laboratorio-spotorno": { dark: "#2d6bf4", light: "#2563eb" },
   "legally-on-the-move": { dark: "#8b5cf6", light: "#8150e9" },
+  // The site's brand lime (`--color-brand-lime` in riserva-front) — the CTA
+  // color at riserva.com.ar. Its light variant keeps hue/chroma and drops L to
+  // 0.525 for 4.60:1 against the light --bg. `on` is the site's brand ink:
+  // the light theme's default --on-ac (white) is 1.18:1 on the lime.
+  riserva: { dark: "#c6ff3d", light: "#4e7b00", on: "#18243b" },
 } satisfies Record<string, AccentPair>;
 
 export type AccentKey = keyof typeof CASE_ACCENTS;

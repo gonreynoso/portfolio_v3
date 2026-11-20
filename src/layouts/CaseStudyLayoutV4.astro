@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 
 import V4Layout from "./V4Layout.astro";
 import { localizePath, useTranslations } from "../i18n";
-import { CASE_ACCENTS, type AccentKey } from "../lib/accents";
+import { CASE_ACCENTS, type AccentKey, type AccentPair } from "../lib/accents";
 
 interface ContentObj {
   badge: string;
@@ -79,10 +79,18 @@ const {
 const { lang, t } = useTranslations(Astro.url);
 
 // Each case ships both of its accents; v4.css picks the one matching the
-// active theme and re-derives the alpha variants from it.
-const accent = accentKey ? CASE_ACCENTS[accentKey] : undefined;
+// active theme and re-derives the alpha variants from it. An accent may also
+// carry its own button-label color (`on`) when the theme's default `--on-ac`
+// fails on it; the inline declaration then wins over both theme palettes.
+const accent = accentKey
+  ? (CASE_ACCENTS[accentKey] as AccentPair)
+  : undefined;
 const accentVars = accent
-  ? `--ac-dark: ${accent.dark}; --ac-light: ${accent.light}`
+  ? [
+      `--ac-dark: ${accent.dark}`,
+      `--ac-light: ${accent.light}`,
+      ...(accent.on ? [`--on-ac: ${accent.on}`] : []),
+    ].join("; ")
   : undefined;
 
 const tag =

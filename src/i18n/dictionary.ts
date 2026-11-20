@@ -620,6 +620,58 @@ const es = {
         ctaUrl: "https://www.baiardi.com",
       },
     },
+    riserva: {
+      badge: "Caso de estudio",
+      title: "Riserva · SaaS de Turnos",
+      role: "Fundador y Full-stack Developer",
+      summary:
+        "SaaS multi-tenant de turnos para negocios de servicios: cada negocio opera desde un panel Angular y publica un micrositio propio donde sus clientes reservan turnos, pagan la seña por Mercado Pago y compran packs, mientras el dueño controla horarios, servicios y cobros.",
+      backToHome: "← Volver",
+      sections: {
+        challenge: {
+          number: "01",
+          title: "El desafío",
+          body: "Los negocios de servicios (peluquerías, estéticas, uñas, clínicas) gestionan sus turnos con agendas y WhatsApp, y las señas se cobran sin comprobantes. Riserva es un SaaS multi-tenant para el mercado argentino: cada negocio debía gestionar su operación completa desde un panel propio y publicar un micrositio individual donde sus clientes reserven turnos, paguen la seña y compren packs, con los datos de cada negocio completamente aislados.",
+        },
+        process: {
+          number: "02",
+          title: "Proceso creativo",
+          steps: [
+            {
+              title: "A. Modelado del dominio multi-tenant",
+              body: "Diseñé el dominio como un SaaS multi-tenant: cada negocio tiene sus datos completamente aislados y su propia página pública de reservas. El modelo cubre el equipo del negocio —dueño y personal—, sus servicios, horarios y bloqueos, sus reservas y clientes, y su suscripción al SaaS.",
+            },
+            {
+              title: "B. Panel Angular",
+              body: "Construí el panel con Angular 22, componentes standalone y signals sobre Tailwind CSS 4: métricas, calendario, reservas, servicios, horarios, clientes, planes y ajustes, con sincronización de Google Calendar para que los turnos convivan con la agenda externa del negocio. El frontend se prueba con Vitest.",
+            },
+            {
+              title: "C. Pagos con Mercado Pago",
+              body: "Integré Mercado Pago: el cliente paga la seña al negocio en el checkout y la reserva se confirma automáticamente cuando el pago se acredita. La reserva congela el monto y el porcentaje efectivo de la seña —los cambios posteriores del servicio no la modifican—, y las compras de packs retienen sus lugares pendientes hasta confirmar el pago. La suscripción del negocio a Riserva se cobra de forma recurrente, y si queda impaga el panel se bloquea sin derribar el micrositio público.",
+            },
+            {
+              title: "D. Micrositio y comunicación con el cliente",
+              body: "Cada negocio publica su micrositio en su propia dirección: catálogo de servicios y disponibilidad, reserva en línea, packs y cuenta de cliente. El cliente gestiona su turno desde el link del mail —consultar, cancelar o reprogramar dentro de una única ventana de políticas— y recibe confirmaciones por correo además de avisos por WhatsApp.",
+            },
+          ],
+        },
+        outcome: {
+          number: "03",
+          title: "Resultado final",
+          body: "Riserva está en producción en riserva.com.ar, desplegada automáticamente a DigitalOcean vía GitHub Actions. Los negocios operan su agenda completa desde el panel y sus clientes reservan, pagan la seña y compran packs sin intervención manual. La arquitectura multi-tenant permite sumar negocios sin duplicar infraestructura, con módulos específicos habilitados por negocio.",
+        },
+      },
+      specs: {
+        title: "Especificaciones del proyecto",
+        env: "Entorno de desarrollo",
+        envValue: "Laravel 13 · Angular 22",
+        frontend: "Frontend",
+        libraries: "Librerías",
+        deploy: "Deploy",
+        cta: "Ver sitio en vivo",
+        ctaUrl: "https://riserva.com.ar",
+      },
+    },
     viveroTakumi: {
       badge: "Caso de estudio",
       title: "Vivero Takumi · Tienda Online",
@@ -833,6 +885,12 @@ const es = {
         title: "Baiardi Aventura · Sistema de Reservas",
         description:
           "Sistema de reservas para expediciones de trekking y fotografía con grupos reducidos. El visitante reserva y paga online; el guía controla actividades, fechas y confirmaciones desde un panel admin.",
+        linkLabel: "Ver caso",
+      },
+      riserva: {
+        title: "Riserva · SaaS de Turnos",
+        description:
+          "SaaS multi-tenant de turnos para negocios de servicios. Cada negocio gestiona su operación desde un panel Angular y publica su propio micrositio, donde los clientes reservan turnos, pagan la seña y compran packs.",
         linkLabel: "Ver caso",
       },
       viveroTakumi: {
@@ -1522,6 +1580,58 @@ const en: Dict = {
         ctaUrl: "https://www.baiardi.com",
       },
     },
+    riserva: {
+      badge: "Case study",
+      title: "Riserva · Booking SaaS",
+      role: "Founder & Full-stack Developer",
+      summary:
+        "Multi-tenant booking SaaS for service businesses: each business runs its operation from an Angular panel and publishes its own microsite, where its customers book appointments, pay the deposit via Mercado Pago and buy packs, while the business owner controls schedules, services and payments.",
+      backToHome: "← Back",
+      sections: {
+        challenge: {
+          number: "01",
+          title: "The challenge",
+          body: "Service businesses (barbershops, salons, aesthetics studios, nail salons, clinics) still manage appointments with agendas and WhatsApp, collecting deposits without receipts. Riserva is a multi-tenant SaaS for the Argentine market: every business had to run its full operation from its own panel and publish an individual microsite where its customers book appointments, pay the deposit and buy packs, with each business's data fully isolated.",
+        },
+        process: {
+          number: "02",
+          title: "Creative process",
+          steps: [
+            {
+              title: "A. Multi-tenant domain modeling",
+              body: "I designed the domain as a multi-tenant SaaS: every business has its data fully isolated and its own public booking page. The model covers each business's team — owner and staff —, its services, schedules and blocks, its bookings and customers, and the product subscription.",
+            },
+            {
+              title: "B. Angular panel",
+              body: "I built the panel with Angular 22, standalone components and signals on top of Tailwind CSS 4: metrics, calendar, bookings, services, schedules, clients, plans and settings, with Google Calendar sync so bookable slots coexist with the business's external agenda. The frontend is tested with Vitest.",
+            },
+            {
+              title: "C. Mercado Pago payments",
+              body: "I integrated Mercado Pago: the customer pays the deposit to the business at checkout and the booking is confirmed automatically once the payment goes through. The booking freezes the deposit amount and effective percentage — later service changes never alter it — and pack purchases hold their pending slots until payment is confirmed. The business pays Riserva through a recurring subscription, and if it goes unpaid the panel is blocked while the public microsite stays up.",
+            },
+            {
+              title: "D. Microsite and customer communication",
+              body: "Every business publishes its microsite at its own address: service catalog and availability, online booking, packs and the customer account. Customers manage their appointment from the email link — view, cancel or reschedule within a single policy window — and receive email confirmations plus WhatsApp messages.",
+            },
+          ],
+        },
+        outcome: {
+          number: "03",
+          title: "Final outcome",
+          body: "Riserva is live in production at riserva.com.ar, deployed automatically to DigitalOcean via GitHub Actions. Businesses run their whole agenda from the panel while their customers book, pay the deposit and buy packs without manual intervention. The multi-tenant architecture onboards new businesses without duplicating infrastructure, with specific modules enabled per business.",
+        },
+      },
+      specs: {
+        title: "Project specs",
+        env: "Development environment",
+        envValue: "Laravel 13 · Angular 22",
+        frontend: "Frontend",
+        libraries: "Libraries",
+        deploy: "Deploy",
+        cta: "View live site",
+        ctaUrl: "https://riserva.com.ar",
+      },
+    },
     viveroTakumi: {
       badge: "Case study",
       title: "Vivero Takumi · Online Store",
@@ -1736,6 +1846,12 @@ const en: Dict = {
         title: "Baiardi Aventura · Reservation System",
         description:
           "Booking system for small-group trekking and photography outings. Visitors reserve and pay online; the guide manages activities, dates and confirmations from an admin panel.",
+        linkLabel: "View case",
+      },
+      riserva: {
+        title: "Riserva · Booking SaaS",
+        description:
+          "Multi-tenant booking SaaS for service businesses. Each business runs its operation from an Angular panel and publishes its own microsite, where customers book appointments, pay the deposit and buy packs.",
         linkLabel: "View case",
       },
       viveroTakumi: {

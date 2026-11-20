@@ -12,6 +12,7 @@ import laboratorioSpotornoImg from "../assets/projects/laboratoriospotorno.webp"
 import legallyOnTheMoveImg from "../assets/projects/legallyonthemove.webp";
 import medicinaDiagnosticaImg from "../assets/projects/medicinadiagnostica.webp";
 import refugioIlonImg from "../assets/projects/refugioilonweb.webp";
+import riservaImg from "../assets/projects/riserva.webp";
 import viveroTakumiAdmin from "../assets/projects/viverotakumi-admin.webp";
 import viveroTakumiImg from "../assets/projects/viverotakumi.webp";
 
@@ -30,6 +31,19 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
+  {
+    key: "riserva",
+    href: "/casos/riserva",
+    image: riservaImg,
+    tags: [
+      TAG.LARAVEL,
+      TAG.ANGULAR,
+      TAG.TAILWIND,
+      TAG.MERCADOPAGO,
+      TAG.DO,
+    ],
+    featured: true,
+  },
   {
     key: "froment",
     href: "/estudiofroment",
@@ -136,5 +150,6 @@ export {
   legallyOnTheMoveImg,
   medicinaDiagnosticaImg,
   refugioIlonImg,
+  riservaImg,
   viveroTakumiImg,
 };
