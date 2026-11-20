@@ -12,6 +12,7 @@ import {
   legallyOnTheMoveImg,
   medicinaDiagnosticaImg,
   refugioIlonImg,
+  riservaImg,
   viveroTakumiImg,
 } from "./projects";
 
@@ -79,6 +80,23 @@ export const CASES: CaseConfig[] = [
     frontendBadges: ["Livewire 3", "Tailwind CSS 4", "Alpine.js"],
     libraryBadges: ["Mercado Pago", "Resend"],
     deployBadges: ["Laravel 12", "MySQL", "DigitalOcean"],
+  },
+  {
+    slug: "riserva",
+    key: "riserva",
+    accentKey: "riserva",
+    image: riservaImg,
+    cardAlt: {
+      es: "Riserva — SaaS de turnos multi-tenant",
+      en: "Riserva — multi-tenant booking SaaS",
+    },
+    cardCaption: {
+      es: "Imagen de presentación — SaaS de turnos.",
+      en: "Presentation image — booking SaaS.",
+    },
+    frontendBadges: ["Angular 22", "Tailwind CSS 4"],
+    libraryBadges: ["Mercado Pago", "Resend", "Google Calendar"],
+    deployBadges: ["Laravel 13", "DigitalOcean"],
   },
   {
     slug: "vivero-takumi",
